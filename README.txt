@@ -13,4 +13,4 @@ Obs: Pode acontecer de mais de um usuário estar programando em um mesmo arquivo
 Recomendação: 
 
 Faça sempre o push quando terminar uma tarefa, e tenha certeza de que está concluida. Pois o histórico de 'pushs' fica mais limpo e organizado. 
-É necessário inserir um comentário ao fazer commit/push para que saibam o que você implementou. Seja simples e direto.
+Ao realizar o push/commit, é necessário inserir um comentário explicando as implementações feitas nos arquivos.
