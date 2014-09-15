@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<!-- Lae compiled and minified CSS -->
+		<link rel="stylesheet" href="lib/bootstrap/3.2.0/css/bootstrap.min.css">
+ 
+    <style type="text/css">
+      #menu-superior{
+        display: block;
+      }
+      #menu-inferior{
+        display: inline;
+      }
+      .pos-inicial {
+     position: fixed;
+	 width:100%;
+	 top: 52px;
+      }
+      .pos-final {
+			top: 0px;
+      }
+	  
+	#header_nav {
+		width:100%;
+		height:100px;
+		position:fixed;		
+	}
+
+	.navbar-default{
+		background-color: #F5F7FA;
+		border-radius: 0px;
+		border-color: #F5F7FA;
+		border-bottom-color: #E6E9ED;
+		border-style: solid;
+		border-width: 1px;
+
+	}
+	.navbar-default .navbar-brand{
+		color: #73879C;
+	}
+
+		.navbar-inverse{
+		background-color: #FFFFFF;
+		border-radius: 0px;
+		border-color: #FFFFFF;
+		border-bottom-color: #E6E9ED;
+		border-style: solid;
+		border-width: 1px;
+		box-shadow: 2px 2px 6px #000;
+		-webkit-box-shadow: 2px 2px 6px #000;
+		-moz-box-shadow: 2px 2px 6px #000;
+	}
+      
+	.navbar-inverse .navbar-brand{
+		color: #73879C;
+	}
+
+	.btn-default{
+		width: 100px;
+		border-radius: 0px;
+		background-color: #F5F7FA;
+		border-width: 2px;
+		border-color: #E6E9ED;
+		color: #73879C;
+		font-weight: bold;
+	}
+	.login{
+		float: right;
+	}
+
+	#events-avl{
+		margin-top: 8px;
+		float: left;
+		border-style: solid;
+		background-color: #F5F7FA;
+		border-width: 2px;
+		border-color: #E6E9ED;
+		color: #73879C;
+		width: 450px;
+		height: 35px;
+		text-align: center;
+		font-weight: bold;
+	}
+
+	#menu-inf-actions{
+		float: right;
+
+	}
+
+	.menu-inf-buttons{
+		width: 250px;
+		height: 82px;
+		background-color: #FFFFFF;
+		border: 0px;
+		font-size: 25px;	
+	}
+
+	.thumbnail{
+		max-width: 400px;
+		border-radius: 0px;
+		border-width: 1px;
+		border-color: #E6E9ED;		
+		background-color: #F5F7FA;
+	}
+
+	.tentando{
+		display: block;
+	}
+
+    </style>
+	<script src="lib/jQuery/1.11.1/jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$('#header_nav').data('size','big');
+	});
+
+	$(window).scroll(function(){
+		if($(document).scrollTop() > 0)
+		{
+			if($('#header_nav').data('size') == 'big')
+			{
+				$('#header_nav').addClass('pos-final');
+				$('#header_nav').data('size','small');
+				$('#header_nav').stop().animate({
+					height:'60px'
+				},600);
+				$('#turu').stop().animate({
+					width:'88px', height:'58px'
+				},600);
+				$('.menu-inf-buttons').stop().animate({
+					height:'45px'
+				},600);
+			}
+		}
+		else
+		{
+			if($('#header_nav').data('size') == 'small')
+			{
+
+				$('#header_nav').removeClass('pos-final');
+				$('#header_nav').data('size','big');
+				$('#header_nav').stop().animate({
+					height:'100px'
+				},600);
+				$('#turu').stop().animate({
+					width:'125px', height:'85px'
+				},600);
+				$('.menu-inf-buttons').stop().animate({
+					height:'82px'
+				},600);
+			}  
+		}
+	});
+</script>
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="lib/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+		 <title>Pagina Inicial</title>
+	</head>
+<body style="70px">
+
+	<div class="tentando">
+	    	<div style="display:block">
+			    <nav class="navbar navbar-default" role="navigation">
+			     	 <div class="container-fluid">		
+			     	 <div id="events-avl">Datas dos próximos Eventos</div>
+
+				 <button type="button" class="btn btn-default navbar-btn login">Login</button>
+					 </div>
+			    </nav>
+		</div>
+
+			<div id="pos-inicial" class="pos-inicial" style="display:inline">
+			    <nav id="header_nav"class="navbar navbar-inverse" role="navigation">
+			    	<div class="container-fluid">
+				  <!-- Brand and toggle get grouped for better mobile display -->    
+				  			<img id="turu" src="turu.jpg" width=125px height=85px>
+				  				<div id="menu-inf-actions">
+				  					<button type="button" class="btn btn-default navbar-btn login menu-inf-buttons"><span class="glyphicon glyphicon-search"></span></button>
+				  					<button type="button" class="btn btn-default navbar-btn login menu-inf-buttons">Contato</button>
+				  					<button type="button" class="btn btn-default navbar-btn login menu-inf-buttons">Eventos</button>
+				  					<button type="button" class="btn btn-default navbar-btn login menu-inf-buttons">Home</button>
+				  				</div>
+				 <!--  <button type="button" class="btn btn-default navbar-btn">Sign in</button>-->
+					</div>
+			    </nav>
+	    	</div>
+	</div>
+		
+<div id="corpo"  style="height:3000px; margin-left: 15px; margin-top: 150px; display:block">
+
+
+
+
+
+</div>
+
+</body>
+</html>
+
