@@ -33,4 +33,8 @@ public class ConexaoBD {
 	public Connection getConexao()	{	
 		return con;		
 	}
+	
+	
+	
+	
 }
