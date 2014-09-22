@@ -1,0 +1,211 @@
+		#menu-superior {
+			display: block;
+		}
+		#menu-inferior {
+			display: inline;
+		}
+		.pos-inicial {
+			position: fixed;
+			width: 100%;
+			top: 52px;
+		}
+		.pos-final {
+			top: 0px;
+		}
+		#header_nav {
+			width: 100%;
+			height: 100px;
+			position: fixed;
+		}
+		.navbar {
+			z-index: 8000;
+		}
+		.navbar-default {
+			background-color: #F5F7FA;
+			border-radius: 0px;
+			border-color: #F5F7FA;
+			border-bottom-color: #E6E9ED;
+			border-style: solid;
+			border-width: 1px;
+		}
+		.navbar-default .navbar-brand {
+			color: #73879C;
+		}
+		.navbar-inverse {
+			background-color: #FFFFFF;
+			border-radius: 0px;
+			border-color: #FFFFFF;
+			border-bottom-color: #E6E9ED;
+			border-style: solid;
+			border-width: 1px;
+			box-shadow: 2px 2px 6px #000;
+			-webkit-box-shadow: 2px 2px 6px #000;
+			-moz-box-shadow: 2px 2px 6px #000;
+		}
+		.navbar-inverse .navbar-brand {
+			color: #73879C;
+		}
+		.btn-default {
+			width: 100px;
+			border-radius: 0px;
+			background-color: #F5F7FA;
+			border-width: 2px;
+			border-color: #E6E9ED;
+			color: #73879C;
+			font-weight: bold;
+		}
+		.btn-search {
+			width: 40px;
+		}
+		.navbar-form .form-group {
+			width: 80%;
+		}
+		.form-group {
+			padding-left: 5px;
+			padding-right: 5px;
+		}
+		.form-control {
+			border-radius: 0px;
+			width: 100% !important;
+			height: 36px;
+			border-width: 2px;
+			border-color: #E6E9ED;
+			background-color: #FAFCFF;
+			margin-bottom: 5px;
+		}
+		.login {
+			float: right;
+		}
+		.logar {
+			background-color: #283645;
+			color: #E6E9ED
+		}
+		#events-avl {
+			margin-top: 8px;
+			float: left;
+			border-style: solid;
+			background-color: #F5F7FA;
+			border-width: 2px;
+			border-color: #E6E9ED;
+			color: #73879C;
+			width: 450px;
+			height: 35px;
+			text-align: center;
+			font-weight: bold;
+		}
+		#menu-inf-actions {
+			float: right;
+		}
+		.menu-inf-buttons {
+			width: 250px;
+			height: 82px;
+			background-color: #FFFFFF;
+			border: 0px;
+			font-size: 25px;
+		}
+		.thumbnail {
+			max-width: 400px;
+			border-radius: 0px;
+			border-width: 1px;
+			border-color: #E6E9ED;
+			background-color: #F5F7FA;
+		}
+		.tentando {
+			display: block;
+		}
+		.navbar-toggle {
+			border-radius: 0px;
+			border-width: 2px;
+		}
+		.navbar-inverse .navbar-toggle .icon-bar {
+			background-color: #73879C;
+		}
+		.navbar-inverse .navbar-toggle {
+			border-color: #73879C;
+			height: 40px;
+			font-weight: bold;
+			color: #73879C;
+		}
+		.navbar-inverse .navbar-toggle:hover,
+		.navbar-inverse .navbar-toggle:focus {
+			background-color: #2F4052;
+		}
+		#turu {
+			float: left;
+			margin-top: 15px;
+		}
+		.dropdown-toggle-search {
+			height: 50px;
+		}
+		.dropdown-menu {
+			width: 305px;
+			background-color: #F5F7FA;
+			border-color: #73879C;
+			border-radius: 0px;
+			border-width: 1px;
+		}
+		.navbar-nav .open .dropdown-menu {
+			background-color: #F5F7FA;
+			border-color: #73879C;
+			border-style: solid;
+			border-width: 1px;
+			border-radius: 0px;
+		}
+		.nav-middle {
+			margin-top: 20px;
+		}
+		a {
+			color: #73879C;
+		}
+		.navbar-inverse .navbar-nav>li>a {
+			align: center;
+			padding-left: 40px;
+			padding-right: 40px;
+			font-size: 20px;
+			font-weight: bold;
+			color: #73879C;
+		}
+		.navbar-inverse .navbar-nav>.open>a,
+		.navbar-inverse .navbar-nav>.open>a:hover,
+		.navbar-inverse .navbar-nav>.open>a:focus {
+			color: #73879C;
+			background-color: #F5F7FA;
+			border-style: solid;
+			border-width: 1px;
+			border-color: #73879C;
+			border-bottom-width: 0px;
+		}
+		ul.nav a:hover {
+			color: #73879C !important;
+			background-color: #F5F7FA !important;
+			border-style: solid !important;
+			border-width: 1px !important;
+		}
+		.lembrar {
+			color: #73879C;
+			font-weight: bold;
+		}
+
+		@media (max-width: 768px) {
+			.navbar-right {
+				margin: 0 -14px 0 -16px;
+				border-style: solid;
+				border-width: 1px;
+				border-color: #E6E9ED;
+				position: static !important;
+				background: white;
+				max-height: inherit;
+				padding-top: 0px;
+				padding-bottom: 0px;
+				padding-left: 15px;
+				padding-right: 15px;
+			}
+			#navbar-bottom-collapse a {
+				margin-top: 5px;
+				padding-left: 10px;
+				border-style: solid;
+				border-color: #E6E9ED;
+				border-width: 0px;
+				border-bottom-width: 1px;
+			}
+		}

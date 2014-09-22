@@ -1,195 +1,229 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<!-- Lae compiled and minified CSS -->
-		<link rel="stylesheet" href="lib/bootstrap/3.2.0/css/bootstrap.min.css">
+
+<head>
+	<meta charset="UTF-8">
+	<!-- Lae compiled and minified CSS -->
+	<link rel="stylesheet" href="lib/bootstrap/3.2.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="lib/css/layout-default.css">
+	<link rel="stylesheet" href="lib/css/events.css">
 	<style type="text/css">
-	.thumbnail{
-		padding: 0px;
-		max-width: 400px;
-		max-height: 485px;
-		border-radius: 0px;
-		border-width: 1px;
-		border-color: #E6E9ED;		
-		background-color: #F5F7FA;
-		box-shadow: 2px 2px 6px #000;
-		-webkit-box-shadow: 2px 2px 6px #000;
-		-moz-box-shadow: 2px 2px 6px #000;
-	}
-
-	.caption{
-		max-height: 200px;
-	}
-	.caption h3{
-		margin-top: 3px;
-		color: #73879C;
-	}
-	.caption p{
-		color: #73879C;
-	}
-
-	.btn-default{
-		width: 100px;
-		border-radius: 0px;
-		background-color: #F5F7FA;
-		border-width: 2px;
-		border-color: #E6E9ED;
-		color: #73879C;
-		font-weight: bold;
-	}
-
-	.info-event{
-		padding-left: 3px;
-		max-width: 400px;
-		border-radius: 0px;
-		border-style: solid;
-		border-left-width: 0px;
-		border-right-width: 0px;
-		border-top-width: 1px;
-		border-bottom-width: 1px;
-		border-color: #E6E9ED;		
-		background-color: #F5F7FA;
-		color: #73879C;
-	}
-
-	.inscrever-button{
-		width: 100%;
-		border-left-width: 0px;
-		border-right-width: 0px;
-		border-top-width: 1px;
-		border-bottom-width: 0px;		
-
-
-	}
-
+		
 	</style>
 	<script src="lib/jQuery/1.11.1/jquery-1.11.1.min.js"></script>
+	<script src="lib/scripts/navbar-animation.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="lib/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+	<title>Pagina Inicial</title>
+</head>
 
-			<script src="lib/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<body style="70px">
+	<div class="navbar">
+		<nav class="navbar navbar-default" role="navigation">
+			<div class="container-fluid">
+				<div id="events-avl">Datas dos próximos testeEventos</div>
+				<div class="navbar-collapse collapse" id="navbar-login-collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li class="dropdown">
+							<button class="btn btn-default navbar-btn login dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+								Login</button>
+							<ul class="dropdown-menu" role="menu">
 
-		 <title>Pagina Inicial</title>
-	</head>
-
-<body>
-	<div style="height:3000px; margin-left: 15px; margin-top: 150px; display:block">
-		<div class="row">
-		  <div class="col-sm-12 col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      		<img src="turu.jpg" alt="Turuboy" style="max-width: 300px">
-		      
-		      	<div class="info-event" style="border-bottom-width: 0px">
-		      		DD.MMM.AAAA | DD.MM.AAAA
-		      	</div>
-		      	<div class="info-event">
-		      		Local: Local do Evento
-		      	</div>
-		      	<div class="caption">
-		        <center><h3>Nome do Evento</h3>
-		       		<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p></center>
-		    	</div>
-		        <a href="#" class="btn btn-default inscrever-button" role="button">Inscreva-se</a>		      
-		    </div>
-		  </div>
-		  		  <div class="col-sm-12 col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      		<img src="turu.jpg" alt="Turuboy" style="max-width: 300px">
-		      
-		      	<div class="info-event" style="border-bottom-width: 0px">
-		      		DD.MMM.AAAA | DD.MM.AAAA
-		      	</div>
-		      	<div class="info-event">
-		      		Local: Local do Evento
-		      	</div>
-		      	<div class="caption">
-		        <center><h3>Nome do Evento</h3>
-		       		<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p></center>
-		    	</div>
-		        <a href="#" class="btn btn-default inscrever-button" role="button">Inscreva-se</a>		      
-		    </div>
-		  </div>
-		  		  <div class="col-sm-12 col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      		<img src="turu.jpg" alt="Turuboy" style="max-width: 300px">
-		      
-		      	<div class="info-event" style="border-bottom-width: 0px">
-		      		DD.MMM.AAAA | DD.MM.AAAA
-		      	</div>
-		      	<div class="info-event">
-		      		Local: Local do Evento
-		      	</div>
-		      	<div class="caption">
-		        <center><h3>Nome do Evento</h3>
-		       		<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p></center>
-		    	</div>
-		        <a href="#" class="btn btn-default inscrever-button" role="button">Inscreva-se</a>		      
-		    </div>
-		  </div>
-		  		  <div class="col-sm-12 col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      		<img src="turu.jpg" alt="Turuboy" style="max-width: 300px">
-		      
-		      	<div class="info-event" style="border-bottom-width: 0px">
-		      		DD.MMM.AAAA | DD.MM.AAAA
-		      	</div>
-		      	<div class="info-event">
-		      		Local: Local do Evento
-		      	</div>
-		      	<div class="caption">
-		        <center><h3>Nome do Evento</h3>
-		       		<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p></center>
-		    	</div>
-		        <a href="#" class="btn btn-default inscrever-button" role="button">Inscreva-se</a>		      
-		    </div>
-		  </div>
-		  		  <div class="col-sm-12 col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      		<img src="turu.jpg" alt="Turuboy" style="max-width: 300px">
-		      
-		      	<div class="info-event" style="border-bottom-width: 0px">
-		      		DD.MMM.AAAA | DD.MM.AAAA
-		      	</div>
-		      	<div class="info-event">
-		      		Local: Local do Evento
-		      	</div>
-		      	<div class="caption">
-		        <center><h3>Nome do Evento</h3>
-		       		<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p></center>
-		    	</div>
-		        <a href="#" class="btn btn-default inscrever-button" role="button">Inscreva-se</a>		      
-		    </div>
-		  </div>
-		  		  <div class="col-sm-12 col-sm-6 col-md-4">
-		    <div class="thumbnail">
-		      		<img src="turu.jpg" alt="Turuboy" style="max-width: 300px">
-		      
-		      	<div class="info-event" style="border-bottom-width: 0px">
-		      		DD.MMM.AAAA | DD.MM.AAAA
-		      	</div>
-		      	<div class="info-event">
-		      		Local: Local do Evento
-		      	</div>
-		      	<div class="caption">
-		        <center><h3>Nome do Evento</h3>
-		       		<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p>
-		        	<p>Descrição do Evento  -  Descrição do Evento</p></center>
-		    	</div>
-		        <a href="#" class="btn btn-default inscrever-button" role="button">Inscreva-se</a>		      
-		    </div>
-		  </div>
-
+								<form class="form-group" role="search" style="margin-bottom: 0px;">
+									<input type="text" class="form-control" placeholder="Login">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Senha">
+										<span class="input-group-btn">
+                <button class="btn btn-default logar" type="button">Logar&nbsp&nbsp&nbsp<span class="glyphicon glyphicon-log-in"></span>
+										</button>
+										</span>
+									</div>
+									<div class="lembrar">
+										<input type="checkbox" name="stay" value="stay">&nbspLembrar-me&nbsp&nbsp
+										<span class="glyphicon glyphicon-asterisk"></span>&nbsp&nbsp
+										<a href="#">Esqueci minha senha</a>
+									</div>
+									<button class="btn btn-default bottom-button" type="button" id="createAccount">Criar uma conta</button>
+								</form>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</nav>
+		<div id="pos-inicial" class="pos-inicial" style="display:inline">
+			<nav id="header_nav" class="navbar navbar-inverse" role="navigation">
+				<div class="container-fluid">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-bottom-collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<img id="turu" src="cal.png" width=95px height=65px>
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-login-collapse">Login</button>
+					</div>
+					<!-- Collect the nav links, forms, and other content for toggling -->
+					<div class="collapse navbar-collapse nav-middle" id="navbar-bottom-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="index.html">Home</a>
+							</li>
+							<li><a href="eventos.html">Eventos</a>
+							</li>
+							<li><a href="contato.html">Contato</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle dropdown-toggle-search" data-toggle="dropdown"><span class="glyphicon glyphicon-search"></span> </a>
+								<ul class="dropdown-menu" role="menu">
+									<form class="form-group" role="search" style="margin-bottom: 0px;">
+										<div class="input-group">
+											<input type="text" class="form-control" placeholder="Procurar">
+											<span class="input-group-btn">
+                <button class="btn btn-default btn-search" type="button"><span class="glyphicon glyphicon-search"></span>
+											</button>
+											</span>
+										</div>
+									</form>
+								</ul>
+							</li>
+						</ul>
+						</ul>
+					</div>
+					<!-- /.navbar-collapse -->
+				</div>
+				<!-- /.container-fluid -->
+			</nav>
 		</div>
 	</div>
+	<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">
+		<div class="row">
+			<div class="col-sm-12 col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="cal.png" alt="Turuboy" style="max-width: 300px">
+					<div class="info-event" style="border-bottom-width: 0px">
+						DD.MMM.AAAA | DD.MM.AAAA
+					</div>
+					<div class="info-event">
+						Local: Local do Evento
+					</div>
+					<div class="caption">
+						<center>
+							<h3>Nome do Evento</h3>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+						</center>
+					</div>
+					<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
+				</div>
+			</div>
+			<div class="col-sm-12 col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="cal.png" alt="Turuboy" style="max-width: 300px">
+					<div class="info-event" style="border-bottom-width: 0px">
+						DD.MMM.AAAA | DD.MM.AAAA
+					</div>
+					<div class="info-event">
+						Local: Local do Evento
+					</div>
+					<div class="caption">
+						<center>
+							<h3>Nome do Evento</h3>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+						</center>
+					</div>
+					<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
+				</div>
+			</div>
+			<div class="col-sm-12 col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="cal.png" alt="Turuboy" style="max-width: 300px">
+					<div class="info-event" style="border-bottom-width: 0px">
+						DD.MMM.AAAA | DD.MM.AAAA
+					</div>
+					<div class="info-event">
+						Local: Local do Evento
+					</div>
+					<div class="caption">
+						<center>
+							<h3>Nome do Evento</h3>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+						</center>
+					</div>
+					<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
+				</div>
+			</div>
+			<div class="col-sm-12 col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="cal.png" alt="Turuboy" style="max-width: 300px">
+					<div class="info-event" style="border-bottom-width: 0px">
+						DD.MMM.AAAA | DD.MM.AAAA
+					</div>
+					<div class="info-event">
+						Local: Local do Evento
+					</div>
+					<div class="caption">
+						<center>
+							<h3>Nome do Evento</h3>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+						</center>
+					</div>
+					<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
+				</div>
+			</div>
+			<div class="col-sm-12 col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="cal.png" alt="Turuboy" style="max-width: 300px">
+					<div class="info-event" style="border-bottom-width: 0px">
+						DD.MMM.AAAA | DD.MM.AAAA
+					</div>
+					<div class="info-event">
+						Local: Local do Evento
+					</div>
+					<div class="caption">
+						<center>
+							<h3>Nome do Evento</h3>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+						</center>
+					</div>
+					<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
+				</div>
+			</div>
+			<div class="col-sm-12 col-sm-6 col-md-4">
+				<div class="thumbnail">
+					<img src="cal.png" alt="Turuboy" style="max-width: 300px">
+
+					<div class="info-event" style="border-bottom-width: 0px">
+						DD.MMM.AAAA | DD.MM.AAAA
+					</div>
+					<div class="info-event">
+						Local: Local do Evento
+					</div>
+					<div class="caption">
+						<center>
+							<h3>Nome do Evento</h3>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+							<p>Descrição do Evento - Descrição do Evento</p>
+						</center>
+					</div>
+					<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 </body>
+
 </html>
+
