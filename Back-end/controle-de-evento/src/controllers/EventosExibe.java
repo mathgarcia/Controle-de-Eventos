@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dao.EventoDAO;
 import model.Evento;
-import model.Participante;
 
 @WebServlet("/EventosExibe")
 public class EventosExibe extends HttpServlet{
@@ -27,7 +27,7 @@ public class EventosExibe extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Evento> ev = null;
 		try {
-			ev = Participante.consultaEventos();
+			ev = EventoDAO.consultaTodosEventos();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

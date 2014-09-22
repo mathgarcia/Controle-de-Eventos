@@ -1,7 +1,6 @@
 package model;
 
 import java.sql.Date;
-import java.sql.SQLException;
 
 public class Administrador extends Gestor {
 	
@@ -13,6 +12,7 @@ public class Administrador extends Gestor {
 				endereco, senha, cpf, end, per, gr);
 		// TODO Auto-generated constructor stub
 	}
+	/*
 	private void cadastraTipoPerfil() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
@@ -21,4 +21,5 @@ public class Administrador extends Gestor {
 		iniciaConexao("");
 		fechaConexao();
 	}
+	*/
 }

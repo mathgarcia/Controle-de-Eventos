@@ -1,95 +1,89 @@
 package dao;
+import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import model.Participante;
 
-import model.ResultSet;
-import model.SQLException;
-import model.String;
-import model.*;
-
-public class ParticipanteDAO {
-	
-	
-	private static ConexaoBD conb;
-	private static Connection con;
-	private static PreparedStatement ps;
-	
-	protected static void iniciaConexao(String query) throws SQLException{
-		conb = new ConexaoBD();
-		conb.iniciaBd();
-		con = conb.getConexao();
-		ps = (PreparedStatement) con.prepareStatement(query);
-	}
-	
-	protected static void fechaConexao() throws SQLException{
-		ps.close();
-		con.close();
-		conb.fechaBd();
-	}
-	
-	
-	private synchronized void insereParticipante() throws SQLException{
-		this.iniciaConexao("INSERT INTO participante VALUES(null,?,?,?,?,?,?,?,?,?,?,?)");		
-		ps.setString(1, nome);
-		ps.setString(2, nomeSocial);
-		ps.setString(3, senha);
-		ps.setLong(4, sexo);
-		ps.setString(5, cpf);
-		ps.setDate(6, dataNasc);
-		ps.setString(7, telefone);
-		ps.setString(8, celular);
-		ps.setString(9, email);
-		ps.setInt(10,grauist.getCodigo());
-		ps.setInt(11, perfil.getCodigo());
+public class ParticipanteDAO extends DAO{
+	@SuppressWarnings("unused")
+	private synchronized void inserir(Participante p) throws SQLException{
+		DAO.iniciaConexao("INSERT INTO participante VALUES(null,?,?,?,?,?,?,?,?,?,?,?)");		
+		ps.setString(1, p.getNome());
+		ps.setString(2, p.getNomeSocial());
+		ps.setString(3, p.getSenha());
+		ps.setLong(4, p.getSexo());
+		ps.setString(5, p.getCPF());
+		ps.setDate(6, p.getDataNasc());
+		ps.setString(7, p.getTelefone());
+		ps.setString(8, p.getCelular());
+		ps.setString(9, p.getEmail());
+		ps.setInt(10,p.getGrauist().getCodigo());
+		ps.setInt(11, p.getPerfil().getCodigo());
 		ps.executeUpdate();
 		fechaConexao();
 	}
-	
+	@SuppressWarnings("unused")
 	//A implementar: grau, perfil(?) e endereco
-		public void buscaParticipante(String email, String senha) throws SQLException{
-			iniciaConexao("SELECT * FROM participante WHERE email = ? and senha = ?");
-			ps.setString(1, email);		
-			ps.setString(2, senha);
+		public void buscar(int codigo) throws SQLException{
+			iniciaConexao("SELECT * FROM participante WHERE codigo = ?");
+			ps.setInt(1, codigo);
 			ps.executeQuery();
 			ResultSet res =  (ResultSet) ps.executeQuery();	
-			if (res.next()){			
-				nome = res.getString("nome");
-				nomeSocial = res.getString("nomesocial");
-				this.senha = res.getString("senha");
-				this.email = res.getString("email");
-				sexo = (char) res.getLong("sexo");
-				dataNasc = res.getDate("data_nascimento");
-				telefone = res.getString("telefone");
-				celular = res.getString("celular");
+			if (res.next()){							
+				String nome = res.getString("nome");
+				String nomeSocial = res.getString("nomesocial");
+				String senha = res.getString("senha");
+				String email = res.getString("email");
+				char sexo = (char) res.getLong("sexo");
+				Date dataNasc = res.getDate("data_nascimento");
+				String telefone = res.getString("telefone");
+				String celular = res.getString("celular");
+				//Participante p = new Participante();
 			}
 			fechaConexao();
 		}
 		
-		public void deletaParticipante() throws SQLException{
-			iniciaConexao("DELETE table cad_user where cpf_user=?");
-			ps.setString(1, cpf);
+		public void remover(int codigo) throws SQLException{
+			iniciaConexao("DELETE FROM participante where codigo=?");
+			ps.setInt(1, codigo);
 			ps.executeUpdate();
 			fechaConexao();			
 		}
 
-		
-		public void atualizaParticipante() throws SQLException{
+		public void atualizar(Participante p) throws SQLException{
+			//Refazer query update 
 			iniciaConexao("UPDATE cad_user SET nome_user=?,nomeSocial_user=?,senha_user=?,sexo_user=?,"
 					+ "dtnasc_user=?,cod_grauist=?,cod_prefiluser=? "
 					+ "WHERE cpf_user=?");
-			ps.setString(1, nome);
-			ps.setString(2, nomeSocial);
-			ps.setString(3, senha);
-			ps.setLong(4, sexo);
-		    ps.setDate(5, dataNasc);
-			ps.setInt(6,grauist.getCodigo());
-			ps.setInt(7, perfil.getCodigo());
-			ps.setString(8, cpf);
+			ps.setString(1, p.getNome());
+			ps.setString(2, p.getNomeSocial());
+			ps.setString(3, p.getSenha());
+			ps.setLong(4, p.getSexo());
+			ps.setString(5, p.getCPF());
+			ps.setDate(6, p.getDataNasc());
+			ps.setString(7, p.getTelefone());
+			ps.setString(8, p.getCelular());
+			ps.setString(9, p.getEmail());
+			ps.setInt(10,p.getGrauist().getCodigo());
+			ps.setInt(11, p.getPerfil().getCodigo());			
 			ps.executeUpdate();
-			fechaConexao();	
-			
-			
+			fechaConexao();							
 		}
-		
-		
-		
-	
+		/*
+		private void inscreverEvento() throws SQLException{
+			iniciaConexao("");
+			fechaConexao();
+		}	
+		private void cancelarinscricaoEvento() throws SQLException{
+			iniciaConexao("");
+			fechaConexao();
+		}
+		private void votarAtividade() throws SQLException{
+			iniciaConexao("");
+			fechaConexao();
+		}
+		private void compartilharRedesSociais() throws SQLException{
+			iniciaConexao("");
+			fechaConexao();
+		}*/
 }

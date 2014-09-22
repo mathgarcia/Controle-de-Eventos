@@ -3,7 +3,6 @@ package model;
 import java.sql.DriverManager;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Connection;
 
 public class ConexaoBD {
 	private Connection con;	

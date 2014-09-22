@@ -1,20 +1,6 @@
 package model;
 
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Time;
-import java.util.ArrayList;
-
-import sun.misc.BASE64Encoder;
-
-import com.sun.org.apache.xml.internal.security.encryption.EncryptedData;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.util.BASE64EncoderStream;
-
-import model.Evento;
-import model.Atividade;
 
 public class Participante {
 	private int codigo;
@@ -101,41 +87,4 @@ public class Participante {
 	public Endereco getEndereco() {
 		return endereco;
 	}
-	
-	
-	
-
-
-	
-	/*
-	private void alterarDados() throws SQLException{
-		iniciaConexao("");
-		fechaConexao();
-	}
-	
-	private void inscreverEvento() throws SQLException{
-		iniciaConexao("");
-		fechaConexao();
-	}	
-	private void cancelarinscricaoEvento() throws SQLException{
-		iniciaConexao("");
-		fechaConexao();
-	}
-	private void votarAtividade() throws SQLException{
-		iniciaConexao("");
-		fechaConexao();
-	}
-	private void compartilharRedesSociais() throws SQLException{
-		iniciaConexao("");
-		fechaConexao();
-	}*/
-	
-	
-	
-
-	
-	
-	
-
-	
 }
