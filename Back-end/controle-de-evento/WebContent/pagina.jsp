@@ -1,6 +1,6 @@
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
-<%@page import="model.Evento"%>
-<%@page import="model.Atividade"%>
+<%@page import="pojo.Evento"%>
+<%@page import="pojo.Atividade"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
