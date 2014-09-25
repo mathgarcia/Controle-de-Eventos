@@ -70,14 +70,8 @@ public class ParticipanteDAO extends DAO{
 			fechaConexao();							
 		}
 		/*
-		private void inscreverEvento() throws SQLException{
-			iniciaConexao("");
-			fechaConexao();
-		}	
-		private void cancelarinscricaoEvento() throws SQLException{
-			iniciaConexao("");
-			fechaConexao();
-		}
+		
+		
 		private void votarAtividade() throws SQLException{
 			iniciaConexao("");
 			fechaConexao();

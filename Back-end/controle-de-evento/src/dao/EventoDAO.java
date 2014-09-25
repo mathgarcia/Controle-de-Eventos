@@ -46,4 +46,27 @@ public class EventoDAO extends DAO{
 		return ev;
 	}
 	
+	private void inserirEvento() throws SQLException{
+		iniciaConexao("INSERT into Evento (codigo,nome,descricao,data_inico,data_fim,local,)"
+				+ " VALUES(?,?,?,?,?,?)");
+		
+		ps.setInt(1, codigo);
+		ps.setString(2, descricao);
+		ps.setDate(3, data_inicio);
+		ps.setDate(4, data_fim);
+		ps.setString(5, local);
+		ps.executeUpdate();
+		fechaConexao();
+		
+	}	
+	
+	private void removerEvento() throws SQLException{
+		
+		iniciaConexao("DELETE FROM Evento where codigo=?");
+		ps.setInt(1, codigo);
+		ps.executeUpdate();
+		fechaConexao();
+		
+	}
+	
 }
