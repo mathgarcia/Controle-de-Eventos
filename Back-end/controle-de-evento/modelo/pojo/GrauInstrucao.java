@@ -1,9 +1,9 @@
 package pojo;
 
-public class GrauInstruçao {
+public class GrauInstrucao {
 	private int codigo;
 	private String nome;
-	public GrauInstruçao(int codigo, String nome){
+	public GrauInstrucao(int codigo, String nome){
 		this.codigo = codigo;
 		this.nome = nome;
 	}

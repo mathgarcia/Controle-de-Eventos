@@ -15,13 +15,13 @@ public class Participante {
 	private String celular;
 	private Endereco endereco;
 	private Perfil perfil;
-	private GrauInstruçao grauist;	
+	private GrauInstrucao grauist;	
 	
 	
 	
 	public Participante(int codigo, String nome, String nomeSocial,
 			Date dataNasc, char sexo, String email, String telefone,
-			String celular, Endereco endereco, String senha, String cpf, Endereco end, Perfil per, GrauInstruçao gr) {
+			String celular, Endereco endereco, String senha, String cpf, Endereco end, Perfil per, GrauInstrucao gr) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.nomeSocial = nomeSocial;
@@ -80,7 +80,7 @@ public class Participante {
 		return perfil;
 	}
 
-	public GrauInstruçao getGrauist() {
+	public GrauInstrucao getGrauist() {
 		return grauist;
 	}
 	

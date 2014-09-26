@@ -2,52 +2,52 @@ package dao;
 
 import java.sql.SQLException;
 
-public class Gestor extends Recepcionista {
+public class GestorBD extends RecepcionistaBD {
 	
 	@SuppressWarnings("unused")
-	private void cadastrarEvento() throws SQLException{
+	private synchronized void cadastrarEvento() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void alterarEvento() throws SQLException{
+	private synchronized void alterarEvento() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void cancelarEvento() throws SQLException{
+	private synchronized void cancelarEvento() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void cadastrarAtividade() throws SQLException{
+	private synchronized void cadastrarAtividade() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void alterarAtividade() throws SQLException{
+	private synchronized void alterarAtividade() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void desativarAtividade() throws SQLException{
+	private synchronized void desativarAtividade() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void associarPalestranteAtividade() throws SQLException{
+	private synchronized void associarPalestranteAtividade() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void anexarMaterial() throws SQLException{
+	private synchronized void anexarMaterial() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}

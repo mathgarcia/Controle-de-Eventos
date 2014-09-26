@@ -5,11 +5,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class Evento extends DAO{
+import pojo.Atividade;
+import pojo.Evento;
 
-	public static ArrayList<pojo.Evento> consultaTodosEventos() throws SQLException{
-		ArrayList<pojo.Evento> ev = new ArrayList<pojo.Evento>();
-		ArrayList<pojo.Atividade> ativs = new ArrayList<pojo.Atividade>();
+public class EventoBD extends DAO{
+
+	public static ArrayList<Evento> consultaTodosEventos() throws SQLException{
+		ArrayList<Evento> ev = new ArrayList<Evento>();
+		ArrayList<Atividade> ativs = new ArrayList<Atividade>();
 		iniciaConexao("SELECT * from evento");
 		ResultSet res =  (ResultSet) ps.executeQuery();		
 		while (res.next()){
@@ -19,15 +22,15 @@ public class Evento extends DAO{
 			Date data_inicio = res.getDate("data_inicio");
 			Date data_fim = res.getDate("data_fim");
 			String local = res.getString("local");
-			ativs = Atividade.consultaAtividadesPorEvento(codigo);
-			ev.add(new pojo.Evento(codigo, nome, descricao, data_inicio, data_fim, local, ativs));
+			ativs = AtividadeBD.consultaAtividadesPorEvento(codigo);
+			ev.add(new Evento(codigo, nome, descricao, data_inicio, data_fim, local, ativs));
 		}
 		fechaConexao();
 		return ev;
 	}
-	public static ArrayList<pojo.Evento> consultaEvento(int cod_evento) throws SQLException{
-		ArrayList<pojo.Evento> ev = new ArrayList<pojo.Evento>();
-		ArrayList<pojo.Atividade> ativs = new ArrayList<pojo.Atividade>();
+	public static ArrayList<Evento> consultaEvento(int cod_evento) throws SQLException{
+		ArrayList<Evento> ev = new ArrayList<Evento>();
+		ArrayList<Atividade> ativs = new ArrayList<Atividade>();
 		iniciaConexao("SELECT * from evento WHERE codigo = cod_evento");
 		ResultSet res =  (ResultSet) ps.executeQuery();		
 		while (res.next()){
@@ -37,23 +40,23 @@ public class Evento extends DAO{
 			Date data_inicio = res.getDate("data_inicio");
 			Date data_fim = res.getDate("data_fim");
 			String local = res.getString("local");
-			ativs = Atividade.consultaAtividadesPorEvento(codigo);
-			ev.add(new pojo.Evento(codigo, nome, descricao, data_inicio, data_fim, local, ativs));
+			ativs = AtividadeBD.consultaAtividadesPorEvento(codigo);
+			ev.add(new Evento(codigo, nome, descricao, data_inicio, data_fim, local, ativs));
 		}
 		fechaConexao();
 		return ev;
 	}
-	public static void inserir() throws SQLException{
+	public static synchronized void inserir() throws SQLException{
 		iniciaConexao(null);
 		
 		fechaConexao();
 	}
-	public static void remover() throws SQLException{
+	public static synchronized void remover() throws SQLException{
 		iniciaConexao(null);
 		
 		fechaConexao();
 	}
-	public static void atualizar() throws SQLException{
+	public static synchronized void atualizar() throws SQLException{
 		iniciaConexao(null);
 		
 		fechaConexao();

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pojo.Evento;
+
 @WebServlet("/EventosExibe")
 public class EventosExibe extends HttpServlet{
 	private static final long serialVersionUID = 1L;
@@ -22,9 +24,9 @@ public class EventosExibe extends HttpServlet{
 		// TODO Auto-generated method stub
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<pojo.Evento> ev = null;
+		ArrayList<Evento> ev = null;
 		try {
-			ev = dao.Evento.consultaTodosEventos();
+			ev = dao.EventoBD.consultaTodosEventos();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 import com.mysql.jdbc.PreparedStatement;
 
-abstract class DAO {
+class DAO {
 	protected static ConexaoBD conb;
 	protected static Connection con;
 	protected static PreparedStatement ps;

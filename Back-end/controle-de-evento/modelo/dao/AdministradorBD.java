@@ -2,16 +2,16 @@ package dao;
 
 import java.sql.SQLException;
 
-public class Administrador extends Gestor{
+public class AdministradorBD extends GestorBD{
 
 	@SuppressWarnings("unused")
-	private void cadastraTipoPerfil() throws SQLException{
+	private synchronized void cadastraTipoPerfil() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}
 	
 	@SuppressWarnings("unused")
-	private void alteraPerfilUsuario() throws SQLException{
+	private synchronized void alteraPerfilUsuario() throws SQLException{
 		iniciaConexao("");
 		fechaConexao();
 	}

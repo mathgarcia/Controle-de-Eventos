@@ -3,9 +3,11 @@ import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Participante extends DAO{
+import pojo.Participante;
+
+public class ParticipanteBD extends DAO{
 	@SuppressWarnings("unused")
-	private synchronized void inserir(pojo.Participante p) throws SQLException{
+	private synchronized void inserir(Participante p) throws SQLException{
 		DAO.iniciaConexao("INSERT INTO participante VALUES(null,?,?,?,?,?,?,?,?,?,?,?)");		
 		ps.setString(1, p.getNome());
 		ps.setString(2, p.getNomeSocial());
@@ -42,14 +44,14 @@ public class Participante extends DAO{
 			fechaConexao();
 		}
 		
-		public void remover(int codigo) throws SQLException{
+		public synchronized void remover(int codigo) throws SQLException{
 			iniciaConexao("DELETE FROM participante where codigo=?");
 			ps.setInt(1, codigo);
 			ps.executeUpdate();
 			fechaConexao();			
 		}
 
-		public void atualizar(pojo.Participante p) throws SQLException{
+		public synchronized void atualizar(Participante p) throws SQLException{
 			//Refazer query update 
 			iniciaConexao("UPDATE cad_user SET nome_user=?,nomeSocial_user=?,senha_user=?,sexo_user=?,"
 					+ "dtnasc_user=?,cod_grauist=?,cod_prefiluser=? "
@@ -70,37 +72,37 @@ public class Participante extends DAO{
 		}	
 		
 		@SuppressWarnings("unused")
-		private void inscreverEvento() throws SQLException{
+		private synchronized void  inscreverEvento() throws SQLException{
 			iniciaConexao("");
 			fechaConexao();
 		}
 		
 		@SuppressWarnings("unused")
-		private void cancelarInscricaoEvento() throws SQLException{
+		private synchronized void  cancelarInscricaoEvento() throws SQLException{
 			iniciaConexao("");
 			fechaConexao();
 		}
 		
 		@SuppressWarnings("unused")
-		private void inscreverAtividade() throws SQLException{
+		private synchronized void  inscreverAtividade() throws SQLException{
 			iniciaConexao("");
 			fechaConexao();
 		}
 		
 		@SuppressWarnings("unused")
-		private void cancelarInscricaoAtividade() throws SQLException{
+		private synchronized void  cancelarInscricaoAtividade() throws SQLException{
 			iniciaConexao("");
 			fechaConexao();
 		}
 		
 //		@SuppressWarnings("unused")
-//		private void votarAtividade() throws SQLException{
+//		private synchronized void votarAtividade() throws SQLException{
 //			iniciaConexao("");
 //			fechaConexao();
 //		}
 //		
 //		@SuppressWarnings("unused")
-//		private void compartilharRedesSociais() throws SQLException{
+//		private synchronized void compartilharRedesSociais() throws SQLException{
 //			iniciaConexao("");
 //			fechaConexao();
 //		}
