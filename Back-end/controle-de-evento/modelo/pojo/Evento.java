@@ -1,7 +1,7 @@
 package pojo;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 public class Evento {
 	private int codigo;
@@ -10,15 +10,17 @@ public class Evento {
 	private Date data_inicio;
 	private Date data_fim;
 	private String local;
+	private boolean cancelado;
 	private ArrayList<Atividade> atividades;
 	
-	public Evento(int cod, String nom, String des, Date dati, Date datf, String loc, ArrayList<pojo.Atividade> ativs){
+	public Evento(int cod, String nom, String des, Date dati, Date datf, String loc,boolean cancelado, ArrayList<Atividade> ativs){
 		codigo = cod;
 		nome = nom;
 		descricao = des;
 		data_inicio = dati;
 		data_fim = datf;
 		local = loc;
+		this.cancelado = cancelado;
 		atividades = ativs;
 	}
 	public String getNome() {
@@ -38,7 +40,10 @@ public class Evento {
 	}
 	public String getLocal() {
 		return local;
-	}	
+	}
+	public boolean isCancelado(){
+		return cancelado;
+	}
 	public ArrayList<Atividade> getAtividades(){
 		return atividades;
 	}

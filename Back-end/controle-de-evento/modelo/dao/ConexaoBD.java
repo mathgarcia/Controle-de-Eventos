@@ -12,7 +12,7 @@ public class ConexaoBD {
 		{	
 			String database = "jdbc:mysql://127.0.0.1:3306/controle_de_eventos";
 			String usuario = "root";
-			String senha = "";		
+			String senha = "123456";		
 			Class.forName("com.mysql.jdbc.Driver"); 
 			con = (Connection) DriverManager.getConnection( database, usuario, senha );
 
@@ -32,8 +32,8 @@ public class ConexaoBD {
 	public Connection getConexao()	{	
 		return con;		
 	}
-	
-	
-	
-	
+
+
+
+
 }

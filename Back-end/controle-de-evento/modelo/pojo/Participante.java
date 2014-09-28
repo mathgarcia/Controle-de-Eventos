@@ -16,12 +16,10 @@ public class Participante {
 	private Endereco endereco;
 	private Perfil perfil;
 	private GrauInstrucao grauist;	
-	
-	
-	
+
 	public Participante(int codigo, String nome, String nomeSocial,
 			Date dataNasc, char sexo, String email, String telefone,
-			String celular, Endereco endereco, String senha, String cpf, Endereco end, Perfil per, GrauInstrucao gr) {
+			String celular, Endereco end, String senha, String cpf,Perfil per, GrauInstrucao gr) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.nomeSocial = nomeSocial;
@@ -30,7 +28,6 @@ public class Participante {
 		this.email = email;
 		this.telefone = telefone;
 		this.celular = celular;
-		this.endereco = endereco;	
 		this.senha = senha;
 		this.cpf = cpf;
 		this.endereco = end;

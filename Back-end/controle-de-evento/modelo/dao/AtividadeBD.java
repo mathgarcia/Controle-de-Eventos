@@ -2,36 +2,35 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Time;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 import pojo.Atividade;
 
 public class AtividadeBD extends DAO{
-
-	public static ArrayList<Atividade> consultaAtividade(int cod_atividade) throws SQLException{
-		ArrayList<Atividade> ativs = new ArrayList<Atividade>();
-//		if (!con.isClosed())
-			iniciaConexao("SELECT * from atividade WHERE cod_atividade = ?");
-		ps.setInt(1,cod_atividade);
+	public static Atividade consultaAtividade(int codigo) throws SQLException{
+		Atividade a = null;
+		iniciaConexao("SELECT * from atividade WHERE codigo = ?");
+		ps.setInt(1,codigo);
 		ResultSet res =  (ResultSet) ps.executeQuery();		
-		while (res.next()){			
-			int codigo = res.getInt("codigo");
+		while (res.next()){						
 			String nome = res.getString("nome");			
 			String local = res.getString("local");			
 			String resumo = res.getString("resumo");			
 			Date data = res.getDate("data");			
-			java.sql.Time hora = res.getTime("hora");			
+			Time hora = res.getTime("hora");		
+			boolean cancelado = res.getBoolean("cancelado");
 			int duracao = res.getInt("duracao");	
-			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,null);
-			ativs.add(ativ);
+			int cod_evento = res.getInt("cod_evento");
+			int cod_tipo = res.getInt("cod_tipo");
+			a = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado, cod_evento, cod_tipo);			
 		}
 		fechaConexao();
-		return ativs;
+		return a;
 	}
 	public static ArrayList<Atividade> consultaAtividadesPorEvento(int cod_evento) throws SQLException{
 		ArrayList<Atividade> ativs = new ArrayList<Atividade>();
-//		if (!con.isClosed())
 		iniciaConexao("SELECT * from atividade WHERE cod_evento = ?");
 		ps.setInt(1,cod_evento);
 		ResultSet res =  (ResultSet) ps.executeQuery();		
@@ -41,19 +40,20 @@ public class AtividadeBD extends DAO{
 			String local = res.getString("local");			
 			String resumo = res.getString("resumo");			
 			Date data = res.getDate("data");			
-			java.sql.Time hora = res.getTime("hora");			
-			int duracao = res.getInt("duracao");	
-			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,null);
+			Time hora = res.getTime("hora");			
+			int duracao = res.getInt("duracao");
+			int cod_tipo = res.getInt("cod_tipo");
+			boolean cancelado = res.getBoolean("cancelado");
+			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado,cod_evento, cod_tipo);
 			ativs.add(ativ);
 		}
 		fechaConexao();
 		return ativs;
 	}
-	
+
 	public static ArrayList<Atividade> consultaTodasAtividades() throws SQLException{
 		ArrayList<Atividade> ativs = new ArrayList<Atividade>();
-//		if (!con.isClosed())
-			iniciaConexao("SELECT * from atividade");
+		iniciaConexao("SELECT * from atividade");
 		ResultSet res =  (ResultSet) ps.executeQuery();		
 		while (res.next()){			
 			int codigo = res.getInt("codigo");
@@ -61,27 +61,53 @@ public class AtividadeBD extends DAO{
 			String local = res.getString("local");			
 			String resumo = res.getString("resumo");			
 			Date data = res.getDate("data");			
-			java.sql.Time hora = res.getTime("hora");			
+			Time hora = res.getTime("hora");			
 			int duracao = res.getInt("duracao");
-			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,null);
+			int cod_evento = res.getInt("cod_evento");
+			int cod_tipo = res.getInt("cod_tipo");
+			boolean cancelado = res.getBoolean("cancelado");
+			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado, cod_evento, cod_tipo);
 			ativs.add(ativ);
 		}
 		fechaConexao();
 		return ativs;
 	}
-	public static synchronized void inserir() throws SQLException{
-		iniciaConexao(null);
-		
+	public static synchronized void adicionar(Atividade a) throws SQLException{
+		iniciaConexao("INSERT INTO atividade VALUES (null,?,?,?,?,?,?,?,?)");
+		ps.setString(1, a.getNome());
+		ps.setString(2, a.getLocal());
+		ps.setString(3, a.getResumo());
+		ps.setDate(4, a.getData());
+		ps.setTime(5, a.getHora());
+		ps.setInt(6, a.getCod_evento());
+		ps.setInt(7, a.getCod_tipo());
+		ps.setBoolean(8, false);
+		ps.executeUpdate();
 		fechaConexao();
 	}
-	public static synchronized void remover() throws SQLException{
-		iniciaConexao(null);
-		
+	public static synchronized void remover(int codigo) throws SQLException{
+		iniciaConexao("REMOVE FROM atividade WHERE codigo = ?");
+		ps.setInt(1, codigo);
+		ps.executeUpdate();
 		fechaConexao();
 	}
-	public static synchronized void atualizar() throws SQLException{
-		iniciaConexao(null);
-		
+	public static synchronized void atualizar(Atividade a) throws SQLException{
+		iniciaConexao("UPDATE atividade SET nome = ?, local = ?, resumo = ?, data = ?, hora = ?, cod_evento = ?, cod_tipo = ?"
+				+ " WHERE codigo = ?");
+		ps.setString(1, a.getNome());
+		ps.setString(2, a.getLocal());
+		ps.setString(3, a.getResumo());
+		ps.setDate(4, a.getData());
+		ps.setTime(5, a.getHora());
+		ps.setInt(6, a.getCod_evento());
+		ps.setInt(7, a.getCod_tipo());
+		ps.setInt(8, a.getCodigo());
+		fechaConexao();
+	}
+	static public void cancelar(int cod_atividade) throws SQLException{
+		iniciaConexao("UPDATE atividade SET cancelado = true WHERE codigo = ?");
+		ps.setInt(1, cod_atividade);
+		ps.executeUpdate();
 		fechaConexao();
 	}
 }

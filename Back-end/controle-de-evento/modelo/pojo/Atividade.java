@@ -1,7 +1,7 @@
 package pojo;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 
 public class Atividade {
 	private int codigo;
@@ -11,8 +11,10 @@ public class Atividade {
 	private Date data;
 	private Time hora;
 	private int duracao;
-	private Tipo tipo;
-	public Atividade(int cod, String nom, String loc, String res, Date dat, Time hor, int dur, Tipo tipo){
+	private boolean cancelado;
+	private int cod_evento;
+	private int cod_tipo;
+	public Atividade(int cod, String nom, String loc, String res, Date dat, Time hor, int dur,boolean cancelado, int cod_evento, int tipo){
 		codigo = cod;
 		nome = nom;
 		local = loc;
@@ -20,7 +22,9 @@ public class Atividade {
 		data = dat;
 		hora = hor;
 		duracao = dur;
-		this.tipo = tipo;
+		this.cancelado = cancelado;
+		this.cod_tipo = tipo;
+		this.cod_evento = cod_evento;
 	}
 	public int getCodigo(){
 		return codigo;
@@ -43,7 +47,13 @@ public class Atividade {
 	public int getDuracao() {
 		return duracao;
 	}
-	public Tipo getTipo() {
-		return tipo;
+	public boolean isCancelado(){
+		return cancelado;
+	}
+	public int getCod_tipo() {
+		return cod_tipo;
+	}
+	public int getCod_evento() {
+		return cod_evento;
 	}
 }

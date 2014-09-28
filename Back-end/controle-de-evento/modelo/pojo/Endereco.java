@@ -7,14 +7,16 @@ public class Endereco {
 	private String cep;
 	private String bairro;
 	private String cidade;
-	
-	public Endereco(String logradouro, int numero, String cep, String bairro,
-			String cidade) {
+	private String estado;
+	public Endereco(int codigo, String logradouro, int numero, String cep, String bairro,
+			String cidade, String estado) {
+		this.codigo = codigo;
 		this.logradouro = logradouro;
 		this.numero = numero;
 		this.cep = cep;
 		this.bairro = bairro;
 		this.cidade = cidade;
+		this.estado = estado;
 	}
 	
 	public int getCodigo() {
@@ -36,5 +38,7 @@ public class Endereco {
 	public String getCidade() {
 		return cidade;
 	}
-	
+	public String getEstado(){
+		return estado;
+	}
 }
