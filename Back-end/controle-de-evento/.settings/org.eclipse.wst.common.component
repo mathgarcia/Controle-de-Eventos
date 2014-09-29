@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="controle-de-evento">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/modelo"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/controlador"/>
+        <dependent-module archiveName="mysql-connector-java-5.1.32-bin.jar" deploy-path="/WEB-INF/lib/" handle="module:/resource/mysql-connector-java-5.1.32-bin/mysql-connector-java-5.1.32-bin">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <property name="java-output-path" value="/controle-de-evento/build/classes"/>
+        <property name="context-root" value="controle-de-evento"/>
+    </wb-module>
+</project-modules>

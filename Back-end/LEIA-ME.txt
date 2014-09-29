@@ -1,3 +1,0 @@
-Poste aqui tudo relacionado ao Back-End, você pode também criar mais pastas aqui dentro 
-sempre visando a organização e clareza do repositório. Também lembre de respeita o conteúdo 
-das outras pastas também afim de manter a organização

@@ -1,0 +1,11 @@
+Menu Superior Background: #F5F7FA
+Borda Menu Superior: #E6E9ED
+Fonte Menu Superior: #73879C
+Menu Inferior Background: #FFFFFF
+Borda Menu Inferior: #E6E9ED
+Fonte Menu Inferior: #73879C
+Retângulo Seleção de Evento Background: #F5F7FA
+Retângulo Seleção de Evento Borda: #E6E9ED
+Footer Superior Background: #2F4052
+Footer Inferior Background: #283645
+Cor Fonte Footer: #506A85
