@@ -1,6 +1,6 @@
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
-<%@page import="pojo.Evento"%>
-<%@page import="pojo.Atividade"%>
+<%@page import="model.Evento"%>
+<%@page import="model.Atividade"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -44,29 +44,7 @@ div {
 		</tr>
 	</table>
 	<br>
-	<%	ArrayList<Atividade> ativ = evento.get(i).getAtividades();
-		Iterator<Atividade> iteratorAtiv = ativ.iterator();
-		while (iteratorAtiv.hasNext()) {
-		Atividade umaAtiv = (Atividade) iteratorAtiv.next();%>
-	<div style="padding-left: 25px;">
-	<table rules="none" frame=box>
-		<tr align="center"><td><%=umaAtiv.getData().getMonth()%></td></tr>
-		<tr align="center"><td><%=umaAtiv.getData().getDay()%></td></tr>
-		<tr align="center"><td><br></td></tr>
-		<tr align="center"><td>SEG</td></tr>
-	</table>
-	</div>
-	<div>
-		<table border="1px" rules="none" frame=box>
-			
-			<tr><td><%=umaAtiv.getNome()%></td></tr>		
-			<tr><td>Palestrante(s): </td></tr>
-			<tr><td>Horario: <%=umaAtiv.getHora()%></td></tr>
-			<tr><td>Local: <%=umaAtiv.getLocal()%></td></tr>						
-		</table>
-	</div>	
-	<%}%>	
-	<br><br><br><br><br><br><br>
+	
 <%}%>
 <%session.invalidate();%>
 </body>
