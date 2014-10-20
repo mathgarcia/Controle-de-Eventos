@@ -81,7 +81,7 @@
 								<div class="mask">
 									<h2><%=atividade.getNome() %></h2>
 									<p>Palestrnate: Palestrante!?!?</p>
-									<p>Tipo: <%=atividade.getTipo() %></p>
+<%-- 									<p>Tipo: <%=atividade.getTipo() %></p> --%>
 									<p>Data: <%=atividade.getData() %></p>
 									<p>Horário: <%=atividade.getHora() %></p>
 									<p>Local: <%=atividade.getLocal() %></p>

@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="turu/lib/css/events.css">
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
-<%@page import="model.Evento"%>
+<%@page import="pojo.Evento"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

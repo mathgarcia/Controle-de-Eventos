@@ -1,6 +1,5 @@
 package dao;
 
-import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import pojo.Material;
@@ -12,7 +11,7 @@ public class MaterialBD extends DAO {
 		ps.setInt(1, codigo);
 		ResultSet rs =(ResultSet) ps.executeQuery();
 		if (rs.next()){
-			Blob material = rs.getBlob("material");
+			byte[] material = rs.getBytes("material");
 			int cod_atividade = rs.getInt("cod_atividade");
 			m = new Material(codigo, material, cod_atividade);
 		}
@@ -25,7 +24,7 @@ public class MaterialBD extends DAO {
 		ps.setInt(1, codigo);
 		ResultSet rs =(ResultSet) ps.executeQuery();
 		if (rs.next()){
-			Blob material = rs.getBlob("material");
+			byte[] material = rs.getBytes("material");
 			int cod_atividade = rs.getInt("cod_atividade");
 			m = new Material(codigo, material, cod_atividade);
 		}
@@ -34,7 +33,7 @@ public class MaterialBD extends DAO {
 	}
 	static public synchronized void adicionar(Material m) throws SQLException{
 		iniciaConexao("INSERT INTO material VALUES (null, ?, ?)");
-		ps.setBlob(1, m.getMaterial());
+		ps.setBytes(1, m.getMaterial());
 		ps.setInt(1, m.getCod_atividade());
 		ps.executeUpdate();
 		fechaConexao();
@@ -47,7 +46,7 @@ public class MaterialBD extends DAO {
 	}
 	static public synchronized void atualizar(Material m) throws SQLException{
 		iniciaConexao("UPDATE material SET material = ? where codigo = ?");
-		ps.setBlob(1, m.getMaterial());		
+		ps.setBytes(1, m.getMaterial());		
 		ps.executeUpdate();
 		fechaConexao();
 	}
