@@ -14,7 +14,7 @@ import pojo.Perfil;
 import dao.AdministradorBD;
 import dao.GestorBD;
 
-@WebServlet("/AssociaPalestranteAtividade")
+@WebServlet("/CadastraTipoPerfil")
 public class CadastraTipoPerfil extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 	public CadastraTipoPerfil() {
@@ -28,7 +28,7 @@ public class CadastraTipoPerfil extends HttpServlet{
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		if (request.getAttribute("Usuario") instanceof AdministradorBD){
-			session.setAttribute("resposta","Você não possui permissão para esta operação.");	
+			session.setAttribute("resposta","Vocï¿½ nï¿½o possui permissï¿½o para esta operaï¿½ï¿½o.");	
 //			response.sendRedirect("eventos.jsp");
 		}
 		else{			
@@ -39,7 +39,7 @@ public class CadastraTipoPerfil extends HttpServlet{
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				session.setAttribute("resposta","Ocorreu um erro ao registrar essa associação.");	
+				session.setAttribute("resposta","Ocorreu um erro ao registrar essa associaï¿½ï¿½o.");	
 //				response.sendRedirect("eventos.jsp");
 			}
 		}

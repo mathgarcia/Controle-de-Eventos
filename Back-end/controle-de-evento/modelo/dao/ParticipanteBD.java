@@ -37,6 +37,36 @@ public class ParticipanteBD extends DAO{
 		fechaConexao();
 		return p;
 	}	
+	static public Participante consultarPorNomeSenha(String nomeRecebido, String senhaRecebida) throws SQLException{
+		Participante p = null;
+		iniciaConexao("SELECT * FROM participante WHERE (nome = ? OR nome_social = ?) AND senha = ?");
+		ps.setString(1, nomeRecebido);
+		ps.setString(2, nomeRecebido);
+		ps.setString(1, senhaRecebida);
+		ps.executeQuery();
+		ResultSet res =  (ResultSet) ps.executeQuery();	
+		if (res.next()){
+			int codigo = res.getInt("codigo");
+			String nome = res.getString("nome");
+			String nomeSocial = res.getString("nomesocial");
+			String senha = res.getString("senha");
+			String email = res.getString("email");
+			char sexo = (char) res.getLong("sexo");
+			Date dataNasc = res.getDate("data_nascimento");
+			String telefone = res.getString("telefone");
+			String celular = res.getString("celular");
+			String cpf = res.getString("cpf");
+			int cod_endereco = res.getInt("cod_endereco");
+			int cod_grau = res.getInt("cod_grauist");
+			int cod_perfil = res.getInt("cod_perfil");
+			Endereco e = EnderecoBD.consultar(cod_endereco);
+			Perfil per = PerfilBD.consultar(cod_perfil);
+			GrauInstrucao gi = GrauInstrucaoBD.consultar(cod_grau);
+			p = new Participante(codigo, nome,nomeSocial,dataNasc,sexo,email,telefone,celular,e,senha,cpf, per,gi);
+		}
+		fechaConexao();
+		return p;
+	}
 	static public synchronized void adicionar(Participante p) throws SQLException{
 		DAO.iniciaConexao("INSERT INTO participante VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?)");		
 		ps.setString(1, p.getNome());
