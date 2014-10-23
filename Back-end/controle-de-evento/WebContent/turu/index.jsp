@@ -20,21 +20,14 @@
 			$.ready = function(){
 				$('body').prepend(getInicialMenu());
 				startNavbarAnimation();
-				//$("#linkEvent").on("click", function(){
-					//http://localhost:8080
-					//$.post("/ControleEventosTestes/EventosExibe", function(){
-						//return false;
-					//});
-					//window.location.replace("/ControleEventosTestes/EventosExibe");
-					//$.ajax({
-			       //     type: 'POST',
-			       //     url: '/ControleEventosTestes/EventosExibe'
-			        //});
-				//});
-			}	
+			}
 		</script>
 	</head>
 	
 	<body style="70px">
+		
+		<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">
+		</div>
+	
 	</body>
 </html>

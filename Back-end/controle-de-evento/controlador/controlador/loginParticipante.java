@@ -48,8 +48,8 @@ public class loginParticipante extends HttpServlet{
 			}
 			else
 				JOptionPane.showMessageDialog(null, "nao");
-			session.setAttribute("Usuário",usuario);
-			session.setAttribute("UsuárioInfo", p);
+			session.setAttribute("Usuario",usuario);
+			session.setAttribute("UsuarioInfo", p);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

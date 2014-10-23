@@ -1,10 +1,9 @@
-<link rel="stylesheet" href="turu/lib/css/events.css">
+<link rel="stylesheet" href="lib/css/events.css">
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@page import="pojo.Evento"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator" %>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 		<div class="row">
 			<%
@@ -17,7 +16,7 @@
 					<div class="col-sm-12 col-sm-6 col-md-4">
 						<div class="thumbnail">
 							<a class="<%=idEvento %>" href="#">
-								<img src="turu/img/turu.jpg" alt="Turuboy" style="max-width: 300px">
+								<img src="img/turu.jpg" alt="Turuboy" style="max-width: 300px">
 							</a>
 							<div class="info-event" style="border-bottom-width: 0px">
 								<%=umEvento.getData_inicio() %> | <%=umEvento.getData_fim() %>
@@ -38,7 +37,7 @@
 					</div>
 					<script>
 						$(".<%=idEvento %>").on('click', function(){
-							$.post("/ControleEventosTestes/EventoSelecionado", {idEvento:<%=idEvento%>}, function(response){
+							$.post("/controle-de-evento/EventoSelecionado", {idEvento:<%=idEvento%>}, function(response){
 								$('#corpo').html(response);
 							});
 						});

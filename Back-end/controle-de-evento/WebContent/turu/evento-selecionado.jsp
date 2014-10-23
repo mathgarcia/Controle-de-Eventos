@@ -6,8 +6,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
-<link rel="stylesheet" href="turu/lib/css/events.css">
-<link rel="stylesheet" href="turu/lib/css/event-selected.css">
+<link rel="stylesheet" href="lib/css/events.css">
+<link rel="stylesheet" href="lib/css/event-selected.css">
 
 <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
 <script type="text/javascript">
@@ -36,9 +36,8 @@
 		</div>
 		<div class="row">
 			<%
-				ArrayList<Evento> listaEvento = (ArrayList<Evento>) session.getAttribute("evento");
-				Iterator<Evento> it = listaEvento.iterator();
-				Evento e = it.next();
+			Evento e =(Evento) session.getAttribute("evento");
+				
 			%>
 			<div class="col-md-8">
 				<div class="event-description">
@@ -68,7 +67,7 @@
 			</button>
 			<ul class="dropdown-menu dropdown-atividade" role="menu" id="drop-atividade">
 			<%
-				ArrayList<Atividade> listaAtiviade = (ArrayList<Atividade>) session.getAttribute("atividades");
+				ArrayList<Atividade> listaAtiviade = e.getAtividades();
 				Iterator<Atividade> iterator = listaAtiviade.iterator();
 				while (iterator.hasNext()) {
 					Atividade atividade = (Atividade) iterator.next();
@@ -77,7 +76,7 @@
 					<div class="col-sm-12 col-sm-6 col-md-4">
 						<div class="thumbnail">
 							<div class="view view-third">
-								<img src="turu/img/cal.png">
+								<img src="img/cal.png">
 								<div class="mask">
 									<h2><%=atividade.getNome() %></h2>
 									<p>Palestrnate: Palestrante!?!?</p>
@@ -93,8 +92,7 @@
 					</div>		
 					<script>
 						$("#<%=atividade.getCodigo() %>").on('click', function(){
-							alert("click");
-							
+							alert("click");							
 						});
 					</script>
 			<%

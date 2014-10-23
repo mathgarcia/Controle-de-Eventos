@@ -22,6 +22,7 @@ public class EventosExibe extends HttpServlet{
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		this.doPost(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Evento> ev = null;
@@ -33,8 +34,6 @@ public class EventosExibe extends HttpServlet{
 		}
 		HttpSession session = request.getSession();
 		session.setAttribute("evento",ev);
-		response.sendRedirect("pagina.jsp");
-//		response.sendRedirect("eventos.jsp");
-
+		response.sendRedirect("turu/eventos.jsp");
 	}
 }

@@ -88,7 +88,7 @@
 			button.append($('<span class="icon-bar">'));
 			button.append($('<span class="icon-bar">'));
 			header.append(button);
-			var img = $('<img id="turu" src="turu/img/cal.png" width=95px height=65px>');
+			var img = $('<img id="turu" src="img/cal.png" width=95px height=65px>');
 			header.append(img);
 			var loginButton = $('<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-login-collapse">').append('Login');
 			header.append(loginButton);
@@ -121,7 +121,7 @@
 			button.append('Eventos');
 			button.on('click', function(){
 				insertProgressBar();
-				$.post("/ControleEventosTestes/EventosExibe", function(response){
+				$.post("/controle-de-evento/EventosExibe", function(response){
 					$('#corpo').html(response);
 					//window.location.replace(response.send);
 					//window.location.href = response.redirect;
@@ -135,7 +135,7 @@
 			button.append('Contato');
 			button.on('click', function(){
 				insertProgressBar();
-				$.post("/ControleEventosTestes/ExibeContatos", function(response){
+				$.post("/controle-de-evento/ExibeContatos", function(response){
 					$('#corpo').html(response);
 				});
 			});
