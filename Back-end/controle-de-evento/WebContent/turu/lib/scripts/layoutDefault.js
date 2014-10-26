@@ -143,9 +143,7 @@
 		}
 		
 		insertProgressBar = function(){
-			var contentProgress = $('<div class="progress">');
-			var progressBar = $('<div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">').append('Loading... 75%')
-			contentProgress.append(progressBar);
+			var contentProgress = $('<img align="center" src="../turu/img/loading.GIF" />');
 			$('#corpo').html(contentProgress);
 		}
 		

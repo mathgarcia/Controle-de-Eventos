@@ -21,9 +21,9 @@ public class EventoBD extends DAO{
 			Date data_inicio = res.getDate("data_inicio");
 			Date data_fim = res.getDate("data_fim");
 			String local = res.getString("local");
-			boolean cancelado = res.getBoolean("cancelado");
+			//boolean cancelado = res.getBoolean("cancelado");
 			ativs = AtividadeBD.consultaAtividadesPorEvento(codigo);
-			e = new Evento(codigo, nome, descricao, data_inicio, data_fim, local,cancelado, ativs);
+			e = new Evento(codigo, nome, descricao, data_inicio, data_fim, local,false, ativs);
 		}
 		fechaConexao();
 		return e;
@@ -40,9 +40,9 @@ public class EventoBD extends DAO{
 			Date data_inicio = res.getDate("data_inicio");
 			Date data_fim = res.getDate("data_fim");
 			String local = res.getString("local");
-			boolean cancelado = res.getBoolean("cancelado");
+			//boolean cancelado = res.getBoolean("cancelado");
 			ativs = AtividadeBD.consultaAtividadesPorEvento(codigo);
-			ev.add(new Evento(codigo, nome, descricao, data_inicio, data_fim, local,cancelado, ativs));
+			ev.add(new Evento(codigo, nome, descricao, data_inicio, data_fim, local,false, ativs));
 		}
 		fechaConexao();
 		return ev;

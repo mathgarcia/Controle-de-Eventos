@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@page import="pojo.Atividade"%>
 	<link rel="stylesheet" href="lib/css/activity.css">
 	<script type="text/javascript">
 		stLight.options({
@@ -10,26 +11,29 @@
 		});
 	</script>
 		<div class="row">
-    
-			<div class="atividade-tittle destacado col-md-12 left-15">Nome da Atividade</div>
+    		<%
+    			Atividade atividade = (Atividade)session.getAttribute("atividade");
+    		%>
+			<div class="atividade-tittle destacado col-md-12 left-15"><%=atividade.getNome()%></div>
             <div class="col-md-8">
                 <div class="atividade-destaque col-md-4 left-15">
-                    <p>Palestrante(s): Palestrante </p>
-                    <p>Data: DD.MM.AAAA</p>
-                    <p>Horário: HH:MM às HH:MM</p>
-                    <p>Local(Sala): Local</p>
-                    <p>Tipo: (Palestra, Seminário, Oficina...)</p>
+                    <p>Palestrante(s): Palestrante?1 </p> <!-- preciso do palestrante... -->
+                    <p>Data: <%=atividade.getData() %></p>
+                    <p>Hor�rio: <%=atividade.getHora() %> horas</p>
+                    <p>Dura��o: <%=atividade.getDuracao() %></p>
+                    <p>Local(Sala): <%=atividade.getLocal() %></p>
+                    <p>Tipo: <%=atividade.getCod_tipo() %> preciso do nome!!</p> <!-- preciso do nome... -->
                     
                     </div>
             
                 <div class="atividade-descricao col-md-8 left-15">
-Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição	do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - 
-                    </div>
+					<%=atividade.getResumo() %>
+				</div>
                 <div class="col-md-12">
-                    <div class="atividade-tittle left-15">Conteúdo da Palestra</div>
-                    <div class="atividade-descricao destacado left-15">
-Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - 
-                        </div>
+                    <div class="atividade-tittle left-15">Descricao?</div>
+	                    <div class="atividade-descricao destacado left-15">
+	                    	Preciso disso no banco! Preciso disso no banco! Preciso disso no banco! Preciso disso no banco! Preciso disso no banco! Preciso disso no banco! Preciso disso no banco! Preciso disso no banco! 
+	                    </div>
                     </div>
                 </div>
 			

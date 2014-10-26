@@ -20,11 +20,11 @@ public class AtividadeBD extends DAO{
 			String resumo = res.getString("resumo");			
 			Date data = res.getDate("data");			
 			Time hora = res.getTime("hora");		
-			boolean cancelado = res.getBoolean("cancelado");
+			//boolean cancelado = res.getBoolean("cancelado");
 			int duracao = res.getInt("duracao");	
 			int cod_evento = res.getInt("cod_evento");
 			int cod_tipo = res.getInt("cod_tipo");
-			a = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado, cod_evento, cod_tipo);			
+			a = new Atividade(codigo,nome, local, resumo,data,hora,duracao,false, cod_evento, cod_tipo);			
 		}
 		fechaConexao();
 		return a;
@@ -43,8 +43,8 @@ public class AtividadeBD extends DAO{
 			Time hora = res.getTime("hora");			
 			int duracao = res.getInt("duracao");
 			int cod_tipo = res.getInt("cod_tipo");
-			boolean cancelado = res.getBoolean("cancelado");
-			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado,cod_evento, cod_tipo);
+			//boolean cancelado = res.getBoolean("cancelado");
+			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,false,cod_evento, cod_tipo);
 			ativs.add(ativ);
 		}
 		fechaConexao();

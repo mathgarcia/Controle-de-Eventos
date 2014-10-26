@@ -9,15 +9,7 @@
 <link rel="stylesheet" href="lib/css/events.css">
 <link rel="stylesheet" href="lib/css/event-selected.css">
 
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">
-	stLight.options({
-		publisher: "a5b0e44e-491c-456a-ae7a-cb2d4712f699",
-		doNotHash: false,
-		doNotCopy: false,
-		hashAddressBar: false
-	});
-</script>
+
 	
 
 	
@@ -61,7 +53,7 @@
 		</div>
 
 
-		<div class="btn-group btn-atividade">
+		<div class="btn-group btn-atividade open">
 			<button type="button" class="btn btn-default dropdown-toggle btn-atividade" data-toggle="dropdown" id="btn-atividade">
 				Atividade <span class="caret"></span>
 			</button>
@@ -79,7 +71,7 @@
 								<img src="img/cal.png">
 								<div class="mask">
 									<h2><%=atividade.getNome() %></h2>
-									<p>Palestrnate: Palestrante!?!?</p>
+									<p>Palestrante: Palestrante!?!?</p>
 <%-- 									<p>Tipo: <%=atividade.getTipo() %></p> --%>
 									<p>Data: <%=atividade.getData() %></p>
 									<p>Horário: <%=atividade.getHora() %></p>
@@ -90,13 +82,15 @@
 							<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
 						</div>
 					</div>		
-					<script>
-						$("#<%=atividade.getCodigo() %>").on('click', function(){
-							alert("click");							
+					<script type="text/javascript">
+						$("#<%=atividade.getCodigo() %>").on("click", function(){
+							$.post("/controle-de-evento/ConsultarAtividade", {idAtividade: <%=atividade.getCodigo()%>}, function(response){
+								$("#corpo").html(response);
+							});
 						});
 					</script>
 			<%
 				} 
 			%>
-			</ul>	
+			</ul>
 		</div>

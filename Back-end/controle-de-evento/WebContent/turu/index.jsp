@@ -26,7 +26,7 @@
 	
 	<body style="70px">
 		
-		<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">
+		<div id="corpo" style="padding-left: 10px;padding-right: 10px;padding-bottom: 60px; margin-top: 150px; display:block">
 		</div>
 	
 	</body>
