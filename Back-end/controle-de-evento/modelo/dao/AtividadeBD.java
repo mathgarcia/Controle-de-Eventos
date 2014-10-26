@@ -86,11 +86,13 @@ public class AtividadeBD extends DAO{
 		fechaConexao();
 	}
 	public static synchronized void remover(int codigo) throws SQLException{
-		iniciaConexao("REMOVE FROM atividade WHERE codigo = ?");
+		iniciaConexao("DELETE FROM atividade WHERE codigo = ?");
 		ps.setInt(1, codigo);
 		ps.executeUpdate();
 		fechaConexao();
 	}
+	
+		
 	public static synchronized void atualizar(Atividade a) throws SQLException{
 		iniciaConexao("UPDATE atividade SET nome = ?, local = ?, resumo = ?, data = ?, hora = ?, cod_evento = ?, cod_tipo = ?"
 				+ " WHERE codigo = ?");

@@ -29,4 +29,44 @@
     <servlet-name>ConsultarAtividade</servlet-name>
     <url-pattern>/ConsultarAtividade</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultaEvento</display-name>
+    <servlet-name>ConsultaEvento</servlet-name>
+    <servlet-class>controlador.ConsultaEvento</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultaEvento</servlet-name>
+    <url-pattern>/ConsultaEvento</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ConsultaAtividade</display-name>
+    <servlet-name>ConsultaAtividade</servlet-name>
+    <servlet-class>controlador.ConsultaAtividade</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConsultaAtividade</servlet-name>
+    <url-pattern>/ConsultaAtividade</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AlteraAtividade</display-name>
+    <servlet-name>AlteraAtividade</servlet-name>
+    <servlet-class>controlador.AlteraAtividade</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AlteraAtividade</servlet-name>
+    <url-pattern>/AlteraAtividade</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExcluiAtividade</display-name>
+    <servlet-name>ExcluiAtividade</servlet-name>
+    <servlet-class>controlador.ExcluiAtividade</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExcluiAtividade</servlet-name>
+    <url-pattern>/ExcluiAtividade</url-pattern>
+  </servlet-mapping>
 </web-app>

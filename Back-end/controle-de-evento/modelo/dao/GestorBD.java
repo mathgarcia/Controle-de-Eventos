@@ -26,6 +26,11 @@ public class GestorBD extends RecepcionistaBD {
 	static public synchronized void desativarAtividade(int codigo) throws SQLException{
 		AtividadeBD.cancelar(codigo);
 	}	
+	
+	static public synchronized void removerAtividade(int codigo) throws SQLException{
+		AtividadeBD.remover(codigo);
+	}	
+	
 	static public synchronized void associarPalestranteAtividade(int cod_atividade, int cod_palestrante) throws SQLException{
 		iniciaConexao("INSERT INTO atividade_palestrantes VALUES (null, ?, ?)");
 		ps.setInt(1, cod_atividade);
