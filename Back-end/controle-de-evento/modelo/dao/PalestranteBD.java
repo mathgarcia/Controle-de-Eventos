@@ -3,8 +3,10 @@ package dao;
 import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import pojo.Palestrante;
+import pojo.Participante;
 
 public class PalestranteBD extends DAO{
 	static public Palestrante consultar(int codigo) throws SQLException{
@@ -21,6 +23,18 @@ public class PalestranteBD extends DAO{
 		fechaConexao();
 		return p;
 	}		
+	static public ArrayList<Palestrante> consultarPorAtividade(int cod_atividade) throws SQLException{
+		ArrayList<Palestrante> listaP = new ArrayList<Palestrante>();		
+		int cod_palestrante;
+		iniciaConexao("SELECT * FROM atividade_palestrantes WHERE cod_atividade = ?");
+		ps.setInt(1, cod_atividade);
+		ResultSet rs = (ResultSet) ps.executeQuery();
+		while (rs.next()){
+			cod_palestrante = rs.getInt("cod_palestrante");
+			listaP.add(consultar(cod_palestrante));			
+		}
+		return listaP;
+	}
 	static public synchronized void adicionar(Palestrante p) throws SQLException{
 		iniciaConexao("INSERT IGNORE INTO palestrante VALUES (null, ?, ?, ?)");
 		ps.setBlob(1, p.getCurriculo());
