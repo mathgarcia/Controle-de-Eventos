@@ -2,24 +2,23 @@ package controlador;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import pojo.Evento;
-
-@WebServlet("/EventosExibe")
-public class EventosExibe extends HttpServlet{
+import dao.AtividadeBD;
+import dao.PalestranteBD;
+import pojo.Atividade;
+import pojo.Palestrante;
+@WebServlet("/AtividadeExibe")
+public class AtividadeExibe {
 	private static final long serialVersionUID = 1L;
-	public EventosExibe() {
+	public AtividadeExibe() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -28,20 +27,20 @@ public class EventosExibe extends HttpServlet{
 		this.doPost(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Evento> todosEventos = null;
+		int cod_atividade = (Integer) request.getAttribute("cod_atividade");
+		Atividade a = null;
+		ArrayList<Palestrante> p = null;
 		Date data = new Date();		
 		try {
-			todosEventos = dao.EventoBD.consultaTodosEventos();			
+			a = AtividadeBD.consultaAtividade(cod_atividade);
+			p = PalestranteBD.consultarPorAtividade(cod_atividade);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		for (int i = 0; i < todosEventos.size(); i++) {				
-			if (todosEventos.get(i).getData_fim().before(data))
-				todosEventos.remove(i);
-		}
 		HttpSession session = request.getSession();
-		session.setAttribute("evento",todosEventos);
+		session.setAttribute("Atividade",a);
+		session.setAttribute("listaPalestrante",p);
 		response.sendRedirect("turu/eventos.jsp");
 	}
 }

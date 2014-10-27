@@ -3,6 +3,7 @@ package dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import pojo.Endereco;
 import pojo.GrauInstrucao;
 import pojo.Participante;
@@ -39,10 +40,10 @@ public class ParticipanteBD extends DAO{
 	}	
 	static public Participante consultarPorNomeSenha(String nomeRecebido, String senhaRecebida) throws SQLException{
 		Participante p = null;
-		iniciaConexao("SELECT * FROM participante WHERE (nome = ? OR nome_social = ?) AND senha = ?");
+		iniciaConexao("SELECT * FROM participante WHERE (nome = ? OR nomesocial = ?) AND senha = ?");
 		ps.setString(1, nomeRecebido);
 		ps.setString(2, nomeRecebido);
-		ps.setString(1, senhaRecebida);
+		ps.setString(3, senhaRecebida);
 		ps.executeQuery();
 		ResultSet res =  (ResultSet) ps.executeQuery();	
 		if (res.next()){
@@ -51,10 +52,10 @@ public class ParticipanteBD extends DAO{
 			String nomeSocial = res.getString("nomesocial");
 			String senha = res.getString("senha");
 			String email = res.getString("email");
-			char sexo = (char) res.getLong("sexo");
+			String sexo = res.getString("sexo");
 			Date dataNasc = res.getDate("data_nascimento");
-			String telefone = res.getString("telefone");
-			String celular = res.getString("celular");
+			String telefone = res.getString("telefone_residencial");
+			String celular = res.getString("telefone_celular");
 			String cpf = res.getString("cpf");
 			int cod_endereco = res.getInt("cod_endereco");
 			int cod_grau = res.getInt("cod_grauist");
@@ -62,7 +63,7 @@ public class ParticipanteBD extends DAO{
 			Endereco e = EnderecoBD.consultar(cod_endereco);
 			Perfil per = PerfilBD.consultar(cod_perfil);
 			GrauInstrucao gi = GrauInstrucaoBD.consultar(cod_grau);
-			p = new Participante(codigo, nome,nomeSocial,dataNasc,sexo,email,telefone,celular,e,senha,cpf, per,gi);
+			p = new Participante(codigo, nome,nomeSocial,dataNasc,sexo.toCharArray()[0],email,telefone,celular,e,senha,cpf, per,gi);
 		}
 		fechaConexao();
 		return p;

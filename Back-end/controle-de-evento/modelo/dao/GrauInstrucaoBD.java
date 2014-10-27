@@ -11,7 +11,7 @@ public class GrauInstrucaoBD extends DAO{
 		ps.setInt(1, codigo);		
 		ResultSet rs = (ResultSet) ps.executeQuery();
 		if (rs.next()){				
-			String nome = rs.getString("nome");			
+			String nome = rs.getString("descricao");			
 			gi = new GrauInstrucao(codigo,nome);
 		}	
 		fechaConexao();

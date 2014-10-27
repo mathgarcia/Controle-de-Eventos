@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.sql.Date;
 
 import pojo.Atividade;
+import pojo.Tipo;
 
 public class AtividadeBD extends DAO{
 	public static Atividade consultaAtividade(int codigo) throws SQLException{
@@ -20,11 +21,12 @@ public class AtividadeBD extends DAO{
 			String resumo = res.getString("resumo");			
 			Date data = res.getDate("data");			
 			Time hora = res.getTime("hora");		
-			//boolean cancelado = res.getBoolean("cancelado");
+			boolean cancelado = res.getBoolean("cancelado");
 			int duracao = res.getInt("duracao");	
 			int cod_evento = res.getInt("cod_evento");
 			int cod_tipo = res.getInt("cod_tipo");
-			a = new Atividade(codigo,nome, local, resumo,data,hora,duracao,false, cod_evento, cod_tipo);			
+			Tipo t = TipoBD.consultar(cod_tipo);
+			a = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado, cod_evento, t);			
 		}
 		fechaConexao();
 		return a;
@@ -43,8 +45,9 @@ public class AtividadeBD extends DAO{
 			Time hora = res.getTime("hora");			
 			int duracao = res.getInt("duracao");
 			int cod_tipo = res.getInt("cod_tipo");
-			//boolean cancelado = res.getBoolean("cancelado");
-			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,false,cod_evento, cod_tipo);
+			Tipo t = TipoBD.consultar(cod_tipo);
+			boolean cancelado = res.getBoolean("cancelado");
+			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado,cod_evento, t);
 			ativs.add(ativ);
 		}
 		fechaConexao();
@@ -65,8 +68,9 @@ public class AtividadeBD extends DAO{
 			int duracao = res.getInt("duracao");
 			int cod_evento = res.getInt("cod_evento");
 			int cod_tipo = res.getInt("cod_tipo");
+			Tipo t = TipoBD.consultar(cod_tipo);
 			boolean cancelado = res.getBoolean("cancelado");
-			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado, cod_evento, cod_tipo);
+			Atividade ativ = new Atividade(codigo,nome, local, resumo,data,hora,duracao,cancelado, cod_evento, t);
 			ativs.add(ativ);
 		}
 		fechaConexao();
@@ -80,19 +84,17 @@ public class AtividadeBD extends DAO{
 		ps.setDate(4, a.getData());
 		ps.setTime(5, a.getHora());
 		ps.setInt(6, a.getCod_evento());
-		ps.setInt(7, a.getCod_tipo());
+		ps.setInt(7, a.getTipo().getCodigo());
 		ps.setBoolean(8, false);
 		ps.executeUpdate();
 		fechaConexao();
 	}
 	public static synchronized void remover(int codigo) throws SQLException{
-		iniciaConexao("DELETE FROM atividade WHERE codigo = ?");
+		iniciaConexao("REMOVE FROM atividade WHERE codigo = ?");
 		ps.setInt(1, codigo);
 		ps.executeUpdate();
 		fechaConexao();
 	}
-	
-		
 	public static synchronized void atualizar(Atividade a) throws SQLException{
 		iniciaConexao("UPDATE atividade SET nome = ?, local = ?, resumo = ?, data = ?, hora = ?, cod_evento = ?, cod_tipo = ?"
 				+ " WHERE codigo = ?");
@@ -102,7 +104,7 @@ public class AtividadeBD extends DAO{
 		ps.setDate(4, a.getData());
 		ps.setTime(5, a.getHora());
 		ps.setInt(6, a.getCod_evento());
-		ps.setInt(7, a.getCod_tipo());
+		ps.setInt(7, a.getTipo().getCodigo());
 		ps.setInt(8, a.getCodigo());
 		fechaConexao();
 	}
