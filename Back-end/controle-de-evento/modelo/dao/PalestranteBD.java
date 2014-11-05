@@ -18,7 +18,8 @@ public class PalestranteBD extends DAO{
 			Blob curriculo = rs.getBlob("curriculo");
 			String lattes = rs.getString("lattes");
 			int cod_part = rs.getInt("cod_participante");
-			p = new Palestrante(codigo, curriculo, lattes, cod_part);
+			Participante part = ParticipanteBD.consultar(cod_part); 
+			p = new Palestrante(codigo, curriculo, lattes, part);
 		}
 		fechaConexao();
 		return p;
@@ -39,7 +40,7 @@ public class PalestranteBD extends DAO{
 		iniciaConexao("INSERT IGNORE INTO palestrante VALUES (null, ?, ?, ?)");
 		ps.setBlob(1, p.getCurriculo());
 		ps.setString(2, p.getLattes());
-		ps.setInt(3, p.getCod_participante());
+		ps.setInt(3, p.getDadosPalestrante().getCodigo());
 		ps.executeUpdate();
 		fechaConexao();
 	}

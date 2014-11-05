@@ -13,8 +13,8 @@ public class Atividade {
 	private int duracao;
 	private boolean cancelado;
 	private int cod_evento;
-	private int cod_tipo;
-	public Atividade(int cod, String nom, String loc, String res, Date dat, Time hor, int dur,boolean cancelado, int cod_evento, int tipo){
+	private Tipo tipo;
+	public Atividade(int cod, String nom, String loc, String res, Date dat, Time hor, int dur,boolean cancelado, int cod_evento, Tipo tipo){
 		codigo = cod;
 		nome = nom;
 		local = loc;
@@ -23,7 +23,7 @@ public class Atividade {
 		hora = hor;
 		duracao = dur;
 		this.cancelado = cancelado;
-		this.cod_tipo = tipo;
+		this.tipo = tipo;
 		this.cod_evento = cod_evento;
 	}
 	public int getCodigo(){
@@ -50,8 +50,8 @@ public class Atividade {
 	public boolean isCancelado(){
 		return cancelado;
 	}
-	public int getCod_tipo() {
-		return cod_tipo;
+	public Tipo getTipo() {
+		return tipo;
 	}
 	public int getCod_evento() {
 		return cod_evento;

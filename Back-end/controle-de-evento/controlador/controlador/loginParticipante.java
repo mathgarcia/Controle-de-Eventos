@@ -30,31 +30,29 @@ public class loginParticipante extends HttpServlet{
 		String senha = (String) request.getAttribute("senha");
 		try {
 			ParticipanteBD usuario = null;
-			Participante p = ParticipanteBD.consultarPorNomeSenha(nome, senha);		
-			if (p.getPerfil().getNome() == "Gestor")
+			Participante p = ParticipanteBD.consultarPorNomeSenha(nome, senha);			
+			if (p.getPerfil().getNome().equals("Gestor"))
 				usuario = new GestorBD();
+			else if (p.getPerfil().getNome().equals("Recepcionista"))
+				usuario = new RecepcionistaBD();
+			else if (p.getPerfil().getNome().equals("Administrador"))
+				usuario = new AdministradorBD();
 			else
-				if (p.getPerfil().getNome() == "Recepcionista")
-					usuario = new RecepcionistaBD();
-				else
-					if (p.getPerfil().getNome() == "Administrador")
-						usuario = new AdministradorBD();
-					else
-						usuario = new ParticipanteBD();
-			usuario = new GestorBD();
-			if (usuario instanceof GestorBD){
-				JOptionPane.showMessageDialog(null, "sim");	
-				response.sendRedirect("eventos.jsp");
-			}
-			else
-				JOptionPane.showMessageDialog(null, "nao");
+				usuario = new ParticipanteBD();								
+			response.sendRedirect("eventos.jsp");
 			session.setAttribute("Usuario",usuario);
-			session.setAttribute("UsuarioInfo", p);
-		} catch (SQLException e) {
+			session.setAttribute("UsuarioInfo", p);		
+			//			session.setMaxInactiveInterval();
+		} 
+		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			session.setAttribute("resposta","Usuário Inválido.");	
-			//			response.sendRedirect("eventos.jsp");
+			session.setAttribute("resposta","Erro de Login.");	
+			//response.sendRedirect("eventos.jsp");
+		}
+		catch(NullPointerException e){
+			session.setAttribute("resposta","Login ou Senha inv�lidos.");
+			//response.sendRedirect("eventos.jsp");
 		}
 	}
 }

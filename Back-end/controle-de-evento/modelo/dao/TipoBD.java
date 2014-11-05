@@ -1,14 +1,23 @@
 package dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import pojo.Tipo;
 
 public class TipoBD extends DAO{
-	static public void consultar(int codigo) throws SQLException{
+	static public Tipo consultar(int codigo) throws SQLException{		
+		String nome;
 		iniciaConexao("SELECT * FROM tipo WHERE codigo = ?");
-		ps.setInt(1, codigo);
-		ps.executeQuery();
+		ps.setInt(1, codigo);	
+		ResultSet rs = (ResultSet) ps.executeQuery();
+		if (rs.next())
+			nome = rs.getString("descricao");
+		else
+			return null;
+		Tipo t = new Tipo(codigo,nome);
 		fechaConexao();
+		return t;
 	}
 	static public synchronized void  adicionar(Tipo t) throws SQLException{
 		iniciaConexao("INSERT INTO tipo VALUES (null, ?)");

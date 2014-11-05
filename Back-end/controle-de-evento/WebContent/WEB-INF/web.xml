@@ -19,14 +19,4 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ConsultarAtividade</display-name>
-    <servlet-name>ConsultarAtividade</servlet-name>
-    <servlet-class>controlador.ConsultarAtividade</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ConsultarAtividade</servlet-name>
-    <url-pattern>/ConsultarAtividade</url-pattern>
-  </servlet-mapping>
 </web-app>

@@ -30,7 +30,7 @@ public class PerfilBD extends DAO{
 		ps.setInt(1, codigo);		
 		ResultSet rs = (ResultSet) ps.executeQuery();
 		if (rs.next()){				
-			String nome = rs.getString("nome");			
+			String nome = rs.getString("descricao");			
 			p = new Perfil(codigo,nome);
 		}	
 		fechaConexao();
