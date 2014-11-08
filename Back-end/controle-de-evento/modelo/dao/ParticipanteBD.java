@@ -38,11 +38,11 @@ public class ParticipanteBD extends DAO{
 		fechaConexao();
 		return p;
 	}	
-	static public Participante consultarPorNomeSenha(String nomeRecebido, String senhaRecebida) throws SQLException{
+	static public Participante consultarPorCPFSenha(String cpfRecebido, String senhaRecebida) throws SQLException{
 		Participante p = null;
-		iniciaConexao("SELECT * FROM participante WHERE (nome = ? OR nomesocial = ?) AND senha = ?");
-		ps.setString(1, nomeRecebido);
-		ps.setString(2, nomeRecebido);
+		iniciaConexao("SELECT * FROM participante WHERE cpf = ? AND senha = ?");
+		ps.setString(1, cpfRecebido);
+		ps.setString(2, cpfRecebido);
 		ps.setString(3, senhaRecebida);
 		ps.executeQuery();
 		ResultSet res =  (ResultSet) ps.executeQuery();	
