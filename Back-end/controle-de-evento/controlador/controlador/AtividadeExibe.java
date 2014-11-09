@@ -28,19 +28,19 @@ public class AtividadeExibe {
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int cod_atividade = (Integer) request.getAttribute("cod_atividade");
-		Atividade a = null;
-		ArrayList<Palestrante> p = null;
+		Atividade atividade = null;
+		ArrayList<Palestrante> listaPalestrante = null;
 		Date data = new Date();		
 		try {
-			a = AtividadeBD.consultaAtividade(cod_atividade);
-			p = PalestranteBD.consultarPorAtividade(cod_atividade);
+			atividade = AtividadeBD.consultaAtividade(cod_atividade);
+			listaPalestrante = PalestranteBD.consultarPorAtividade(cod_atividade);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		HttpSession session = request.getSession();
-		session.setAttribute("Atividade",a);
-		session.setAttribute("listaPalestrante",p);
+		session.setAttribute("Atividade",atividade);
+		session.setAttribute("listaPalestrante",listaPalestrante);
 		response.sendRedirect("turu/eventos.jsp");
 	}
 }

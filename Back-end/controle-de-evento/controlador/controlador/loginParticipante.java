@@ -51,7 +51,7 @@ public class loginParticipante extends HttpServlet{
 			//response.sendRedirect("eventos.jsp");
 		}
 		catch(NullPointerException e){
-			session.setAttribute("resposta","Login ou Senha invï¿½lidos.");
+			session.setAttribute("resposta","Login ou Senha inválidos.");
 			//response.sendRedirect("eventos.jsp");
 		}
 	}

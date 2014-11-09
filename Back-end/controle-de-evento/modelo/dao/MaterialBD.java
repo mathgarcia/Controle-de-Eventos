@@ -1,7 +1,9 @@
 package dao;
 
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import pojo.Material;
 
 public class MaterialBD extends DAO {
@@ -11,22 +13,22 @@ public class MaterialBD extends DAO {
 		ps.setInt(1, codigo);
 		ResultSet rs =(ResultSet) ps.executeQuery();
 		if (rs.next()){
-			byte[] material = rs.getBytes("material");
+			Blob material = rs.getBlob("material");
 			int cod_atividade = rs.getInt("cod_atividade");
-			m = new Material(codigo, material, cod_atividade);
+			m = new Material(codigo, material.getBytes(1, (int) material.length()), cod_atividade);
 		}
 		fechaConexao();
 		return m;
 	}
-	static public synchronized Material consultarPorMaterial(int codigo) throws SQLException{
+	static public synchronized Material consultarPorAtividade(int codigo) throws SQLException{
 		Material m = null;
 		iniciaConexao("SELECT * FROM material WHERE cod_atividade = ?");
 		ps.setInt(1, codigo);
 		ResultSet rs =(ResultSet) ps.executeQuery();
 		if (rs.next()){
-			byte[] material = rs.getBytes("material");
+			Blob material = rs.getBlob("material");
 			int cod_atividade = rs.getInt("cod_atividade");
-			m = new Material(codigo, material, cod_atividade);
+			m = new Material(codigo, material.getBytes(1, (int) material.length()), cod_atividade);
 		}
 		fechaConexao();
 		return m;
@@ -34,7 +36,7 @@ public class MaterialBD extends DAO {
 	static public synchronized void adicionar(Material m) throws SQLException{
 		iniciaConexao("INSERT INTO material VALUES (null, ?, ?)");
 		ps.setBytes(1, m.getMaterial());
-		ps.setInt(1, m.getCod_atividade());
+		ps.setInt(2, m.getCod_atividade());
 		ps.executeUpdate();
 		fechaConexao();
 	}
