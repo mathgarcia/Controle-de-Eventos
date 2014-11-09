@@ -26,11 +26,11 @@ public class loginParticipante extends HttpServlet{
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String nome = (String) request.getAttribute("nome");
+		String cpf = (String) request.getAttribute("cpf");
 		String senha = (String) request.getAttribute("senha");
 		try {
 			ParticipanteBD usuario = null;
-			Participante p = ParticipanteBD.consultarPorNomeSenha(nome, senha);			
+			Participante p = ParticipanteBD.consultarPorCPFSenha(cpf, senha);			
 			if (p.getPerfil().getNome().equals("Gestor"))
 				usuario = new GestorBD();
 			else if (p.getPerfil().getNome().equals("Recepcionista"))
