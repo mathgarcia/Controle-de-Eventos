@@ -11,6 +11,8 @@
 		
 	</style>
 	<script src="lib/jQuery/1.11.1/jquery-1.11.1.min.js"></script>
+	<script src="lib/jQuery/inputMasks/jquery.inputmask.js"></script>
+	<script src="lib/scripts/masks.js"></script>
 	<script src="lib/scripts/navbar-animation.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="lib/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -130,6 +132,8 @@
 				<h1>Dados pessoais</h1>
 					<input type="text" class="form-control" id="nome" placeholder="Nome" autofocus required>
 					<input type="text" class="form-control" id="cpf" placeholder="CPF" required>
+					
+
 					<div class="div-cadastro">
 					Sexo: 
 					<input type="radio" name="sexo" value="masculino" style="margin-left: 10px; margin-right: 5px;">Masculino
@@ -151,6 +155,7 @@
 					<input type="text" class="form-control" id="bairro" placeholder="Bairro" required>
 					<input type="text" class="form-control" id="cep" placeholder="CEP" required>
 					<input class="lista" list="estados" name="estados" placeholder="Selecione um Estado">
+					
 					<datalist id="estados">
 	<option value="AC">Acre</option>
 	<option value="AL">Alagoas</option>
