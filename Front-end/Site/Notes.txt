@@ -1,0 +1,3 @@
+img, js, lib e main.js da raiz são um teste da ferramenta "X-editable"
+paginas com sufixo numerado são betas das visualizações diferenciadas
+carousell responsivo adicionado - http://owlgraphic.com/owlcarousel/index.html
