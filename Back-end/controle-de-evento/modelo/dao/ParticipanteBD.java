@@ -13,6 +13,7 @@ public class ParticipanteBD extends DAO{
 
 	static public Participante consultar(int codigo) throws SQLException{
 		Participante p = null;
+		DateFormat df1 = new SimpleDateFormat("dd/mm/yyyy");
 		iniciaConexao("SELECT * FROM participante WHERE codigo = ?");
 		ps.setInt(1, codigo);
 		ps.executeQuery();
@@ -34,15 +35,18 @@ public class ParticipanteBD extends DAO{
 			Perfil per = PerfilBD.consultar(cod_perfil);
 			GrauInstrucao gi = GrauInstrucaoBD.consultar(cod_grau);
 			p = new Participante(codigo, nome,nomeSocial,dataNasc,sexo,email,telefone,celular,e,senha,cpf, per,gi);
+			String dataNascimentoForm = df1.format(dataNasc);
+			p.setDataNascimento(dataNascimentoForm);
 		}
 		fechaConexao();
 		return p;
 	}	
-	static public Participante consultarPorCPFSenha(String cpfRecebido, String senhaRecebida) throws SQLException{
+	static public Participante consultarPorNomeSenha(String nomeRecebido, String senhaRecebida) throws SQLException{
 		Participante p = null;
-		iniciaConexao("SELECT * FROM participante WHERE cpf = ? AND senha = ?");
-		ps.setString(1, cpfRecebido);
-		ps.setString(2, cpfRecebido);
+		DateFormat df1 = new SimpleDateFormat("dd/mm/yyyy");
+		iniciaConexao("SELECT * FROM participante WHERE (nome = ? OR nomesocial = ?) AND senha = ?");
+		ps.setString(1, nomeRecebido);
+		ps.setString(2, nomeRecebido);
 		ps.setString(3, senhaRecebida);
 		ps.executeQuery();
 		ResultSet res =  (ResultSet) ps.executeQuery();	
@@ -64,6 +68,8 @@ public class ParticipanteBD extends DAO{
 			Perfil per = PerfilBD.consultar(cod_perfil);
 			GrauInstrucao gi = GrauInstrucaoBD.consultar(cod_grau);
 			p = new Participante(codigo, nome,nomeSocial,dataNasc,sexo.toCharArray()[0],email,telefone,celular,e,senha,cpf, per,gi);
+			String dataNascimentoForm = df1.format(dataNasc);
+			p.setDataNascimento(dataNascimentoForm);
 		}
 		fechaConexao();
 		return p;
@@ -125,6 +131,21 @@ public class ParticipanteBD extends DAO{
 		ps.executeUpdate();
 		fechaConexao();
 	}
+	
+	static public synchronized int consultarInscricaoEvento(int cod_part, int cod_evento) throws SQLException{
+		iniciaConexao("SELECT * FROM inscricao_evento WHERE cod_participante = ? and cod_evento = ?");
+		ps.setInt(1, cod_part);
+		ps.setInt(2, cod_evento);
+		ps.executeQuery();
+		ResultSet res = (ResultSet) ps.executeQuery();
+		if(res.next())
+		{
+			int cod_inscrEvento = res.getInt("codigo");
+			return cod_inscrEvento;
+		}
+		fechaConexao();
+		return null;
+	}
 
 	static public synchronized void inscreverAtividade(int cod_inscricao_evento, int cod_atividade) throws SQLException{
 		iniciaConexao("INSERT IGNORE INTO inscricao_atividade VALUES(null, ?,?)");
@@ -140,7 +161,21 @@ public class ParticipanteBD extends DAO{
 		ps.executeUpdate();
 		fechaConexao();
 	}
-
+	
+	static public synchronized boolean consultarInscricaoAtividade(int cod_part, int cod_atividade) throws SQLException
+	{
+		iniciaConexao("SELECT * FROM inscricao_evento WHERE cod_participante = ? and cod_evento = ?");
+		ps.setInt(1, cod_part);
+		ps.setInt(2, cod_evento);
+		ps.executeQuery();
+		ResultSet res = (ResultSet) ps.executeQuery();
+		if(res.next())
+		{
+			return true;
+		}
+		fechaConexao();
+		return false;
+	}
 	//		@SuppressWarnings("unused")
 	//		private synchronized void votarAtividade() throws SQLException{
 	//			iniciaConexao("");
