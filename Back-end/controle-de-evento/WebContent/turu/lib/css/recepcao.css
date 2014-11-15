@@ -1,0 +1,106 @@
+table{
+	width: 100%;
+	border-color: #E6E9ED;
+	color: #73879C;
+	border-left-width: 0px;
+	font-weight: bold;
+}
+
+table td{
+	padding-left: 5px;
+	height: 30px;
+}
+
+h1, h2{
+	color: #73879C;
+}
+
+.td-button{
+	width: 35px;
+}
+
+.titulo{
+	font-size: 15px;
+	color: #E6E9ED;
+	background-color: #283645;
+}
+.odd{
+	background-color: #F5F7FA;
+}
+
+.blank{
+	background-color: #fff;
+}
+
+.status{
+	width: 15px;
+	border-top-left-radius: 50px;
+	border-bottom-left-radius: 50px;
+}
+
+.presente{
+	background-color: #00dd2f;
+}
+
+.falta{
+	background-color: #ee3737;
+}
+
+.fila{
+	background-color: #FFA500;
+}
+
+.busca{
+	margin-top: 15px;
+}
+
+.dropdown-busca
+{
+	width: 100%;
+	color: #73879C;
+	font-weight: bold;
+	padding-left: 10px;
+}
+
+.btn-confirma{
+	background-color: #00dd2f;
+	color: #E6E9ED;
+	padding-left: 5px;
+}
+
+.btn-fila{
+	background-color: #FFA500;
+	color: #E6E9ED;
+}
+
+.btn-remove{
+	background-color: #ee3737;
+	color: #E6E9ED;
+	padding-left: 6px;
+}
+
+.on-table{
+	width: 30px;
+	height: 30px;
+}
+
+.vagas{
+	margin-top: 10px;
+	color: #73879C;
+	font-weight: bold;
+	background-color: #F5F7FA;
+	border: solid 1px #73879C;
+	padding-left: 10px;
+}
+
+.indicador-presente{
+	color: #00dd2f;
+}
+
+.indicador-falta{
+	color: #ee3737;
+}
+
+.indicador-fila{
+	color: #FFA500;
+}

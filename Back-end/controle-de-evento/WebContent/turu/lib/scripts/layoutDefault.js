@@ -37,19 +37,25 @@
 		}
 		
 		getFormDropDown = function(){
-			var form = $('<form class="form-group" role="search" style="margin-bottom: 0px;">');
+			var form = $('<form class="form-group" action="/controle-de-evento/loginParticipante" method="post" role="search" style="margin-bottom: 0px;">');
 			
-			//dar append
-			var inputLogin = $('<input type="text" class="form-control" placeholder="Login">');
+			var inputLogin = $('<input type="text" class="form-control" placeholder="Login" name="Login">');
 			form.append(inputLogin);
 			
 			var inputGroup = $('<div class="input-group">');
-			inputGroup.append($('<input type="text" class="form-control" placeholder="Senha">'));
+			inputSenha = $('<input type="password" class="form-control" placeholder="Senha" name="Senha">');
+			inputGroup.append(inputSenha);
 			var btn = $('<span class="input-group-btn">').append(
-				$('<button class="btn btn-default logar" type="button">')
+				$('<button class="btn btn-default logar" type="submit">')
 				.append('Logar  ')
 				.append('<span class="glyphicon glyphicon-log-in">')
 			);
+			/*btn.on('click', function(){
+				alert(inputLogin.val() +" - "+ inputSenha.val()); 
+				$.post("/controle-de-evento/",{nome:inputLogin.val() ,senha: inputSenha.val()}, function(){
+					
+				});
+			});*/
 			inputGroup.append(btn);
 			form.append(inputGroup);
 			
@@ -63,6 +69,11 @@
 
 			var btnCreateAccount = $('<button class="btn btn-default bottom-button" type="button" id="createAccount">');
 			btnCreateAccount.append('Criar uma conta'); 
+			btnCreateAccount.on("click", function(){
+				$.post("../turu/cadastro-usuario.jsp", function(response){
+					$('#corpo').html(response);
+				});
+			});
 			form.append(btnCreateAccount);
 			
 			return form;

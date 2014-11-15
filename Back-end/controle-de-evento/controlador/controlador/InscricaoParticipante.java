@@ -1,6 +1,7 @@
-package controle;
+package controlador;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -13,6 +14,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.mysql.fabric.xmlrpc.base.Data;
+
+import dao.EnderecoBD;
+import dao.GrauInstrucaoBD;
+import dao.ParticipanteBD;
+import dao.PerfilBD;
+import pojo.Endereco;
+import pojo.Participante;
+import pojo.Perfil;
 
 @WebServlet("/InscricaoParticipante")
 public class InscricaoParticipante extends HttpServlet 
@@ -34,27 +45,45 @@ public class InscricaoParticipante extends HttpServlet
 		String cpf = request.getParameter("cpf");
 		String nomeCompleto = request.getParameter("nomeCompleto");
 		String nomeSocial = request.getParameter("nomeSocial");
-		String dataNascimento = request.getParameter("dataNascimento");
-		String sexo = request.getParameter("sexo");
+		Calendar dataNascimento = null;
+		try {
+			dataNascimento = verificaDataNasc(request.getParameter("dataNascimento"));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		char sexo = request.getParameter("sexo").charAt(0);
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
 		String telefone = request.getParameter("telefone");
 		String celular = request.getParameter("celular");
 		String logradouro = request.getParameter("logradouro");
-		String numero = request.getParameter("numero");
+		int numero = Integer.parseInt(request.getParameter("numero"));
 		String cep = request.getParameter("cep");
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
-		String grauInstrucao = request.getParameter("grauInstrucao");
+		String estado = request.getParameter("estado");
+		int grauInstrucao = Integer.parseInt(request.getParameter("grauInstrucao"));
 		
-		if(Integer.parseInt(numero)>0)
+		Endereco endereco = null;
+		if(numero > 0)
 		{
-			//Endereco endereco = new Endereco(null, logradouro, numero, cep, bairro, cidade, estado);
-			//endereco = EnderecoBD.adicionar(endereco);
+			endereco = new Endereco(0, logradouro, numero, cep, bairro, cidade, estado);
+			try {
+				EnderecoBD.adicionar(endereco);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
-		//Perfil perfil = new Perfil(null, "participante");
-		//perfil = PerfilBD.adicionar(perfil);
+		Perfil perfil = new Perfil(0, "participante");
+		try {
+			PerfilBD.adicionar(perfil);
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		//GrauInstrucao grauInstrucao = new GrauInstrucao(null, grauInstrucao);
 		//grauInstrucao = GrauInstrucaoBD.adicionar(grauInstrucao);
@@ -80,17 +109,10 @@ public class InscricaoParticipante extends HttpServlet
 			mensagem = mensagem + "Quantidade de caracteres do Nome Social está acima do permitido.";
 		}
 		
-		try 
+		if(dataNascimento == null)
 		{
-			if(!verificaDataNasc(dataNascimento))
-			{
-				indicador = 1;
-				mensagem = mensagem + "Data de Nascimento inválida.\n";
-			}
-		} 
-		catch (ParseException e) 
-		{
-			e.printStackTrace();
+			indicador = 1;
+			mensagem = mensagem + "Data de Nascimento inválida.\n";
 		}
 		
 		if(!verificaTelefone(telefone))
@@ -105,7 +127,7 @@ public class InscricaoParticipante extends HttpServlet
 			mensagem = mensagem + "Quantidade de caracteres do celular está acima do permitido.";
 		}
 		
-		if(Integer.parseInt(numero)<=0)
+		if(numero<=0)
 		{
 			indicador = 1;
 			mensagem = mensagem + "Número do endereço inválido.";
@@ -119,11 +141,18 @@ public class InscricaoParticipante extends HttpServlet
 		
 		if(indicador==0)
 		{
-			//Participante participante = new Participante(cpf, nomeCompleto, nomeSocial, dataNascimento, sexo, email, senha, telefone, celular, endereco, grauInstrucao);
-			//ParticipanteBD.adicionar(participante);
+			Participante participante = null;
+			try {
+				participante = new Participante(0, nomeCompleto, nomeSocial, (java.sql.Date) dataNascimento.getTime(), sexo, email, telefone, celular, endereco, senha, cpf, perfil, GrauInstrucaoBD.consultar(grauInstrucao));
+				ParticipanteBD.adicionar(participante);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("mensagem", "Seja Bem Vindo "+nomeSocial+"!!!");
+			sessao.setAttribute("idLog", "");
 			response.sendRedirect("painelParticipante.jsp");
 			
 		}
@@ -219,7 +248,7 @@ public class InscricaoParticipante extends HttpServlet
 	}
 
 	
-	public boolean verificaDataNasc(String dataNasc) throws ParseException
+	public Calendar verificaDataNasc(String dataNasc) throws ParseException
 	{
 		Calendar dataNascimento = Calendar.getInstance();
 		Calendar atual = Calendar.getInstance();
@@ -237,14 +266,14 @@ public class InscricaoParticipante extends HttpServlet
 					{
 						if((dataNascimento.get(Calendar.DAY_OF_MONTH)>=1)&&(dataNascimento.get(Calendar.DAY_OF_MONTH)<=29))
 						{
-							return true;
+							return dataNascimento;
 						}
 					}
 					else
 					{
 						if((dataNascimento.get(Calendar.DAY_OF_MONTH)>=1)&&(dataNascimento.get(Calendar.DAY_OF_MONTH)<=28))
 						{
-							return true;
+							return dataNascimento;
 						}
 					}
 				}
@@ -253,7 +282,7 @@ public class InscricaoParticipante extends HttpServlet
 				{
 					if((dataNascimento.get(Calendar.DAY_OF_MONTH)>=1)&&(dataNascimento.get(Calendar.DAY_OF_MONTH)<=31))
 					{
-						return true;
+						return dataNascimento;
 					}
 				}
 				
@@ -261,16 +290,16 @@ public class InscricaoParticipante extends HttpServlet
 				{
 					if((dataNascimento.get(Calendar.DAY_OF_MONTH)>=1)&&(dataNascimento.get(Calendar.DAY_OF_MONTH)<=30))
 					{
-						return true;
+						return dataNascimento;
 					}					
 				}
 			}
 			
-			return false;
+			return null;
 		}
 		
 		
-		return false;
+		return null;
 		
 	}
 

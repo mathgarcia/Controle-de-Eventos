@@ -1,0 +1,90 @@
+		.btn-group{
+		width: 100%;
+		margin-top: 15px;
+		}
+		
+		.btn-atividade {
+			width: 100%;
+			background-color: #fff;
+			border-color: #E6E9ED;
+			box-shadow: 1px 2px 8px #000;
+			-webkit-box-shadow: 5px 2px 9px #000;
+			-moz-box-shadow: 1px 2px 10px #000;
+			
+		}
+
+		.dropdown-atividade {
+			width: 100%;
+			padding-left: 15px;
+			padding-top: 15px;
+			background-color: #fff;
+			border-width: 1px;
+			border-color: #E6E9ED;
+		}
+
+		.thumbnail{
+			padding: 0px;
+		}
+
+		.table{
+			float: left;
+			background-color: white;
+			width: 120px;
+			height: 120px;
+			margin-bottom: 0px;
+		}
+
+		.thumbnail .table table{
+			width: 100%;
+			height: 100%;
+		}
+
+		.thumbnail	.table table td{
+			color: #73879C;
+			font-weight: bold;
+		}
+
+		.dia{
+			font-size: 35px;
+		}
+
+		.data{
+			font-size: 20px;
+		}
+
+		.btn-certificado{
+			width: 100%;
+			height: 30px;
+			border-style: none;
+			border-top: solid 1px;
+		}
+
+		.info-atividade{
+			font-weight: bold;
+			color: #73879C;
+		}
+
+		.info-atividade p{
+			margin-bottom: 2px;
+		}
+
+		.filtro-eventos{
+			float: left;
+			height: 25px;
+			padding-top: 1px;
+			border: solid 2px #283645;
+			font-weight: bold;
+			color: #73879C;
+			padding-right: 10px;
+			padding-left: 5px;
+		}
+
+		.btn-filtro-eventos{
+			height: 25px;
+			border-left-width: 0px;
+			border-color: #283645;
+			padding-top: 1px;
+		}
+
+
+
