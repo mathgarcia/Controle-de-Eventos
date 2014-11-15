@@ -16,6 +16,7 @@ public class Participante {
 	private Endereco endereco;
 	private Perfil perfil;
 	private GrauInstrucao grauist;	
+	private String dataNascimento;
 
 	public Participante(int codigo, String nome, String nomeSocial,
 			Date dataNasc, char sexo, String email, String telefone,
@@ -83,5 +84,14 @@ public class Participante {
 	
 	public Endereco getEndereco() {
 		return endereco;
+	}
+	
+	public String getDataNascimento(){
+		return dataNascimento;
+	}
+	
+	public void setDataNascimento(String data)
+	{
+		dataNascimento = data;
 	}
 }

@@ -1,6 +1,7 @@
 package pojo;
 
 import java.sql.Time;
+
 import java.sql.Date;
 
 public class Atividade {
@@ -14,6 +15,7 @@ public class Atividade {
 	private boolean cancelado;
 	private int cod_evento;
 	private Tipo tipo;
+	private String dataAtividade;
 	public Atividade(int cod, String nom, String loc, String res, Date dat, Time hor, int dur,boolean cancelado, int cod_evento, Tipo tipo){
 		codigo = cod;
 		nome = nom;
@@ -41,6 +43,10 @@ public class Atividade {
 	public Date getData() {
 		return data;
 	}
+	public void setData(Date data)
+	{
+		this.data = data;
+	}
 	public Time getHora() {
 		return hora;
 	}
@@ -55,5 +61,15 @@ public class Atividade {
 	}
 	public int getCod_evento() {
 		return cod_evento;
+	}
+	
+	public String getDataAtividade()
+	{
+		this.dataAtividade;
+	}
+	
+	public void setDataAtividade(String data)
+	{
+		this.dataAtividade = data;
 	}
 }
