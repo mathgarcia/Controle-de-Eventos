@@ -11,6 +11,8 @@ public class Evento {
 	private Date data_fim;
 	private String local;
 	private boolean cancelado;
+	private String dataInicioFormatada;
+	private String dataFinalFormatada;
 	private ArrayList<Atividade> atividades;
 	
 	public Evento(int cod, String nom, String des, Date dati, Date datf, String loc,boolean cancelado, ArrayList<Atividade> ativs){
@@ -46,5 +48,25 @@ public class Evento {
 	}
 	public ArrayList<Atividade> getAtividades(){
 		return atividades;
+	}
+	
+	public String getDataInicioFormatada()
+	{
+		return this.dataInicioFormatada;
+	}
+	
+	public String getDataFinalFormatada()
+	{
+		return this.dataFinalFormatada;
+	}
+	
+	public void setDataInicioFormatada(String data)
+	{
+		this.dataInicioFormatada = data;
+	}
+	
+	public void setDataFinalFormatada(String data)
+	{
+		this.dataFinalFormatada = data;
 	}
 }

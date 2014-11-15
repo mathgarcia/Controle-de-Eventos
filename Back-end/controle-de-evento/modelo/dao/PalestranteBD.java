@@ -15,7 +15,7 @@ public class PalestranteBD extends DAO{
 		ps.setInt(1, codigo);
 		ResultSet rs = (ResultSet) ps.executeQuery();
 		if (rs.next()){
-			Blob curriculo = rs.getBlob("curriculo");
+			Blob curriculo = rs.getBlob("curriculum");
 			String lattes = rs.getString("lattes");
 			int cod_part = rs.getInt("cod_participante");
 			Participante part = ParticipanteBD.consultar(cod_part); 

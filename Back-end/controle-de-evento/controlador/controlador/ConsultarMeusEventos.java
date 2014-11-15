@@ -4,7 +4,12 @@ package controlador;
 
 import java.io.IOException;
 
+import javax.servlet.*;
+import dao.*;
+import pojo.*;
+
 @WebServlet("/ConsultaEventosInscritos")
+
 public class ConsultarMeusEventos extends HTTPServlet{
 	
 	
@@ -39,7 +44,8 @@ public class ConsultarMeusEventos extends HTTPServlet{
 		//String cpfusuario = (String) request.getParameter("cpf");
 		//String nome = (String) request.getParameter("nome");
 		//String tipo = (String) request.getParameter("tipo");
-		String cod = (String) request.getParameter("cod");
+		//String cod = (String) request.getParameter("cod");
+		Participante p = (Participante) request.getAttribute("Usuario");
 		//String local = (String) request.getParameter("local");
 		//String resumo = (String) request.getParameter("resumo");
 		//String data = (String) request.getParameter("data");
@@ -49,19 +55,15 @@ public class ConsultarMeusEventos extends HTTPServlet{
 		
 		
 		EventosBD ebd = new EventosBD();
-		int codi=Integer.parseInt(cod);
+		int codi = p.getCodigo();
 		
-		ArrayList results = ebd.ConsultartodosEventos();
-		
-		
-		
-		
-		
+		ArrayList<Evento> results = ebd.consultarMeusEventos(cod);
 		
 		HttpSession session = request.getSession();
+		session.setAttribute("eventos", results);
 		//session.setAttribute("login", login);
 		//session.setAttribute("senha", senha);
-		response.sendRedirect("paginas/pagina1.jsp");
+		response.sendRedirect("turu/calendario.jsp");
 		
 	}
 	
