@@ -130,7 +130,8 @@
 		<form class="form-group" role="search" style="margin-bottom: 0px;">
 			<div class="col-md-4 bloco-formulario" >
 				<h1>Dados pessoais</h1>
-					<input type="text" class="form-control" id="nome" placeholder="Nome" autofocus required>
+				<input type="text" class="form-control" id="nome" placeholder="Nome Social" autofocus required>
+					<input type="text" class="form-control" id="nome" placeholder="Nome Completo" required>
 					<input type="text" class="form-control" id="cpf" placeholder="CPF" required>
 					
 
@@ -139,9 +140,23 @@
 					<input type="radio" name="sexo" value="masculino" style="margin-left: 10px; margin-right: 5px;">Masculino
 					<input type="radio" name="sexo" value="feminino" style="margin-left: 10px; margin-right: 5px;">Feminino </div>
 					<input type="text" class="form-control" id="instiruicao" placeholder="Intituição" required>
+					
+				<p>	<div class="div-cadastro">Grau de Intrução: <select>
+  <option value="fundInc">Fundamental Incompleto</option>
+  <option value="fundComp">Fundamental Completo</option>
+  <option value="medInc">Médio Incompleto</option>
+  <option value="medComp" selected>Médio Completo</option>
+  <option value="supInc" selected>Superior Incompleto</option>
+  <option value="supComp" selected>Superior Completo</option>
+  <option value="metr" selected>Mestrado</option>
+  <option value="dout" selected>Doutorado</option>
+  <option value="outro" selected>Outro</option>
+				</select></div><p>
+					
 					<div class="data-holder">Data de Nascimento:</div>
 					<input type="date" class="form-control data" id="nascimento" placeholder="Data de Nascimento" required>
 					<input type="password" class="form-control" id="senha" placeholder="Senha" required>
+					<input type="password" class="form-control" id="senhaConfirm" placeholder="Confirme sua Senha" required>
 
 
 				
@@ -154,9 +169,8 @@
 					<input type="text" class="form-control" id="complemento" placeholder="Complemento" required>
 					<input type="text" class="form-control" id="bairro" placeholder="Bairro" required>
 					<input type="text" class="form-control" id="cep" placeholder="CEP" required>
-					<input class="lista" list="estados" name="estados" placeholder="Selecione um Estado">
-					
-					<datalist id="estados">
+					<p><div class="div-cadastro">Selecione um Estado:					
+					<select>
 	<option value="AC">Acre</option>
 	<option value="AL">Alagoas</option>
 	<option value="AP">Amapá</option>
@@ -184,7 +198,7 @@
 	<option value="SP">São Paulo</option>
 	<option value="SE">Sergipe</option>
 	<option value="TO">Tocantis</option>
-					</datalist>
+					</select></div></p>
 				
 			</div>
 			
@@ -192,7 +206,7 @@
 				<h1>Contato</h1>
 					<input type="email" class="form-control" id="email" placeholder="E-mail" required>
 					<input type="text" class="form-control" id="tel1" placeholder="Telefone" required>
-					<input type="text" class="form-control" id="tel2" placeholder="Telefone" required>
+					<input type="text" class="form-control" id="tel2" placeholder="Celular" required>
 
 
 
