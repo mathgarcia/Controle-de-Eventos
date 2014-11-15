@@ -76,6 +76,12 @@ public class ParticipanteBD extends DAO{
 		fechaConexao();
 		return p;
 	}
+	static private synchronized Participante retornaUltimoId(Participante p) throws SQLException{
+		DAO.iniciaConexao("SELECT LAST_INSERT_ID() id FROM participante");
+		ResultSet res =  (ResultSet) ps.executeQuery();	
+		p.setCodigo(res.getInt("id"));
+		return p;
+	}
 	static public synchronized void adicionar(Participante p) throws SQLException{
 		DAO.iniciaConexao("INSERT INTO participante VALUES(null,?,?,?,?,?,?,?,?,?,?,?,?)");		
 		ps.setString(1, p.getNome());
@@ -91,6 +97,7 @@ public class ParticipanteBD extends DAO{
 		ps.setInt(11, p.getPerfil().getCodigo());
 		ps.setInt(12, p.getEndereco().getCodigo());
 		ps.executeUpdate();
+		p = retornaUltimoId(p);
 		fechaConexao();
 	}
 
