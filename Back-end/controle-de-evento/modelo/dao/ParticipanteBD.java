@@ -3,6 +3,8 @@ package dao;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import pojo.Endereco;
 import pojo.GrauInstrucao;
@@ -23,10 +25,10 @@ public class ParticipanteBD extends DAO{
 			String nomeSocial = res.getString("nomesocial");
 			String senha = res.getString("senha");
 			String email = res.getString("email");
-			char sexo = (char) res.getLong("sexo");
+			String sexo =  res.getString("sexo");
 			Date dataNasc = res.getDate("data_nascimento");
-			String telefone = res.getString("telefone");
-			String celular = res.getString("celular");
+			String telefone = res.getString("telefone_residencial");
+			String celular = res.getString("telefone_celular");
 			String cpf = res.getString("cpf");
 			int cod_endereco = res.getInt("cod_endereco");
 			int cod_grau = res.getInt("cod_grauist");
@@ -34,7 +36,7 @@ public class ParticipanteBD extends DAO{
 			Endereco e = EnderecoBD.consultar(cod_endereco);
 			Perfil per = PerfilBD.consultar(cod_perfil);
 			GrauInstrucao gi = GrauInstrucaoBD.consultar(cod_grau);
-			p = new Participante(codigo, nome,nomeSocial,dataNasc,sexo,email,telefone,celular,e,senha,cpf, per,gi);
+			p = new Participante(codigo, nome,nomeSocial,dataNasc,sexo.charAt(0),email,telefone,celular,e,senha,cpf, per,gi);
 			String dataNascimentoForm = df1.format(dataNasc);
 			p.setDataNascimento(dataNascimentoForm);
 		}
