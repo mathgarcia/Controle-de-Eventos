@@ -152,7 +152,7 @@ public class InscricaoParticipante extends HttpServlet
 			
 			HttpSession sessao = request.getSession();
 			sessao.setAttribute("mensagem", "Seja Bem Vindo "+nomeSocial+"!!!");
-			sessao.setAttribute("idLog", "");
+			sessao.setAttribute("idLog", participante.getCodigo());
 			response.sendRedirect("painelParticipante.jsp");
 			
 		}
