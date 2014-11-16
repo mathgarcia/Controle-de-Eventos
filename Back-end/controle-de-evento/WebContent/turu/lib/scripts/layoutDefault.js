@@ -25,7 +25,7 @@
 			//primeiro passo para colocar o dropdown embaixo do botão "e inicado na direita"
 			var ulNavRight = $('<ul class="nav navbar-nav navbar-right">');
 			//uma lista dropdown para o ul, para inserir o botão
-			var li = $('<li class="dropdown">');
+			var li = $('<li id="loginDrop" class="dropdown">');
 			ulNavRight.append(li);
 			var button = $('<button class="btn btn-default navbar-btn login dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">').append('Login');
 			li.append(button);
@@ -70,6 +70,8 @@
 			var btnCreateAccount = $('<button class="btn btn-default bottom-button" type="button" id="createAccount">');
 			btnCreateAccount.append('Criar uma conta'); 
 			btnCreateAccount.on("click", function(){
+				insertLoading();
+				$('#loginDrop').removeClass('open');
 				$.post("../turu/cadastro-usuario.jsp", function(response){
 					$('#corpo').html(response);
 				});
@@ -122,7 +124,7 @@
 			var button = $('<button type="button" class="btn btn-default btn-lg">');
 			button.append('Home');
 			button.on('click', function(){
-				insertProgressBar();
+				insertLoading();
 				$('#corpo').html("Welcome to Home!");
 			});
 			return button;
@@ -131,11 +133,9 @@
 			var button = $('<button type="button" class="btn btn-default btn-lg">');
 			button.append('Eventos');
 			button.on('click', function(){
-				insertProgressBar();
+				insertLoading();
 				$.post("/controle-de-evento/EventosExibe", function(response){
 					$('#corpo').html(response);
-					//window.location.replace(response.send);
-					//window.location.href = response.redirect;
 				});
 			});
 			return button;
@@ -145,7 +145,7 @@
 			var button = $('<button type="button" class="btn btn-default btn-lg">');
 			button.append('Contato');
 			button.on('click', function(){
-				insertProgressBar();
+				insertLoading();
 				$.post("/controle-de-evento/ExibeContatos", function(response){
 					$('#corpo').html(response);
 				});
@@ -153,11 +153,8 @@
 			return button;
 		}
 		
-		insertProgressBar = function(){
-			var contentProgress = $('<div class="progress">');
-			var progressBar = $('<div class="progress-bar progress-bar-striped active"  role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%">').append('Loading... 75%')
-			contentProgress.append(progressBar);
-			$('#corpo').html(contentProgress);
+		insertLoading = function(){
+			$('#corpo').html('<center><img align="center" src="../turu/img/loading.GIF"></center>');
 		}
 		
 		getSearchDropDown = function(){

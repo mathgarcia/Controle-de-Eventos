@@ -42,6 +42,11 @@ public class InscricaoParticipante extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
+		HttpSession sessao = request.getSession();
+		int indicador = 0;
+		String mensagem = null;
+		
+		
 		String cpf = request.getParameter("cpf");
 		String nomeCompleto = request.getParameter("nomeCompleto");
 		String nomeSocial = request.getParameter("nomeSocial");
@@ -49,8 +54,7 @@ public class InscricaoParticipante extends HttpServlet
 		try {
 			dataNascimento = verificaDataNasc(request.getParameter("dataNascimento"));
 		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
+			mensagem = "Data não preenchida";
 		}
 		char sexo = request.getParameter("sexo").charAt(0);
 		String email = request.getParameter("email");
@@ -58,7 +62,8 @@ public class InscricaoParticipante extends HttpServlet
 		String telefone = request.getParameter("telefone");
 		String celular = request.getParameter("celular");
 		String logradouro = request.getParameter("logradouro");
-		int numero = Integer.parseInt(request.getParameter("numero"));
+		String numeroStr = request.getParameter("numero");
+		int numero = (numeroStr.equals("")) ? 0 :  Integer.parseInt(numeroStr);
 		String cep = request.getParameter("cep");
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
@@ -88,8 +93,7 @@ public class InscricaoParticipante extends HttpServlet
 		//GrauInstrucao grauInstrucao = new GrauInstrucao(null, grauInstrucao);
 		//grauInstrucao = GrauInstrucaoBD.adicionar(grauInstrucao);
 		
-		int indicador = 0;
-		String mensagem = null;
+		
 		
 		if(!verificaCpf(cpf))
 		{
@@ -150,17 +154,16 @@ public class InscricaoParticipante extends HttpServlet
 				e.printStackTrace();
 			}
 			
-			HttpSession sessao = request.getSession();
+			
 			sessao.setAttribute("mensagem", "Seja Bem Vindo "+nomeSocial+"!!!");
 			sessao.setAttribute("idLog", participante.getCodigo());
-			response.sendRedirect("painelParticipante.jsp");
+			response.sendRedirect("turu/index.jsp");
 			
 		}
 		else
 		{
-			HttpSession sessao = request.getSession();
 			sessao.setAttribute("mensagem", mensagem);
-			response.sendRedirect("cadastroParticipante.jsp");
+			response.sendRedirect("turu/cadastro-usuario.jsp");
 		}
 		
 	}
@@ -253,7 +256,7 @@ public class InscricaoParticipante extends HttpServlet
 		Calendar dataNascimento = Calendar.getInstance();
 		Calendar atual = Calendar.getInstance();
 		
-		DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+		DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		dataNascimento.setTime(formato.parse(dataNasc));
 		
 		if(dataNascimento.get(Calendar.YEAR)<atual.get(Calendar.YEAR))
