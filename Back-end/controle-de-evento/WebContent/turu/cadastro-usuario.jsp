@@ -53,6 +53,7 @@
 				<input type="text" class="form-control logradouro" id="logradouro" placeholder="Logradouro" required>
 				<input type="text" class="form-control numero" id="numero" placeholder="Número" required>
 				<input type="text" class="form-control" id="complemento" placeholder="Complemento" required>
+				<input type="text" class="form-control" id="cidade" placeholder="Cidade" required>
 				<input type="text" class="form-control" id="bairro" placeholder="Bairro" required>
 				<input type="text" class="form-control" id="cep" placeholder="CEP" required>
 				<p><div class="div-cadastro">Selecione um Estado:					
@@ -127,7 +128,7 @@
 		}
 		$.post("/controle-de-evento/InscricaoParticipante", dados , function(){
 			<% mensagem = (String)session.getAttribute("mensagem");%>
-			alert(<%=mensagem%>)
+			alert(<%=mensagem%>);
 		});
 	});
 </script>

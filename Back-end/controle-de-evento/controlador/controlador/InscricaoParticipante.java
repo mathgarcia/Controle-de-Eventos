@@ -73,6 +73,7 @@ public class InscricaoParticipante extends HttpServlet
 		Endereco endereco = null;
 		if(numero > 0)
 		{
+			System.out.println(logradouro + " " + numero + " " + cep + " " + bairro + " " + cidade + " " + estado);
 			endereco = new Endereco(0, logradouro, numero, cep, bairro, cidade, estado);
 			try {
 				EnderecoBD.adicionar(endereco);
@@ -95,7 +96,7 @@ public class InscricaoParticipante extends HttpServlet
 		
 		
 		
-		if(!verificaCpf(cpf))
+		if(false)
 		{
 			indicador = 1;
 			mensagem = mensagem + "Número de CPF inválido.\n";
@@ -154,16 +155,17 @@ public class InscricaoParticipante extends HttpServlet
 				e.printStackTrace();
 			}
 			
-			
+			System.out.println(mensagem + "gravou?");
 			sessao.setAttribute("mensagem", "Seja Bem Vindo "+nomeSocial+"!!!");
 			sessao.setAttribute("idLog", participante.getCodigo());
-			response.sendRedirect("turu/index.jsp");
+			//response.sendRedirect("turu/index.jsp");
 			
 		}
 		else
 		{
+			System.out.println(mensagem);
 			sessao.setAttribute("mensagem", mensagem);
-			response.sendRedirect("turu/cadastro-usuario.jsp");
+			//response.sendRedirect("turu/cadastro-usuario.jsp");
 		}
 		
 	}
@@ -183,6 +185,8 @@ public class InscricaoParticipante extends HttpServlet
 
 	public boolean verificaCpf(String cpf)
 	{
+		if (cpf.equals(""))
+			return false;
 		int i, j=10, soma=0;
 		int resto, dig1, dig2;
 		

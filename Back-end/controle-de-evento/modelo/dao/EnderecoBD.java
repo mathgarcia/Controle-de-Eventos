@@ -23,7 +23,7 @@ public class EnderecoBD extends DAO{
 		return e;
 	}
 	public static synchronized void adicionar(Endereco e) throws SQLException{
-		iniciaConexao("INSERT INTO perfil VALUES (null, ?,?,?,?,?,?)");
+		iniciaConexao("INSERT INTO endereco VALUES (null, ?,?,?,?,?,?)");
 		ps.setString(1, e.getCep());
 		ps.setString(2, e.getLogradouro());
 		ps.setInt(3, e.getNumero());
