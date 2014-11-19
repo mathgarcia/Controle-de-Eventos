@@ -19,4 +19,14 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/LoginServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>IncluirEvento</display-name>
+    <servlet-name>IncluirEvento</servlet-name>
+    <servlet-class>controlador.IncluirEvento</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IncluirEvento</servlet-name>
+    <url-pattern>/IncluirEvento</url-pattern>
+  </servlet-mapping>
 </web-app>

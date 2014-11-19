@@ -15,7 +15,7 @@ import dao.AdministradorBD;
 import dao.GestorBD;
 import dao.ParticipanteBD;
 import dao.RecepcionistaBD;
-@WebServlet("/Login")
+@WebServlet("/loginParticipante")
 public class loginParticipante extends HttpServlet{
 	/**
 	 * 
@@ -38,21 +38,23 @@ public class loginParticipante extends HttpServlet{
 			else if (p.getPerfil().getNome().equals("Administrador"))
 				usuario = new AdministradorBD();
 			else
-				usuario = new ParticipanteBD();								
+				usuario = new ParticipanteBD();					
+			
+			session.setAttribute("usuario",usuario);			
+			session.setAttribute("usuarioInfo", p);
+			
+			session.setMaxInactiveInterval(100);
 			response.sendRedirect("eventos.jsp");
-			session.setAttribute("Usuario",usuario);
-			session.setAttribute("UsuarioInfo", p);		
-			//			session.setMaxInactiveInterval();
 		} 
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			session.setAttribute("resposta","Erro de Login.");	
-			//response.sendRedirect("eventos.jsp");
+			response.sendRedirect("eventos.jsp");
 		}
 		catch(NullPointerException e){
 			session.setAttribute("resposta","Login ou Senha inválidos.");
-			//response.sendRedirect("eventos.jsp");
+			response.sendRedirect("eventos.jsp");
 		}
 	}
 }

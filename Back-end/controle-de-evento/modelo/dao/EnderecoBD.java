@@ -2,6 +2,9 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.jdbc.PreparedStatement;
+
 import pojo.Endereco;
 
 public class EnderecoBD extends DAO{
@@ -22,15 +25,31 @@ public class EnderecoBD extends DAO{
 		fechaConexao();
 		return e;
 	}
+	public static synchronized Endereco retornarUltimoID(Endereco e) throws SQLException{
+		iniciaConexao("SELECT LAST_INSERT_ID() id FROM endereco");
+		ResultSet rs = (ResultSet) ps.executeQuery();	
+		if (rs.next()){
+			int id = rs.getInt("id");
+			e.setCodigo(id);
+		}
+		fechaConexao();
+		return e;
+	}
 	public static synchronized void adicionar(Endereco e) throws SQLException{
-		iniciaConexao("INSERT INTO perfil VALUES (null, ?,?,?,?,?,?)");
+		iniciaConexao("INSERT INTO endereco VALUES (null, ?,?,?,?,?,?)");
 		ps.setString(1, e.getCep());
 		ps.setString(2, e.getLogradouro());
 		ps.setInt(3, e.getNumero());
 		ps.setString(4, e.getBairro());
 		ps.setString(5, e.getCidade());
-		ps.setString(6, e.getEstado());
-		ps.executeUpdate();
+		ps.setString(6, e.getEstado());		
+		ps.executeUpdate();		
+		ps = (PreparedStatement) con.prepareStatement("SELECT LAST_INSERT_ID() id FROM endereco");
+		ResultSet rs = (ResultSet) ps.executeQuery();	
+		if (rs.next()){
+			int id = rs.getInt("id");
+			e.setCodigo(id);
+		}
 		fechaConexao();
 	}
 	public static synchronized void remover(int codigo) throws SQLException{

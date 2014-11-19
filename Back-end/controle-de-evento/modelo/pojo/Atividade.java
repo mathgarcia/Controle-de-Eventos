@@ -65,7 +65,7 @@ public class Atividade {
 	
 	public String getDataAtividade()
 	{
-		this.dataAtividade;
+		return this.dataAtividade;
 	}
 	
 	public void setDataAtividade(String data)
