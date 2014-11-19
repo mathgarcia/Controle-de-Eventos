@@ -18,7 +18,9 @@ public class Endereco {
 		this.cidade = cidade;
 		this.estado = estado;
 	}
-	
+	public void setCodigo(int cod){
+		this.codigo = cod;
+	}
 	public int getCodigo() {
 		return codigo;
 	}

@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import pojo.Endereco;
 import pojo.GrauInstrucao;
 import pojo.Participante;
@@ -15,7 +17,7 @@ public class ParticipanteBD extends DAO{
 
 	static public Participante consultar(int codigo) throws SQLException{
 		Participante p = null;
-		DateFormat df1 = new SimpleDateFormat("dd/mm/yyyy");
+		DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
 		iniciaConexao("SELECT * FROM participante WHERE codigo = ?");
 		ps.setInt(1, codigo);
 		ps.executeQuery();
@@ -43,13 +45,12 @@ public class ParticipanteBD extends DAO{
 		fechaConexao();
 		return p;
 	}	
-	static public Participante consultarPorNomeSenha(String nomeRecebido, String senhaRecebida) throws SQLException{
+	static public Participante consultarPorCPFSenha(String cpf, String senhaRecebida) throws SQLException{
 		Participante p = null;
-		DateFormat df1 = new SimpleDateFormat("dd/mm/yyyy");
-		iniciaConexao("SELECT * FROM participante WHERE (nome = ? OR nomesocial = ?) AND senha = ?");
-		ps.setString(1, nomeRecebido);
-		ps.setString(2, nomeRecebido);
-		ps.setString(3, senhaRecebida);
+		DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
+		iniciaConexao("SELECT * FROM participante WHERE cpf = ? AND senha = ?");
+		ps.setString(1, cpf);
+		ps.setString(2, senhaRecebida);
 		ps.executeQuery();
 		ResultSet res =  (ResultSet) ps.executeQuery();	
 		if (res.next()){
@@ -62,7 +63,7 @@ public class ParticipanteBD extends DAO{
 			Date dataNasc = res.getDate("data_nascimento");
 			String telefone = res.getString("telefone_residencial");
 			String celular = res.getString("telefone_celular");
-			String cpf = res.getString("cpf");
+//			String cpf = res.getString("cpf");
 			int cod_endereco = res.getInt("cod_endereco");
 			int cod_grau = res.getInt("cod_grauist");
 			int cod_perfil = res.getInt("cod_perfil");
@@ -87,7 +88,7 @@ public class ParticipanteBD extends DAO{
 		ps.setString(1, p.getNome());
 		ps.setString(2, p.getNomeSocial());
 		ps.setString(3, p.getSenha());
-		ps.setLong(4, p.getSexo());
+		ps.setString(4, String.valueOf(p.getSexo()));
 		ps.setString(5, p.getCPF());
 		ps.setDate(6, p.getDataNasc());
 		ps.setString(7, p.getTelefone());
@@ -97,7 +98,11 @@ public class ParticipanteBD extends DAO{
 		ps.setInt(11, p.getPerfil().getCodigo());
 		ps.setInt(12, p.getEndereco().getCodigo());
 		ps.executeUpdate();
-		p = retornaUltimoId(p);
+		ps = (PreparedStatement) con.prepareStatement("SELECT LAST_INSERT_ID() id FROM participante");
+		ResultSet res =  (ResultSet) ps.executeQuery();	
+		if (res.next()){
+			p.setCodigo(res.getInt("id"));
+		}
 		fechaConexao();
 		return p;
 	}
@@ -154,7 +159,7 @@ public class ParticipanteBD extends DAO{
 			return cod_inscrEvento;
 		}
 		fechaConexao();
-		return null;
+		return (Integer) null;
 	}
 
 	static public synchronized void inscreverAtividade(int cod_inscricao_evento, int cod_atividade) throws SQLException{
@@ -176,7 +181,7 @@ public class ParticipanteBD extends DAO{
 	{
 		iniciaConexao("SELECT * FROM inscricao_evento WHERE cod_participante = ? and cod_evento = ?");
 		ps.setInt(1, cod_part);
-		ps.setInt(2, cod_evento);
+		ps.setInt(2, cod_atividade);
 		ps.executeQuery();
 		ResultSet res = (ResultSet) ps.executeQuery();
 		if(res.next())

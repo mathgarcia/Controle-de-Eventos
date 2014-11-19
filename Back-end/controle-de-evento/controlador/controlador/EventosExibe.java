@@ -31,7 +31,7 @@ public class EventosExibe extends HttpServlet{
 		ArrayList<Evento> todosEventos = null;
 		Date data = new Date();		
 		try {
-			todosEventos = dao.EventoBD.consultaTodosEventos();			
+			todosEventos = dao.EventoBD.consultarTodosEventos();			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

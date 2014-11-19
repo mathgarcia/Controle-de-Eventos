@@ -19,12 +19,12 @@ public class Participante {
 	private String dataNascimento;
 
 	public Participante(int codigo, String nome, String nomeSocial,
-			Date dataNasc, char sexo, String email, String telefone,
+			Date date, char sexo, String email, String telefone,
 			String celular, Endereco end, String senha, String cpf,Perfil per, GrauInstrucao gr) {
 		this.codigo = codigo;
 		this.nome = nome;
 		this.nomeSocial = nomeSocial;
-		this.dataNasc = dataNasc;
+		this.dataNasc = date;
 		this.sexo = sexo;
 		this.email = email;
 		this.telefone = telefone;

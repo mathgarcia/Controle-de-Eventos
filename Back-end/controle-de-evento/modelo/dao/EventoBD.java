@@ -13,7 +13,7 @@ import pojo.Evento;
 public class EventoBD extends DAO{
 	public static Evento consultaEvento(int codigo) throws SQLException{
 		Evento e = null;
-		DateFormat df1 = new SimpleDateFormat("dd/mm/yyyy");
+		DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
 		ArrayList<Atividade> ativs = new ArrayList<Atividade>();
 		iniciaConexao("SELECT * from evento WHERE codigo = ?");
 		ps.setInt(1, codigo);
@@ -42,7 +42,7 @@ public class EventoBD extends DAO{
 		ArrayList<Evento> ev = new ArrayList<Evento>();
 		ArrayList<Integer> lista = new ArrayList<Integer>();
 		ArrayList<Atividade> ativs = new ArrayList<Atividade>();
-		DateFormat df1 = new SimpleDateFormat("dd/mm/yyyy");
+		DateFormat df1 = new SimpleDateFormat("dd/MM/yyyy");
 		
 		iniciaConexao("SELECT * from inscricao_evento WHERE cod_part = ?");
 		ps.setInt(1, cod_part);

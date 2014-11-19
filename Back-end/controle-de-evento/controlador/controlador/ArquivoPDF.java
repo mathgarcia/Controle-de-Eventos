@@ -1,23 +1,24 @@
 
 
-package login;
+package controlador;
 
+import java.awt.print.PageFormat;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
+import com.itextpdf.*;
+import com.itextpdf.text.pdf.*;
 
 import java.io.*;
+
+import javax.print.attribute.standard.PagesPerMinuteColor;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import java.util.Date;
 
 /**
@@ -56,60 +57,70 @@ public class ArquivosPDF extends HttpServlet {
 		
 		
 		
-			FileOutputStream o = null;
-			Document doc= null;
-		
-		try{
-			
-
-		
-		
-		
-		doc = new Document (PageSize.A4, 72, 72, 72, 72);// cria um documento com as margens indicadas no parametro 
-		o=new FileOutputStream("ola8.pdf");//Criar sream de saida
-			
-		PdfWriter.getInstance(doc, o);//associa ao sream de saida
-		
-		doc.open(); //Abre ducumento
-		Paragraph p = new Paragraph(texto);//Adiciona paragrafo
-	    
-	    
-	    
-		doc.add(p);
-		
-		//o.close();
-		//System.out.println("3");
-		//doc.close();
-		//System.out.println("4");
-		}
-		catch(Exception e)
+		FileOutputStream o = null;
+		Document doc= null;
+	
+	try{	
+	
+	Image i2 = Image.getInstance("contorno2.png");
+	Image i1 = Image.getInstance("logo.jpg");
+	//i1.getInstance(10, 20, a, a);
+	
+	doc = new Document (PageSize.A4, 72, 72, 72, 72);// cria um documento com as margens indicadas no parametro
+	
+	o=new FileOutputStream("ola8.pdf");//Criar sream de saida
+	PdfPCell pc = new PdfPCell();
+	PdfWriter.getInstance(doc, o);//associa ao stream de saida
+	doc.open(); 
+	//i1.setWidthPercentage(10);
+	i1.setAbsolutePosition(55,678);
+	i2.setAbsolutePosition(30,0);
+	
+	
+	doc.add(i2);
+	doc.add(i1);
+	
+	//doc.add(pc);
+	
+	Paragraph p = new Paragraph("\n\n\n\n\n\nComprovante\n\n\n\n"+t);//Adiciona paragrafo
+    
+    
+    
+	doc.add(p);
+	
+	//o.close();
+	//System.out.println("3");
+	//doc.close();
+	//System.out.println("4");
+	}
+	catch(Exception e)
+	{
+		System.out.println(e);
+	}
+	finally
+	{	
+		if (doc != null)
 		{
-			System.out.println(e);
+			doc.close();
+			
 		}
-		finally
-		{	
-			if (doc != null)
-			{
-				doc.close();
-				
+		if(o != null)
+		{
+			try{
+			o.close();
 			}
-			if(o != null)
+			catch (Exception e)
 			{
-				try{
-				o.close();
-				}
-				catch (Exception e)
-				{
-					System.out.println("Erro fechamento");
-				}
-				System.out.println("Procedimento feito");
+				System.out.println("Erro fechamento");
 			}
+			System.out.println("Procedimento feito");
 		}
+	}
 				
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("login", login);
-		session.setAttribute("senha", senha);
+		session.setAttribute("mensagem", "Feito");
+		//session.setAttribute("senha", senha);
 		response.sendRedirect("paginas/pagina1.jsp");
 		
 	}

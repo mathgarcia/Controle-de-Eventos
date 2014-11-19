@@ -6,7 +6,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
+import java.sql.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -50,26 +50,42 @@ public class InscricaoParticipante extends HttpServlet
 		String cpf = request.getParameter("cpf");
 		String nomeCompleto = request.getParameter("nomeCompleto");
 		String nomeSocial = request.getParameter("nomeSocial");
-		Calendar dataNascimento = null;
+		System.out.println(request.getParameter("dataNascimento"));
+//		try {
+//			dataNascimento = verificaDataNasc(request.getParameter("dataNascimento"));
+//		} catch (ParseException e1) {
+//			mensagem = "Data não preenchida";
+//		}		
+//		Calendar dataNascimento = null;
+		String data = request.getParameter("dataNascimento");
+		DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+		Date date = null;
 		try {
-			dataNascimento = verificaDataNasc(request.getParameter("dataNascimento"));
-		} catch (ParseException e1) {
-			mensagem = "Data não preenchida";
+			date = new Date(formato.parse(data).getTime());
+		} catch (ParseException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
 		}
+//		dataNascimento = Calendar.getInstance();
+//		try {
+//			dataNascimento.setTime(formato.parse(request.getParameter("dataNascimento")));
+//		} catch (ParseException e2) {
+//			// TODO Auto-generated catch block
+//			e2.printStackTrace();
+//		}
 		char sexo = request.getParameter("sexo").charAt(0);
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
 		String telefone = request.getParameter("telefone");
 		String celular = request.getParameter("celular");
 		String logradouro = request.getParameter("logradouro");
-		String numeroStr = request.getParameter("numero");
+		String numeroStr = request.getParameter("numero");		
 		int numero = (numeroStr.equals("")) ? 0 :  Integer.parseInt(numeroStr);
 		String cep = request.getParameter("cep");
 		String bairro = request.getParameter("bairro");
 		String cidade = request.getParameter("cidade");
 		String estado = request.getParameter("estado");
-		int grauInstrucao = Integer.parseInt(request.getParameter("grauInstrucao"));
-		
+		int grauInstrucao = Integer.parseInt(request.getParameter("grauInstrucao"));	
 		Endereco endereco = null;
 		if(numero > 0)
 		{
@@ -83,24 +99,24 @@ public class InscricaoParticipante extends HttpServlet
 			}
 		}
 		
-		Perfil perfil = new Perfil(0, "participante");
-		try {
-			PerfilBD.adicionar(perfil);
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		Perfil perfil = new Perfil(1, "participante");
+//		try {
+//			PerfilBD.adicionar(perfil);
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		
 		//GrauInstrucao grauInstrucao = new GrauInstrucao(null, grauInstrucao);
 		//grauInstrucao = GrauInstrucaoBD.adicionar(grauInstrucao);
 		
 		
 		
-		if(false)
-		{
-			indicador = 1;
-			mensagem = mensagem + "Número de CPF inválido.\n";
-		}
+//		if(false)
+//		{
+//			indicador = 1;
+//			mensagem = mensagem + "Número de CPF inválido.\n";
+//		}
 		
 		if(!verificaNomeCompleto(nomeCompleto))
 		{
@@ -114,11 +130,11 @@ public class InscricaoParticipante extends HttpServlet
 			mensagem = mensagem + "Quantidade de caracteres do Nome Social está acima do permitido.";
 		}
 		
-		if(dataNascimento == null)
-		{
-			indicador = 1;
-			mensagem = mensagem + "Data de Nascimento inválida.\n";
-		}
+//		if(dataNascimento == null)
+//		{
+//			indicador = 1;
+//			mensagem = mensagem + "Data de Nascimento inválida.\n";
+//		}
 		
 		if(!verificaTelefone(telefone))
 		{
@@ -148,7 +164,7 @@ public class InscricaoParticipante extends HttpServlet
 		{
 			Participante participante = null;
 			try {
-				participante = new Participante(0, nomeCompleto, nomeSocial, (java.sql.Date) dataNascimento.getTime(), sexo, email, telefone, celular, endereco, senha, cpf, perfil, GrauInstrucaoBD.consultar(grauInstrucao));
+				participante = new Participante(0, nomeCompleto, nomeSocial, date, sexo, email, telefone, celular, endereco, senha, cpf, perfil, GrauInstrucaoBD.consultar(grauInstrucao));
 				ParticipanteBD.adicionar(participante);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -321,7 +337,7 @@ public class InscricaoParticipante extends HttpServlet
 		}
 		
 		return false;	
-	}
+	}
 
 	public boolean verificaTelefone(String telefone)
 	{
