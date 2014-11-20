@@ -17,21 +17,26 @@ import com.itextpdf.text.pdf.*;
 import java.io.*;
 
 import javax.print.attribute.standard.PagesPerMinuteColor;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import java.util.Date;
 
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/ArquivoPDF)
-public class ArquivosPDF extends HttpServlet {
+@WebServlet("/ArquivoPDF")
+public class ArquivoPDF extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ArquivosPDF() 
+    public ArquivoPDF() 
     {
         super();
         // TODO Auto-generated constructor stub

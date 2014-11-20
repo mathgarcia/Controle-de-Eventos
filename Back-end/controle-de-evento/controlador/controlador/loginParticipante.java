@@ -26,11 +26,11 @@ public class loginParticipante extends HttpServlet{
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String cpf = (String) request.getAttribute("cpf");
-		String senha = (String) request.getAttribute("senha");
+		String cpf = (String) request.getParameter("Login");
+		String senha = (String) request.getParameter("Senha");
 		try {
 			ParticipanteBD usuario = null;
-			Participante p = ParticipanteBD.consultarPorCPFSenha(cpf, senha);			
+			Participante p = ParticipanteBD.consultarPorCPFSenha(cpf, senha);
 			if (p.getPerfil().getNome().equals("Gestor"))
 				usuario = new GestorBD();
 			else if (p.getPerfil().getNome().equals("Recepcionista"))
@@ -38,23 +38,23 @@ public class loginParticipante extends HttpServlet{
 			else if (p.getPerfil().getNome().equals("Administrador"))
 				usuario = new AdministradorBD();
 			else
-				usuario = new ParticipanteBD();					
-			
+				usuario = new ParticipanteBD();				
 			session.setAttribute("usuario",usuario);			
 			session.setAttribute("usuarioInfo", p);
-			
 			session.setMaxInactiveInterval(100);
-			response.sendRedirect("eventos.jsp");
+			session.setAttribute("resposta","Bem Vindo.");	
+			response.sendRedirect("turu/index.jsp");
 		} 
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			session.setAttribute("resposta","Erro de Login.");	
-			response.sendRedirect("eventos.jsp");
+			response.sendRedirect("turu/index.jsp");
 		}
 		catch(NullPointerException e){
 			session.setAttribute("resposta","Login ou Senha inválidos.");
-			response.sendRedirect("eventos.jsp");
+			response.sendRedirect("turu/index.jsp");
 		}
+		
 	}
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
+<%@page import="pojo.Participante"%>
 <html>
 
-	<head>
+	<head>	
 		<meta charset="UTF-8">
 		<!-- Lae compiled and minified CSS -->
 		<link rel="stylesheet" href="lib/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -25,8 +26,21 @@
 	</head>
 	
 	<body style="70px">
-		
-		<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">
+	
+	<% 		
+		int exibir = 0;
+		try{
+			Participante part = (Participante) session.getAttribute("usuarioInfo");
+			exibir = part.getCodigo();
+			System.out.println(part.getNome());
+			session.getAttribute("usuarioInfo");
+		}
+		catch(NullPointerException e){
+			//
+		}%>		
+	}
+	
+		<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">		
 		</div>
 	
 	</body>

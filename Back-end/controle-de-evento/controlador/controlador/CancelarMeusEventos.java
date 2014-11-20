@@ -1,11 +1,15 @@
 package controlador;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import pojo.Participante;
 
 @WebServlet("/CancelaEventos")
 public class CancelarMeusEventos extends HttpServlet{
@@ -51,7 +55,7 @@ public class CancelarMeusEventos extends HttpServlet{
 		Participante p1 = new Participante(int codigo, String nome, String nomeSocial,
 		Date dataNasc, char sexo, String email, String telefone,
 		String celular, Endereco end, String senha, String cpf,Perfil per, GrauInstrucao gr;
-		ParticipanteBD pbd = new ParticipantBD()
+		ParticipanteBD pbd = new ParticipantBD();
 		
 		pbd.consultar(cod);
 		

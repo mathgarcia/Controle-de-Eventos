@@ -1,6 +1,7 @@
 <link rel="stylesheet" href="lib/css/events.css">
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@page import="pojo.Evento"%>
+<%@page import="pojo.Participante"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
@@ -32,12 +33,18 @@
 									<p><%=umEvento.getDescricao() %></p>
 								</center>
 							</div>
-							<a href="#" class="btn btn-default bottom-button" role="button">Inscreva-se</a>	
+							<a href="#" class="btn btn-default bottom-button" role="button" id="inscrever">Inscreva-se</a>	
 						</div>
 					</div>
 					<script>
+					<% Participante part = (Participante) session.getAttribute("usuarioInfo"); %>
 						$(".<%=idEvento %>").on('click', function(){
 							$.post("/controle-de-evento/EventoSelecionado", {idEvento:<%=idEvento%>}, function(response){
+								$('#corpo').html(response);
+							});
+						});
+						$("#inscrever").on('click', function(){							
+							$.post("/controle-de-evento/InscreverEvento", {codigo_evento:<%=idEvento%>, codigo_participante:<%=part.getCodigo()%>} , function(response){
 								$('#corpo').html(response);
 							});
 						});

@@ -8,12 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import pojo.Perfil;
+import dao.AdministradorBD;
+import dao.PerfilBD;
 
-public class AlteraAtividade extends HttpServlet {
+
+public class AtribuirPapel extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
  
-    public AlteraAtividade() {
+    public AtribuirPapel() {
     	super();
     }
 
@@ -27,9 +31,7 @@ public class AlteraAtividade extends HttpServlet {
 		String codigoA = request.getParameter("CodigoAdminitrador");
         String codigoU = request.getParameter("CodigoUsuario");
         String nome = request.getParameter("nome");
-        AdministradorBD abd;
-        Perfil p = abd.consultar(CodigoAdministrador);
-        int codU = Integer.ParseInt(codigoU);
+        Perfil p = PerfilBD.consultar(Integer.parseInt(codigoA));        
         Perfil p2 = new Perfil(codU,nome)
 		if (p.getDescricao.compareTo("Administrado")==0 ){					
 			PefilBD pbd = new PefilBD();		

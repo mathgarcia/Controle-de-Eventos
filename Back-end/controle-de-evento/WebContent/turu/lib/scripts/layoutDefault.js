@@ -46,16 +46,16 @@
 			inputSenha = $('<input type="password" class="form-control" placeholder="Senha" name="Senha">');
 			inputGroup.append(inputSenha);
 			var btn = $('<span class="input-group-btn">').append(
-				$('<button class="btn btn-default logar" type="submit">')
+				$('<button class="btn btn-default logar" type="button">')
 				.append('Logar  ')
 				.append('<span class="glyphicon glyphicon-log-in">')
 			);
-			/*btn.on('click', function(){
+			btn.on('click', function(){
 				alert(inputLogin.val() +" - "+ inputSenha.val()); 
-				$.post("/controle-de-evento/",{nome:inputLogin.val() ,senha: inputSenha.val()}, function(){
+				$.post("/controle-de-evento/loginParticipante",{Login:inputLogin.val() ,Senha: inputSenha.val()}, function(){
 					
 				});
-			});*/
+			});
 			inputGroup.append(btn);
 			form.append(inputGroup);
 			

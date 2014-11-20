@@ -17,7 +17,9 @@ import javax.servlet.http.HttpSession;
 import com.mysql.fabric.xmlrpc.base.Data;
 
 import dao.GestorBD;
+import dao.TipoBD;
 import pojo.Atividade;
+import pojo.Tipo;
 
 /**
  * Servlet implementation class CadastrarAtividade
@@ -73,8 +75,14 @@ public class CadastrarAtividade extends HttpServlet {
 
 
 			
-			
-			Atividade atividade = new Atividade (Integer.parseInt(null),nome,local,resumo, dt, hr,duracao,Boolean.parseBoolean(null), cod_evento, cod_tipo);
+			Tipo tipo = null;
+			try {
+				tipo = TipoBD.consultar(cod_tipo);
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			Atividade atividade = new Atividade (Integer.parseInt(null),nome,local,resumo, dt, hr,duracao,Boolean.parseBoolean(null), cod_evento, tipo);
 	
 			try {
 				GestorBD.cadastrarAtividade(atividade);
