@@ -131,7 +131,7 @@
 			celular: $("#celular").val()
 		}
 		$.post("/controle-de-evento/InscricaoParticipante", dados , function(){
-			<% mensagem = (String)session.getAttribute("mensagem");%>
+			<% String mensagem = (String)session.getAttribute("mensagem");%>
 			alert(<%=mensagem%>);
 		});
 	});
