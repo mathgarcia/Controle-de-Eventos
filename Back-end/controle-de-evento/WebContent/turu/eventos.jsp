@@ -33,21 +33,21 @@
 									<p><%=umEvento.getDescricao() %></p>
 								</center>
 							</div>
-							<a href="#" class="btn btn-default bottom-button" role="button" id="inscrever">Inscreva-se</a>	
+							<a href="#" class="btn btn-default bottom-button" role="button" id="inscrever<%=idEvento %>">Inscreva-se</a>	
 						</div>
 					</div>
 					<script>
-					<% Participante part = (Participante) session.getAttribute("usuarioInfo"); %>
 						$(".<%=idEvento %>").on('click', function(){
 							$.post("/controle-de-evento/EventoSelecionado", {idEvento:<%=idEvento%>}, function(response){
 								$('#corpo').html(response);
 							});
 						});
-						<%-- $("#inscrever").on('click', function(){							
+					<% Participante part = (Participante) session.getAttribute("usuarioInfo"); %>
+						 $("#inscrever<%=idEvento %>").on('click', function(){							
 							$.post("/controle-de-evento/InscreverEvento", {codigo_evento:<%=idEvento%>, codigo_participante:<%=part.getCodigo()%>} , function(response){
 								$('#corpo').html(response);
 							});
-						}); --%>
+						}); 
 					</script>
 			<%
   				}
