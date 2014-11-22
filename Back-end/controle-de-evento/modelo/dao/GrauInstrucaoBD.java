@@ -12,6 +12,18 @@ import pojo.Evento;
 import pojo.GrauInstrucao;
 
 public class GrauInstrucaoBD extends DAO{
+	static public GrauInstrucao consultar(int codigo) throws SQLException{
+		GrauInstrucao gi = null;
+		iniciaConexao("SELECT * FROM grau_instrucao WHERE codigo = ?");
+		ps.setInt(1, codigo);		
+		ResultSet rs = (ResultSet) ps.executeQuery();
+		if (rs.next()){				
+			String nome = rs.getString("descricao");			
+			gi = new GrauInstrucao(codigo,nome);
+		}	
+		fechaConexao();
+		return gi;
+	}
 	static public ArrayList<GrauInstrucao> consultarTodos() throws SQLException{
 		ArrayList<GrauInstrucao> list = new ArrayList<GrauInstrucao>();
 		iniciaConexao("SELECT * FROM grau_instrucao");
