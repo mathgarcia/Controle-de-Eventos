@@ -51,6 +51,7 @@
 				.append('<span class="glyphicon glyphicon-log-in">')
 			);
 			btn.on('click', function(){
+				alert(inputLogin.val() + " - " + inputSenha.val());
 				$.post("/controle-de-evento/loginParticipante",{Login:inputLogin.val() ,Senha: inputSenha.val()}, loginAction);
 			});
 			inputGroup.append(btn);

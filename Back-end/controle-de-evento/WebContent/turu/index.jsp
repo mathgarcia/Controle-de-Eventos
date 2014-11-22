@@ -18,22 +18,13 @@
 		<script src="lib/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<title>Pagina Inicial</title>
 		<script type="text/javascript">
-			<%Participante part = null;%>
 			var loginAction = function(){
-				<% 
-				try{
-					part = (Participante) session.getAttribute("usuarioInfo");
-				}
-				catch(NullPointerException e){
-				}
-				if (part != null){
-				%>	
-						$("corpo").html("<%=part.getNome() %>");
-						alert("foi");
 				<%
-				  	}	
+					String resposta = (String)session.getAttribute("resposta");
+					System.out.println(resposta);
+					System.out.println((Participante)session.getAttribute("usuarioInfo"));
 				%>
-				alert("login");
+				alert("<%=resposta%>");
 			};
 			$.ready = function(){
 				$('body').prepend(getInicialMenu(loginAction));
