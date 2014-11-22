@@ -54,6 +54,16 @@
 			color: #73879C;
 			font-weight: bold;
 		}
+		
+				.drop-usuario {
+			border-radius: 0px;
+			background-color: #F5F7FA;
+			border-width: 2px;
+			border-color: #E6E9ED;
+			color: #73879C;
+			font-weight: bold;
+		}
+		
 		.btn-search {
 			width: 40px;
 		}
@@ -88,6 +98,13 @@
 			background-color: #283645;
 			color: #E6E9ED;
 		}
+		
+		.logout {
+		width: 100%;
+		background-color: #283645;
+		color: #E6E9ED;
+		}
+		
 		#events-avl {
 			margin-top: 8px;
 			float: left;

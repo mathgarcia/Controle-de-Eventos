@@ -1,0 +1,19 @@
+	.gest-links
+	{
+	margin: 20px;
+	color: #73879C;
+	font-weight: bold;
+	font-size: 20px;
+	background-color: #F5F7FA;
+	border: solid 1px #73879C;
+	padding: 10px;
+}
+
+	.obs{
+	margin: 20px;
+	color: #73879C;
+	font-weight: bold;
+	background-color: #F5F7FA;
+	border: solid 1px #73879C;
+	padding-left: 10px;
+}
