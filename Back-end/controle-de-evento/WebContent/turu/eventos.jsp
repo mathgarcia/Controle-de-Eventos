@@ -43,11 +43,11 @@
 								$('#corpo').html(response);
 							});
 						});
-						$("#inscrever").on('click', function(){							
+						<%-- $("#inscrever").on('click', function(){							
 							$.post("/controle-de-evento/InscreverEvento", {codigo_evento:<%=idEvento%>, codigo_participante:<%=part.getCodigo()%>} , function(response){
 								$('#corpo').html(response);
 							});
-						});
+						}); --%>
 					</script>
 			<%
   				}

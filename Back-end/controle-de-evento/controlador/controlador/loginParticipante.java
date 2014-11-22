@@ -1,6 +1,7 @@
 package controlador;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -42,18 +43,18 @@ public class loginParticipante extends HttpServlet{
 			session.setAttribute("usuario",usuario);			
 			session.setAttribute("usuarioInfo", p);
 			session.setMaxInactiveInterval(100);
-			session.setAttribute("resposta","Bem Vindo.");	
-			response.sendRedirect("turu/index.jsp");
+			session.setAttribute("resposta","Bem Vindo.");
+			//response.sendRedirect("turu/index.jsp");
 		} 
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			session.setAttribute("resposta","Erro de Login.");	
-			response.sendRedirect("turu/index.jsp");
+			//response.sendRedirect("turu/index.jsp");
 		}
 		catch(NullPointerException e){
 			session.setAttribute("resposta","Login ou Senha inválidos.");
-			response.sendRedirect("turu/index.jsp");
+			//response.sendRedirect("turu/index.jsp");
 		}
 		
 	}

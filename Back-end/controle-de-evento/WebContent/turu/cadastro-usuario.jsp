@@ -7,14 +7,14 @@
 <!-- <script src="lib/jQuery/inputMasks/jquery.inputmask.js"></script>
 <script src="lib/scripts/masks.js"></script>
 <script src="lib/scripts/navbar-animation.js"></script> -->
-<%
+<%-- <%
 	String mensagem = (String)session.getAttribute("mensagem");
 	if (mensagem != null) {
 %>
 		<script>alert("Erro: " + <%=mensagem%>);</script>
 <%
 	}
-%>
+%> --%>
 <div class="row">
 	<form class="form-group" role="search" action="#" style="margin-bottom: 0px;">
 		<div class="col-md-4 bloco-formulario" >
