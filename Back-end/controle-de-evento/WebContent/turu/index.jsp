@@ -18,17 +18,15 @@
 		<script src="lib/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 		<title>Pagina Inicial</title>
 		<script type="text/javascript">
-			var loginAction = function(){
-				<%
-					String resposta = (String)session.getAttribute("resposta");
-					System.out.println(resposta);
-					System.out.println((Participante)session.getAttribute("usuarioInfo"));
-				%>
-				alert("<%=resposta%>");
-			};
 			$.ready = function(){
-				$('body').prepend(getInicialMenu(loginAction));
+				$('body').prepend(getInicialMenu());
 				startNavbarAnimation();
+				<%
+				String resposta = (String)session.getAttribute("resposta");
+				System.out.println(resposta);
+				System.out.println((Participante)session.getAttribute("usuarioInfo"));
+				%>
+				$('#corpo').html("<%=resposta%>");
 			}
 		</script>
 	</head>

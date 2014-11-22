@@ -40,27 +40,23 @@ public class loginParticipante extends HttpServlet{
 				usuario = new AdministradorBD();
 			else
 				usuario = new ParticipanteBD();	
+			System.out.println("participanteLogin: " + p);
 			
-			if (p != null){
 				session.setAttribute("usuario",usuario);			
 				session.setAttribute("usuarioInfo", p);
 				session.setMaxInactiveInterval(1800);
 				session.setAttribute("resposta","Bem Vindo!");
-			}
-			else {
-				session.setAttribute("resposta", "Login ou Senha inválidos");
-			}
-				//response.sendRedirect("turu/index.jsp");
 
 		} 
 		catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			session.setAttribute("mensagem","Erro de Login.");	
-			response.sendRedirect("turu/index.jsp");
+			session.setAttribute("mensagem","Erro de Login.");
 		}
 		catch(NullPointerException e){
-			session.setAttribute("mensagem","Login ou Senha inválidos.");
+			session.setAttribute("resposta","Login ou Senha inválidos.");
+		}
+		finally {
 			response.sendRedirect("turu/index.jsp");
 		}
 		

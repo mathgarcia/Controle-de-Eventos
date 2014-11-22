@@ -5,22 +5,22 @@
 		
 		getInicialMenu = function(loginAction){
 			var menu = $('<div class="navbar">');
-			menu.append(getSuperiorNav(loginAction));
+			menu.append(getSuperiorNav());
 			menu.append(getInferiorNav());
 			return menu;
 		}
 		
-		getSuperiorNav = function(loginAction){
+		getSuperiorNav = function(){
 			var superiorNav = $('<nav class="navbar navbar-default" role="navigation">');
 			var container = $('<div class="container-fluid">');
 			var dateNextsEvents = $('<div id="events-avl>').append("Datas dos próximos testeEventos");
 			container.append(dateNextsEvents);
-			container.append(getCollapseSuperior(loginAction));
+			container.append(getCollapseSuperior());
 			superiorNav.append(container);			
 			return superiorNav;
 		}
 		
-		getCollapseSuperior = function (loginAction){ 
+		getCollapseSuperior = function (){ 
 			var collapse = $('<div class="navbar-collapse collapse" id="navbar-login-collapse">');
 			//primeiro passo para colocar o dropdown embaixo do botão "e inicado na direita"
 			var ulNavRight = $('<ul class="nav navbar-nav navbar-right">');
@@ -30,13 +30,13 @@
 			var button = $('<button class="btn btn-default navbar-btn login dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">').append('Login');
 			li.append(button);
 			var dropdownContainer = $('<ul class="dropdown-menu" role="menu">');
-			dropdownContainer.append(getFormDropDown(loginAction));
+			dropdownContainer.append(getFormDropDown());
 			li.append(dropdownContainer);
 			collapse.append(ulNavRight);
 			return collapse;
 		}
 		
-		getFormDropDown = function(loginAction){
+		getFormDropDown = function(){
 			var form = $('<form class="form-group" action="/controle-de-evento/loginParticipante" method="post" role="search" style="margin-bottom: 0px;">');
 			
 			var inputLogin = $('<input type="text" class="form-control" placeholder="Login" name="Login">');
@@ -46,14 +46,13 @@
 			inputSenha = $('<input type="password" class="form-control" placeholder="Senha" name="Senha">');
 			inputGroup.append(inputSenha);
 			var btn = $('<span class="input-group-btn">').append(
-				$('<button class="btn btn-default logar" type="button">')
+				$('<button class="btn btn-default logar" type="submit">')
 				.append('Logar  ')
 				.append('<span class="glyphicon glyphicon-log-in">')
 			);
-			btn.on('click', function(){
-				alert(inputLogin.val() + " - " + inputSenha.val());
+			/*btn.on('click', function(){
 				$.post("/controle-de-evento/loginParticipante",{Login:inputLogin.val() ,Senha: inputSenha.val()}, loginAction);
-			});
+			});*/
 			inputGroup.append(btn);
 			form.append(inputGroup);
 			
