@@ -169,17 +169,27 @@ tinymce.init({
 </div>
 <div class="obs">Status da Atividade: <input type="radio" name="status" value="ativo" style="margin-left: 10px; margin-right: 5px;">Ativo
 																	 <input type="radio" name="status" value="inativo" style="margin-left: 10px; margin-right: 5px;">Inativo
-																	 <p><input type="text" class="form-control" id="nome" placeholder="Vagas da Atividade"></p>
+																	 <p><input type="text" class="form-control" id="nome" placeholder="Vagas da Atividade" required></p>
  </div>
 		<div class="row">    
 			<div class="atividade-tittle destacado col-md-12 left-15 editable">Nome da Atividade</div>
             <div class="col-md-8">
-                <div class="atividade-destaque col-md-4 left-15 editable">
-                    <p>Palestrante(s): Palestrante </p>
-                    <p>Data: DD.MM.AAAA</p>
-                    <p>Horário: HH:MM às HH:MM</p>
-                    <p>Local(Sala): Local</p>
-                    <p>Tipo: (Palestra, Seminário, Oficina...)</p>
+                <div class="atividade-destaque col-md-4 left-15">
+                    <p>Palestrante(s): <input type="text" id="palestrante" placeholder="Nome do Palestrante"required> </p>
+                    <p>Data: <input type="date" id="data" required></p>
+                    <p>Horário: <input type="time" id="time1" required> às <input type="time" id="time2" required></p>
+                  <p>Local: <input type="text" id="local" placeholder="Local da Atividade"required> </p>
+                    Tipo: <select>
+  <option value="fundInc">Palestra</option>
+  <option value="fundComp">Curso</option>
+  <option value="medInc">Seminário</option>
+  <option value="medComp" selected>Oficina</option>
+  <option value="supInc" selected>Workshop</option>
+  <option value="supComp" selected>Curso</option>
+  <option value="metr" selected>Mesa-Redonda</option>
+  <option value="dout" selected>Congresso</option>
+  <option value="outro" selected>Outro</option>
+				</select></p>
                     
                     </div>
             
@@ -202,7 +212,7 @@ Conteúdo da Palestra - Conteúdo da Palestra - Conteúdo da Palestra - Conteúd
                 
 				<div class="atividade-buttons text-center">
                     <center><img class="atividade-img editable" src="../cal.png"></center>
-					<p><button type="button" class="btn btn-default">Inscreva-se</button></p>
+					<p><button type="button" class="btn btn-default" disabled>Inscreva-se</button></p>
 					<p><button type="button" class="btn btn-default">Material</button></p>
 					<span class='st_facebook_large share' displayText='Facebook'></span>
 					<span class='st_twitter_large share' displayText='Tweet'></span>
