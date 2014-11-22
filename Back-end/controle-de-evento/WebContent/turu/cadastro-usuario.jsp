@@ -1,5 +1,4 @@
 <%@page import="dao.GrauInstrucaoBD"%>
-<%@page import="com.sun.javafx.collections.ArrayListenerHelper"%>
 <%@page import="pojo.GrauInstrucao"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
