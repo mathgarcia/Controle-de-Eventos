@@ -1,3 +1,7 @@
+<%@page import="dao.GrauInstrucaoBD"%>
+<%@page import="com.sun.javafx.collections.ArrayListenerHelper"%>
+<%@page import="pojo.GrauInstrucao"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <link rel="stylesheet" href="lib/css/cadastro.css">
 <!-- <script src="lib/jQuery/inputMasks/jquery.inputmask.js"></script>
@@ -29,15 +33,15 @@
 				<p>	
 				<div class="div-cadastro">Grau de Intrução: 
 					<select id="grauInstrucao">
-						 <option value="0">Fundamental Incompleto</option>
-						 <option value="1">Fundamental Completo</option>
-						 <option value="2">Médio Incompleto</option>
-						 <option value="3" selected>Médio Completo</option>
-						 <option value="4" selected>Superior Incompleto</option>
-						 <option value="5" selected>Superior Completo</option>
-						 <option value="6" selected>Mestrado</option>
-						 <option value="7" selected>Doutorado</option>
-						 <option value="8" selected>Outro</option>
+						<%
+							ArrayList<GrauInstrucao> list = GrauInstrucaoBD.consultarTodos();
+							for (int i = 0; i < list.size(); i++){
+							GrauInstrucao gi = list.get(i);
+						%>
+								<option value="<%=gi.getCodigo()%>"><%=gi.getNome() %></option>
+						 <%
+							}
+						 %>
 					</select>
 				</div>
 				</p>
@@ -119,6 +123,7 @@
 			logradouro: $("#logradouro").val(),
 			numero: $("#numero").val(),
 			complemento: $("#complemento").val(),
+			cidade: $('#cidade').val(),
 			bairro: $("#bairro").val(),
 			cep: $("#cep").val(),
 			estado: $("#estado").val(),

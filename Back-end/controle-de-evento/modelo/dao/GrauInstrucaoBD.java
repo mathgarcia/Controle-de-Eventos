@@ -1,21 +1,28 @@
 package dao;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import pojo.Atividade;
+import pojo.Evento;
 import pojo.GrauInstrucao;
 
 public class GrauInstrucaoBD extends DAO{
-	static public GrauInstrucao consultar(int codigo) throws SQLException{
-		GrauInstrucao gi = null;
-		iniciaConexao("SELECT * FROM grau_instrucao WHERE codigo = ?");
-		ps.setInt(1, codigo);		
+	static public ArrayList<GrauInstrucao> consultarTodos() throws SQLException{
+		ArrayList<GrauInstrucao> list = new ArrayList<GrauInstrucao>();
+		iniciaConexao("SELECT * FROM grau_instrucao");
 		ResultSet rs = (ResultSet) ps.executeQuery();
-		if (rs.next()){				
+		while (rs.next()){		
+			int codigo = Integer.parseInt(rs.getString("codigo"));
 			String nome = rs.getString("descricao");			
-			gi = new GrauInstrucao(codigo,nome);
+			list.add(new GrauInstrucao(codigo,nome));
 		}	
 		fechaConexao();
-		return gi;
+		return list;
 	}
 	static public synchronized void adicionar(GrauInstrucao gi) throws SQLException{
 		iniciaConexao("INSERT INTO grau_instrucao VALUES (null, ?)");
