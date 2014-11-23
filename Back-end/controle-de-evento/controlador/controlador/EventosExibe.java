@@ -29,6 +29,7 @@ public class EventosExibe extends HttpServlet{
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		ArrayList<Evento> todosEventos = null;
+		HttpSession session = request.getSession();
 		Date data = new Date();		
 		try {
 			todosEventos = dao.EventoBD.consultarTodosEventos();			
@@ -40,7 +41,6 @@ public class EventosExibe extends HttpServlet{
 			if (todosEventos.get(i).getData_fim().before(data))
 				todosEventos.remove(i);
 		}
-		HttpSession session = request.getSession();
 		session.setAttribute("evento",todosEventos);
 		response.sendRedirect("turu/eventos.jsp");
 	}

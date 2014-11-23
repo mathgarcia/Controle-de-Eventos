@@ -34,20 +34,21 @@ public class InscreverParticipanteAtividade extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
 	{
 		HttpSession sessao = request.getSession();
-		String cod_participante = request.getParameter("codigo_participante");
-		String cod_evento = request.getParameter("codigo_evento");	
-		String codigo_atividade = request.getParameter("codigo_atividade");
+		Participante participante = (Participante)sessao.getAttribute("usuarioInfo");
+		
+		Integer cod_evento = Integer.parseInt(request.getParameter("codigo_evento"));	
+		Integer codigo_atividade = Integer.parseInt(request.getParameter("codigo_atividade"));
 
 		try {
-			Integer cod_inscrEvento = ParticipanteBD.consultarInscricaoEvento(Integer.parseInt(cod_participante),Integer.parseInt(cod_evento));
+			Integer cod_inscrEvento = ParticipanteBD.consultarInscricaoEvento(participante.getCodigo(),cod_evento);
 			if(cod_inscrEvento == null)
-				ParticipanteBD.inscreverEvento(Integer.parseInt(cod_participante), Integer.parseInt(cod_evento));
+				ParticipanteBD.inscreverEvento(participante.getCodigo(), cod_evento);
 
-			if(ParticipanteBD.consultarInscricaoAtividade(Integer.parseInt(cod_participante), Integer.parseInt(codigo_atividade)) != null)
+			if(ParticipanteBD.consultarInscricaoAtividade(participante.getCodigo(), codigo_atividade) != null)
 				sessao.setAttribute("mensagem", "O usuário já está inscrito nesta atividade.");
 			else
 			{
-				ParticipanteBD.inscreverAtividade(cod_inscrEvento, Integer.parseInt(codigo_atividade));
+				ParticipanteBD.inscreverAtividade(cod_inscrEvento, codigo_atividade);
 				sessao.setAttribute("mensagem", "O usuário foi inscrito com sucesso nesta atividade.");	
 			}
 		} catch (NumberFormatException e) {

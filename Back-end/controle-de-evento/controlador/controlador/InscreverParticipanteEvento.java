@@ -34,18 +34,19 @@ public class InscreverParticipanteEvento extends HttpServlet
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
 		HttpSession sessao = request.getSession();
-		String cod_participante = request.getParameter("codigo_participante");
-		String cod_evento = request.getParameter("codigo_evento");		
+		Participante participante = (Participante)sessao.getAttribute("usuarioInfo");
+		Integer cod_participante = participante.getCodigo();
+		
+		Integer cod_evento = Integer.parseInt(request.getParameter("codigo_evento"));		
 		try {
-			if(ParticipanteBD.consultarInscricaoEvento(Integer.parseInt(cod_participante),Integer.parseInt(cod_evento)) != null)
+			if(ParticipanteBD.consultarInscricaoEvento(cod_participante,cod_evento) != null)
 			{
 				sessao.setAttribute("mensagem", "O usuário já está inscrito no evento.");
 				response.sendRedirect("turu/eventos.jsp");
 			}
 			else
 			{
-				ParticipanteBD.inscreverEvento(Integer.parseInt(cod_participante), 
-						Integer.parseInt(cod_evento));
+				ParticipanteBD.inscreverEvento(cod_participante, cod_evento);
 				sessao.setAttribute("mensagem", "O usuário foi inscrito com sucesso no evento.");
 			}	
 		} catch (NumberFormatException e) {
