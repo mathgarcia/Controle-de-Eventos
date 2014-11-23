@@ -1,6 +1,8 @@
 <%@page import="com.sun.xml.internal.bind.v2.schemagen.xmlschema.Import"%>
 <%@page import="pojo.Atividade"%>
 <%@page import="pojo.Evento"%>
+<%@page import="pojo.Palestrante"%>
+<%@page import="dao.PalestranteBD"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -71,7 +73,10 @@
 				Iterator<Atividade> iterator = listaAtiviade.iterator();
 				while (iterator.hasNext()) {
 					Atividade atividade = (Atividade) iterator.next();
-					int idAtividade = atividade.getCodigo();
+					int idAtividade = atividade.getCodigo();			
+					
+					ArrayList<Palestrante> palestrante = PalestranteBD.consultarPorAtividade(idAtividade);
+					Iterator<Palestrante> itPalestrante = palestrante.iterator();
 			%>
 					<div class="col-sm-12 col-sm-6 col-md-4">
 						<div class="thumbnail">
@@ -79,7 +84,17 @@
 								<img src="img/cal.png">
 								<div class="mask">
 									<h2><%=atividade.getNome() %></h2>
-									<p>Palestrnate: Palestrante!?!?</p>
+									<p>
+										Palestrante(s): 
+										<%if (itPalestrante.hasNext()){ %>
+											<%=itPalestrante.next().getDadosPalestrante().getNome() %>
+											<% while (itPalestrante.hasNext()){ %>
+												,<%=itPalestrante.next().getDadosPalestrante().getNome() %>
+											<% } %>
+										<% } else { %>
+											Sem Palestrante(s)
+										<% } %>
+									</p>
 									<p>Tipo: <%=atividade.getTipo().getDescricao() %></p>
 									<p>Data: <%=atividade.getData() %></p>
 									<p>Horário: <%=atividade.getHora() %></p>

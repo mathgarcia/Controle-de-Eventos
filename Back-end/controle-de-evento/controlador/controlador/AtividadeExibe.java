@@ -41,6 +41,6 @@ public class AtividadeExibe {
 		HttpSession session = request.getSession();
 		session.setAttribute("Atividade",atividade);
 		session.setAttribute("listaPalestrante",listaPalestrante);
-		response.sendRedirect("turu/eventos.jsp");
+		response.sendRedirect("turu/atividade-selecionada.jsp");
 	}
 }

@@ -38,7 +38,7 @@
 	</head>
 	
 	<body style="70px">
-		<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">
+		<div id="corpo" style="height:3000px; padding-left: 25px; padding-right: 25px; margin-top: 115px; display:block">
 		</div>
 	</body>
 </html>
