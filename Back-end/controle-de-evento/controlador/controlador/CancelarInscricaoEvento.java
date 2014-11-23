@@ -39,6 +39,6 @@ public class CancelarInscricaoEvento extends HttpServlet  {
 			e.printStackTrace();
 			sessao.setAttribute("mensagem", "Erro ao cancelar a inscrição.");
 		}
-		response.sendRedirect(request.getRequestURL().toString());
+		response.sendRedirect("turu/eventos.jsp");
 	}
 }

@@ -74,7 +74,7 @@
 							});
 						}); 
 						$("#cancelarInscricao<%=idEvento %>").on('click', function(){							
-							$.post("/controle-de-evento/CancelarInscricaoEvento", {inscricao_evento:<%=idEvento%>}, function(response){
+							$.post("/controle-de-evento/CancelarInscricaoEvento", {inscricao_evento:<%=inscricao_evento%>}, function(response){
 								$('#corpo').html(response);
 							});
 						}); 
