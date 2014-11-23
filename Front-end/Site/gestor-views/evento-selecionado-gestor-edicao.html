@@ -177,7 +177,11 @@ tinymce.init({
 <center><img class="img-evento editable" src="../images/pic1.jpg"></center>
 		<div class="row">
 			<div class="col-md-8">
-			<h1 class="editable">Nome do Evento</h1>
+			<h1 class="editable">Nome do Evento<div class="encerrado" style="display: none"> - Encerrado</div></h1> <!-- Alterar de display: none para display: inline para exibir o evento como encerrado-->
+						<div class="event-destaque">
+                    <p>Local: <input type="text" id="local" placeholder="Local do Evento"required> </p>
+                    <p>Data: <input type="date" id="data1" required> até <input type="date" id="data2" required></p>
+			</div>
 				<div class="event-description editable">
 					
 Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição do Evento - Descrição
@@ -190,7 +194,7 @@ Descrição do Evento - Descrição do Evento - Descrição do Evento - Descriç
 						<button type="button" class="btn btn-default">Como Chegar</button>
 					</p>
 					<p>
-						<button type="button" class="btn btn-default">Inscreva-se</button>
+						<button type="button" class="btn btn-default" disabled>Inscreva-se</button>
 					</p>
 					<span class='st_facebook_large share' displayText='Facebook'></span>
 					<span class='st_twitter_large share' displayText='Tweet'></span>
