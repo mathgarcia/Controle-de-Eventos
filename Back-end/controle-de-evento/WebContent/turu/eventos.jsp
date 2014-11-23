@@ -7,6 +7,7 @@
 <%@page import="java.text.DateFormat" %>
 <%@page import="java.text.SimpleDateFormat" %>
 <%@page import="dao.ParticipanteBD" %>
+<%@page import="java.sql.SQLException" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
@@ -22,7 +23,14 @@
   				while (iterator.hasNext()) {
 					Evento umEvento = (Evento) iterator.next();
 					int idEvento = umEvento.getCodigo();
-					Integer inscricao_evento = ParticipanteBD.consultarInscricaoEvento(part.getCodigo(),idEvento);
+					Integer inscricao_evento = null;
+					try{
+						inscricao_evento = ParticipanteBD.consultarInscricaoEvento(part.getCodigo(),idEvento);
+					}catch (SQLException e){
+						//
+					}catch (NullPointerException e){
+						//
+					}
   			%>
 					<div class="col-sm-12 col-sm-6 col-md-4">
 						<div class="thumbnail">
