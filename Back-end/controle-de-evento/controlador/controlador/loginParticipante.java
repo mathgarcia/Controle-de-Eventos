@@ -40,12 +40,11 @@ public class loginParticipante extends HttpServlet{
 				usuario = new AdministradorBD();
 			else
 				usuario = new ParticipanteBD();	
-			System.out.println("participanteLogin: " + p);
 			
 				session.setAttribute("usuario",usuario);			
 				session.setAttribute("usuarioInfo", p);
 				session.setMaxInactiveInterval(1800);
-				session.setAttribute("resposta","Bem Vindo!");
+				session.setAttribute("mensagem","Bem Vindo!");
 
 		} 
 		catch (SQLException e) {
@@ -54,7 +53,7 @@ public class loginParticipante extends HttpServlet{
 			session.setAttribute("mensagem","Erro de Login.");
 		}
 		catch(NullPointerException e){
-			session.setAttribute("resposta","Login ou Senha inválidos.");
+			session.setAttribute("mensagem","Login ou Senha inválidos.");
 		}
 		finally {
 			response.sendRedirect("turu/index.jsp");

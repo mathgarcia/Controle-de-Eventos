@@ -50,13 +50,6 @@ public class InscricaoParticipante extends HttpServlet
 		String cpf = request.getParameter("cpf");
 		String nomeCompleto = request.getParameter("nomeCompleto");
 		String nomeSocial = request.getParameter("nomeSocial");
-		System.out.println(request.getParameter("dataNascimento"));
-//		try {
-//			dataNascimento = verificaDataNasc(request.getParameter("dataNascimento"));
-//		} catch (ParseException e1) {
-//			mensagem = "Data não preenchida";
-//		}		
-//		Calendar dataNascimento = null;
 		String data = request.getParameter("dataNascimento");
 		DateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = null;
@@ -66,13 +59,11 @@ public class InscricaoParticipante extends HttpServlet
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-//		dataNascimento = Calendar.getInstance();
 //		try {
-//			dataNascimento.setTime(formato.parse(request.getParameter("dataNascimento")));
-//		} catch (ParseException e2) {
-//			// TODO Auto-generated catch block
-//			e2.printStackTrace();
-//		}
+//			dataNascimento = verificaDataNasc(request.getParameter("dataNascimento"));
+//		} catch (ParseException e1) {
+//			mensagem = "Data não preenchida";
+//		}	
 		char sexo = request.getParameter("sexo").charAt(0);
 		String email = request.getParameter("email");
 		String senha = request.getParameter("senha");
@@ -88,8 +79,7 @@ public class InscricaoParticipante extends HttpServlet
 		int grauInstrucao = Integer.parseInt(request.getParameter("grauInstrucao"));	
 		Endereco endereco = null;
 		if(numero > 0)
-		{
-			System.out.println(logradouro + " " + numero + " " + cep + " " + bairro + " " + cidade + " " + estado);
+		{			
 			endereco = new Endereco(0, logradouro, numero, cep, bairro, cidade, estado);
 			try {
 				EnderecoBD.adicionar(endereco);
@@ -100,24 +90,6 @@ public class InscricaoParticipante extends HttpServlet
 		}
 		
 		Perfil perfil = new Perfil(1, "participante");
-//		try {
-//			PerfilBD.adicionar(perfil);
-//		} catch (SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-		
-		//GrauInstrucao grauInstrucao = new GrauInstrucao(null, grauInstrucao);
-		//grauInstrucao = GrauInstrucaoBD.adicionar(grauInstrucao);
-		
-		
-		
-//		if(false)
-//		{
-//			indicador = 1;
-//			mensagem = mensagem + "Número de CPF inválido.\n";
-//		}
-		
 		if(!verificaNomeCompleto(nomeCompleto))
 		{
 			indicador = 1;
@@ -171,19 +143,14 @@ public class InscricaoParticipante extends HttpServlet
 				e.printStackTrace();
 			}
 			
-			System.out.println(mensagem + "gravou?");
 			sessao.setAttribute("mensagem", "Seja Bem Vindo "+nomeSocial+"!!!");
 			sessao.setAttribute("idLog", participante.getCodigo());
-			//response.sendRedirect("turu/index.jsp");
-			
+			response.sendRedirect("turu/index.jsp");
 		}
-		else
-		{
-			System.out.println(mensagem);
-			sessao.setAttribute("mensagem", mensagem);
-			//response.sendRedirect("turu/cadastro-usuario.jsp");
+		else{
+			sessao.setAttribute("mensagem", mensagem);				
+			response.sendRedirect("turu/cadastro-usuario.jsp");
 		}
-		
 	}
 	
 	public boolean verificaNomeCompleto(String nomeCompleto) 
