@@ -1,7 +1,9 @@
 package controlador;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpSession;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +15,16 @@ import dao.EventoBD;
 import pojo.Participante;
 import pojo.Evento;
 
-
+@WebServlet("/InscreverEvento")
 public class InscreverParticipanteEvento extends HttpServlet 
 {
 	private static final long serialVersionUID = 1L;
 
-    public InscreverParticipanteEvento() 
-    {
-        super();
-        
-    }
+	public InscreverParticipanteEvento() 
+	{
+		super();
+
+	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
@@ -31,39 +33,33 @@ public class InscreverParticipanteEvento extends HttpServlet
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
 	{
-		HttpSession session = request.getSession();
-		ParticipanteBD participanteBD = (ParticipanteBD) request.getAttribute("Usuario");
-		Participante participante = (Participante) request.getAttribute("UsuarioInfo");
-		int codigo_evento;
-		int codigo_part = participante.getCodigo();
-		
-		/*
-		ArrayList<Evento> eventos = EventoBD.consultarTodosEventos();
-		Iterator<Evento> iterator = eventos.iterator();
-		
-		while(iterator.hasNext())
-		{
-			Evento ev = iterator.next();
-			int codigo = ev.getCodigo();
-			if(request.getAttribute(""+codigo)!=null)
+		HttpSession sessao = request.getSession();
+		String cod_participante = request.getParameter("codigo_participante");
+		String cod_evento = request.getParameter("codigo_evento");		
+		try {
+			if(ParticipanteBD.consultarInscricaoEvento(Integer.parseInt(cod_participante),Integer.parseInt(cod_evento)) != null)
 			{
-				codigo_evento = codigo;
+				sessao.setAttribute("mensagem", "O usuário já está inscrito no evento.");
+				response.sendRedirect("turu/eventos.jsp");
 			}
-		}*/
-		
-		codigo_evento = request.getAttribute("idEvento");
-		
-		if(participanteBD.consultarInscricaoEvento(codigo_part, codigo_evento))
-		{
-			session.setAttribute("Aviso", "O usuário já está inscrito no evento.");
+			else
+			{
+				ParticipanteBD.inscreverEvento(Integer.parseInt(cod_participante), 
+						Integer.parseInt(cod_evento));
+				sessao.setAttribute("mensagem", "O usuário foi inscrito com sucesso no evento.");
+			}	
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NullPointerException e){
+			sessao.setAttribute("mensagem", "Você Precisa efetuar login no site.");
+		}
+		finally{
 			response.sendRedirect("turu/eventos.jsp");
 		}
-		else
-		{
-			participanteBD.inscreverEvento(codigo_part, codigo_evento);
-			session.setAttribute("Aviso", "O usuário foi inscrito com sucesso no evento.");
-			response.sendRedirect("turu/eventos.jsp");
-		}	
 	}
 
 }

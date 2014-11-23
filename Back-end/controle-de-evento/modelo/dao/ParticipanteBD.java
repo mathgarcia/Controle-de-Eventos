@@ -147,7 +147,7 @@ public class ParticipanteBD extends DAO{
 		fechaConexao();
 	}
 	
-	static public synchronized int consultarInscricaoEvento(int cod_part, int cod_evento) throws SQLException{
+	static public synchronized Integer consultarInscricaoEvento(int cod_part, int cod_evento) throws SQLException{
 		iniciaConexao("SELECT * FROM inscricao_evento WHERE cod_participante = ? and cod_evento = ?");
 		ps.setInt(1, cod_part);
 		ps.setInt(2, cod_evento);
@@ -155,7 +155,7 @@ public class ParticipanteBD extends DAO{
 		ResultSet res = (ResultSet) ps.executeQuery();
 		if(res.next())
 		{
-			int cod_inscrEvento = res.getInt("codigo");
+			Integer cod_inscrEvento = res.getInt("codigo");
 			return cod_inscrEvento;
 		}
 		fechaConexao();
@@ -177,7 +177,7 @@ public class ParticipanteBD extends DAO{
 		fechaConexao();
 	}
 	
-	static public synchronized boolean consultarInscricaoAtividade(int cod_part, int cod_atividade) throws SQLException
+	static public synchronized Integer consultarInscricaoAtividade(int cod_part, int cod_atividade) throws SQLException
 	{
 		iniciaConexao("SELECT * FROM inscricao_evento WHERE cod_participante = ? and cod_evento = ?");
 		ps.setInt(1, cod_part);
@@ -185,11 +185,9 @@ public class ParticipanteBD extends DAO{
 		ps.executeQuery();
 		ResultSet res = (ResultSet) ps.executeQuery();
 		if(res.next())
-		{
-			return true;
-		}
+			return res.getInt("codigo");
 		fechaConexao();
-		return false;
+		return null;
 	}
 	//		@SuppressWarnings("unused")
 	//		private synchronized void votarAtividade() throws SQLException{
