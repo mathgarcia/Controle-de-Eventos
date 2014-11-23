@@ -19,20 +19,26 @@
 		<title>Pagina Inicial</title>
 		<script type="text/javascript">
 			$.ready = function(){
-				$('body').prepend(getInicialMenu());
-				startNavbarAnimation();
 				<%
-				String resposta = (String)session.getAttribute("resposta");
-				System.out.println(resposta);
-				System.out.println((Participante)session.getAttribute("usuarioInfo"));
+					Participante p = (Participante) session.getAttribute("usuarioInfo");
+					if (p != null){
 				%>
-				$('#corpo').html("<%=resposta%>");
+						$('body').prepend(getInicialMenu(true, "Olá <%=p.getNome()%>"));
+				<%
+					}
+					else {
+				%>
+						$('body').prepend(getInicialMenu(false));
+				<%
+					}
+				%>
+				startNavbarAnimation();
 			}
 		</script>
 	</head>
 	
 	<body style="70px">
-		<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">			
+		<div id="corpo" style="height:3000px; margin-left: 50px; margin-top: 150px; display:block">
 		</div>
 	</body>
 </html>

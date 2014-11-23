@@ -1,4 +1,4 @@
-		#menu-superior {
+	#menu-superior {
 			display: block;
 		}
 		#menu-inferior {
@@ -54,9 +54,27 @@
 			color: #73879C;
 			font-weight: bold;
 		}
+		
+				.drop-usuario {
+			border-radius: 0px;
+			background-color: #F5F7FA;
+			border-width: 2px;
+			border-color: #E6E9ED;
+			color: #73879C;
+			font-weight: bold;
+		}
+		
 		.btn-search {
 			width: 40px;
 		}
+
+        .bottom-button {
+        width: 100%;
+        border-left-width: 0px;
+        border-right-width: 0px;
+        border-top-width: 1px;
+        border-bottom-width: 0px;
+        }
 		.navbar-form .form-group {
 			width: 80%;
 		}
@@ -78,8 +96,15 @@
 		}
 		.logar {
 			background-color: #283645;
-			color: #E6E9ED
+			color: #E6E9ED;
 		}
+		
+		.logout {
+		width: 100%;
+		background-color: #283645;
+		color: #E6E9ED;
+		}
+		
 		#events-avl {
 			margin-top: 8px;
 			float: left;
@@ -175,6 +200,25 @@
 			border-color: #73879C;
 			border-bottom-width: 0px;
 		}
+
+        .navbar-inverse .navbar-nav>li>a:hover, 
+        .navbar-inverse .navbar-nav>li>a:focus {
+        color: #73879C;
+        background-color: transparent;
+        }
+        
+        .btn-default:focus, 
+        .btn-default:active, 
+        .btn-default.active, 
+        .open>.dropdown-toggle.btn-default {
+        color: #73879C;
+        background-color: transparent;
+        border-color: #E6E9ED;
+        }
+        
+        .navbar-collapse{
+            border-width: 0px;
+        }
 		ul.nav a:hover {
 			color: #73879C !important;
 			background-color: #F5F7FA !important;
@@ -185,20 +229,24 @@
 			color: #73879C;
 			font-weight: bold;
 		}
+        .lembrar p{
+            border-bottom: 1px solid;
+            border-color: #E6E9ED;
+            margin: 0 0 5px 0px;
+            padding-bottom: 5px;
+        }            
 
+        /* #navbar-login-collapse{
+            margin-top: 30px;
+        } */
+
+            /*Collapsado*/
 		@media (max-width: 768px) {
-			.navbar-right {
-				margin: 0 -14px 0 -16px;
-				border-style: solid;
-				border-width: 1px;
-				border-color: #E6E9ED;
-				position: static !important;
-				background: white;
-				max-height: inherit;
-				padding-top: 0px;
-				padding-bottom: 0px;
-				padding-left: 15px;
-				padding-right: 15px;
+            .navbar-collapse{
+                background-color: #fff;
+            }
+			.poof {
+                display: none;
 			}
 			#navbar-bottom-collapse a {
 				margin-top: 5px;
@@ -207,5 +255,22 @@
 				border-color: #E6E9ED;
 				border-width: 0px;
 				border-bottom-width: 1px;
-			}
-		}
+            }
+            .logar{
+                width: 100%;
+            }
+            .lembrar{
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            #createAccount{
+                border-bottom-width: 1px;
+            }
+        }
+            
+            /*Não Colapsado*/
+        @media (min-width: 768px){
+         .nav-form{
+             display: none;
+         }
+        }

@@ -3,21 +3,42 @@
 		*jquery 11
 		*/
 		
-		getInicialMenu = function(loginAction){
+		getInicialMenu = function(userLogado, userName){
 			var menu = $('<div class="navbar">');
-			menu.append(getSuperiorNav());
+			menu.append(getSuperiorNav(userLogado, userName));
 			menu.append(getInferiorNav());
 			return menu;
 		}
 		
-		getSuperiorNav = function(){
+		getSuperiorNav = function(userLogado, userName){
 			var superiorNav = $('<nav class="navbar navbar-default" role="navigation">');
 			var container = $('<div class="container-fluid">');
 			var dateNextsEvents = $('<div id="events-avl>').append("Datas dos próximos testeEventos");
 			container.append(dateNextsEvents);
-			container.append(getCollapseSuperior());
+			if (userLogado == false)
+				container.append(getCollapseSuperior());
+			else
+				container.append(getLogout(userName));
 			superiorNav.append(container);			
 			return superiorNav;
+		}
+		
+		getLogout = function (userName){
+			var logout = $('<ul class="nav navbar-nav navbar-right poof">');
+			var drop = $('<li class="dropdown">');
+			logout.append(drop);
+			var userButton = $('<button class="btn drop-usuario  navbar-btn login dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">');
+			userButton.append(userName).append('<span class="caret">');
+			drop.append(userButton);
+			var menuDrop = $('<ul class="dropdown-menu" role="menu">');
+			var minhaArea = $('<button class="btn btn-default bottom-button" type="button" id="minhaArea">').append("Minha Área");
+			var formLogout = $('<form class="form-group" action="/controle-de-evento/LogoutParticipante" method="post" style="margin-bottom: 0px;">');
+			var logoutButton = $('<button class="btn btn-default logout" type="submit">').append('Logout   ').append('<span class="glyphicon glyphicon-log-out">');
+			formLogout.append(logoutButton);
+			menuDrop.append(minhaArea);
+			menuDrop.append(formLogout);
+			drop.append(menuDrop);
+			return logout;
 		}
 		
 		getCollapseSuperior = function (){ 
