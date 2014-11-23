@@ -19,7 +19,6 @@
 			
 				ArrayList<Evento> listaEvento = (ArrayList<Evento>) session.getAttribute("evento");
   				Iterator<Evento> iterator = listaEvento.iterator();
-  				
   				while (iterator.hasNext()) {
 					Evento umEvento = (Evento) iterator.next();
 					int idEvento = umEvento.getCodigo();
@@ -51,12 +50,14 @@
 									<p><%=umEvento.getDescricao() %></p>
 								</center>
 							</div>							
-							<a href="#" class="btn btn-default bottom-button" role="button" id="inscrever<%=idEvento %>">
-								<% if(inscricao_evento == null){%>
-									Inscreva-se
-									<% }else {%>
-									Inscrição Realizada
-									<%} %>
+							
+								<% if (part != null && inscricao_evento == null){%>
+									<a href="#" class="btn btn-default bottom-button" role="button" id="inscrever<%=idEvento %>">Inscreva-se</a>		
+								<% }else if (inscricao_evento!=null){%>
+								 	<a href="#" class="btn btn-default bottom-button" role="button" id="cancelarInscricao<%=idEvento %>">Cancelar Inscrição</a>
+								 <% }else{%>
+								 	<but href="#" class="btn btn-default bottom-button disabled" role="button" >Faça login para inscrever-se</a>
+								 <% }%>
 							</a>	
 						</div>
 					</div>
@@ -66,16 +67,16 @@
 								$('#corpo').html(response);
 							});
 						});
-						 $("#inscrever<%=idEvento %>").on('click', function(){							
-					<% if (part != null && inscricao_evento == null){%>
+						 $("#inscrever<%=idEvento %>").on('click', function(){
+							 alert("#inscrever<%=idEvento %>");
 							$.post("/controle-de-evento/InscreverEvento", {codigo_evento:<%=idEvento%>} , function(response){
 								$('#corpo').html(response);
-							});		
-						 <% }else if (inscricao_evento!=null){%>
-						 	alert("Inscrição já realizada. Clique no evento e participe das atividades.");
-						 <% }else{%>
-						 	alert("Faça login ou inscreva-se para continuar.");
-						 <% }%>
+							});
+						}); 
+						$("#cancelarInscricao<%=idEvento %>").on('click', function(){							
+							$.post("/controle-de-evento/CancelarInscricaoEvento", {inscricao_evento:<%=idEvento%>}, function(response){
+								$('#corpo').html(response);
+							});
 						}); 
 					</script>
 			<%

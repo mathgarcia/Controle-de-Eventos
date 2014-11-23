@@ -37,7 +37,7 @@ public class InscreverParticipanteEvento extends HttpServlet
 		Participante participante = (Participante)sessao.getAttribute("usuarioInfo");
 		Integer cod_participante = participante.getCodigo();
 		
-		Integer cod_evento = Integer.parseInt(request.getParameter("codigo_evento"));		
+		Integer cod_evento = Integer.parseInt(request.getParameter("codigo_evento"));	
 		try {
 			if(ParticipanteBD.consultarInscricaoEvento(cod_participante,cod_evento) != null)
 			{
@@ -60,6 +60,7 @@ public class InscreverParticipanteEvento extends HttpServlet
 		}
 		finally{
 			response.sendRedirect("turu/eventos.jsp");
+			
 		}
 	}
 
