@@ -129,6 +129,7 @@
 					</div>		
 					<script>
 						$("#<%=atividade.getCodigo() %>").on('click', function(){
+							
 							$.post("/controle-de-evento/AtividadeExibe", {cod_atividade: <%=atividade.getCodigo() %>}, function(response){
 								$('#corpo').html(response);
 							});
