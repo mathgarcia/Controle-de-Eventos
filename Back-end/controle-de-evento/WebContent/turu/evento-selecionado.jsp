@@ -124,7 +124,7 @@
 									<a id="<%=atividade.getCodigo() %>" href="#" class="info">Leia Mais</a>
 								</div>
 							</div>
-							<% if (part != null && ParticipanteBD.consultarInscricaoAtividade(part.getCodigo(), atividade.getCodigo()) == null){%>
+							<% if (part != null && ParticipanteBD.consultarInscricaoAtividade(inscricao_evento, atividade.getCodigo()) == null){%>
 									<a href="#" class="btn btn-default bottom-button" role="button" id="inscrever<%=atividade.getCodigo() %>">Inscreva-se</a>		
 							<% }else if (inscricao_evento!=null){%>
 							 	<a href="#" class="btn btn-default bottom-button" role="button" id="cancelarInscricao<%=atividade.getCodigo() %>">Cancelar Inscrição</a>
