@@ -177,10 +177,10 @@ public class ParticipanteBD extends DAO{
 		fechaConexao();
 	}
 	
-	static public synchronized Integer consultarInscricaoAtividade(int cod_part, int cod_atividade) throws SQLException
+	static public synchronized Integer consultarInscricaoAtividade(int cod_insc_evento, int cod_atividade) throws SQLException
 	{
-		iniciaConexao("SELECT * FROM inscricao_atividade WHERE cod_participante = ? and cod_evento = ?");
-		ps.setInt(1, cod_part);
+		iniciaConexao("SELECT * FROM inscricao_atividade WHERE cod_inscricao_evento = ? and cod_atividade = ?");
+		ps.setInt(1, cod_insc_evento);
 		ps.setInt(2, cod_atividade);
 		ps.executeQuery();
 		ResultSet res = (ResultSet) ps.executeQuery();
