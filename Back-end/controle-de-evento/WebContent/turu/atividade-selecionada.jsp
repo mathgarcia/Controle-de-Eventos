@@ -23,7 +23,16 @@
 			<div class="atividade-tittle destacado col-md-12 left-15"><%=atividade.getNome()%></div>
             <div class="col-md-8">
                 <div class="atividade-destaque col-md-4 left-15">
-                    <p>Palestrante(s): </p> <!-- preciso do palestrante... -->
+                    <p>Palestrante(s): 
+						<%if (iterator.hasNext()){ %>
+							<%=iterator.next().getDadosPalestrante().getNome() %>
+						<% while (iterator.hasNext()){ %>
+							,<%=iterator.next().getDadosPalestrante().getNome() %>
+						<% } %>
+						<% } else { %>
+							Sem Palestrante(s)
+						<% } %> 
+					</p>
                     <p>Data: <%=atividade.getData() %></p>
                     <p>Horário: <%=atividade.getHora() %> horas</p>
                     <p>Duração: <%=atividade.getDuracao() %></p>
