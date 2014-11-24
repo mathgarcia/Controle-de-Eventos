@@ -27,7 +27,7 @@ public class AtividadeExibe {
 		this.doPost(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int cod_atividade = (Integer) request.getAttribute("cod_atividade");
+		int cod_atividade = Integer.parseInt(request.getParameter("cod_atividade"));
 		Atividade atividade = null;
 		ArrayList<Palestrante> listaPalestrante = null;
 		Date data = new Date();		
