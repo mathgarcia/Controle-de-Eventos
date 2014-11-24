@@ -69,7 +69,7 @@ public class CancelarInscricaoAtividade extends HttpServlet{//cancelar incrição 
 		HttpSession session = request.getSession();
 		//session.setAttribute("login", login);
 		//session.setAttribute("senha", senha);
-		response.sendRedirect("paginas/pagina1.jsp");
+		response.sendRedirect("turu/evento-selecionado.jsp");
 		
 	}
 	
