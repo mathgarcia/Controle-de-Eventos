@@ -6,28 +6,42 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import dao.AtividadeBD;
-import dao.PalestranteBD;
 import pojo.Atividade;
 import pojo.Palestrante;
-@WebServlet("/AtividadeExibe")
-public class AtividadeExibe {
+import dao.AtividadeBD;
+import dao.PalestranteBD;
+
+/**
+ * Servlet implementation class ExibirAtividade
+ */
+public class ExibirAtividade extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public AtividadeExibe() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ExibirAtividade() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.doPost(request, response);
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("$$$");
+	
 		int cod_atividade = Integer.parseInt(request.getParameter("cod_atividade"));
 		Atividade atividade = null;
 		ArrayList<Palestrante> listaPalestrante = null;
@@ -44,4 +58,5 @@ public class AtividadeExibe {
 		session.setAttribute("listaPalestrante",listaPalestrante);
 		response.sendRedirect("turu/atividade-selecionada.jsp");
 	}
+
 }

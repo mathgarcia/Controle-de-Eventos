@@ -129,25 +129,26 @@
 							<% }else if (inscricao_evento!=null){%>
 							 	<a href="#" class="btn btn-default bottom-button" role="button" id="cancelarInscricao<%=atividade.getCodigo() %>">Cancelar Inscrição</a>
 							 <% }else{%>
-							 	<but href="#" class="btn btn-default bottom-button disabled" role="button" >Faça login para inscrever-se</a>
+							 	<a href="#" class="btn btn-default bottom-button disabled" role="button" >Faça login para inscrever-se</a>
+							 	<script>
+								 	$("#cancelarInscricao<%=atividade.getCodigo() %>").on('click', function(){							
+										$.post("/controle-de-evento/CancelaInscricaoAtividade", {cod:<%=ParticipanteBD.consultarInscricaoAtividade(inscricao_evento, atividade.getCodigo())%>}, function(response){
+											$('#corpo').html(response);
+										});
+									}); 
+							 	</script>
 							 <% }%>
 						</div>
 					</div>		
 					<script>
 						$("#<%=atividade.getCodigo() %>").on('click', function(){
-							$.post("/controle-de-evento/AtividadeExibe", {cod_atividade: <%=atividade.getCodigo() %>}, function(response){
+							$.post("/controle-de-evento/ExibirAtividade", {cod_atividade: <%=atividade.getCodigo() %>}, function(response){
 								$('#corpo').html(response);
 							});
 						});
 						$("#inscrever<%=atividade.getCodigo() %>").on('click', function(){
-							 alert("#inscrever<%=atividade.getCodigo() %>");
 							$.post("/controle-de-evento/InscreverAtividade", {codigo_evento: <%=e.getCodigo() %>, codigo_atividade: <%=atividade.getCodigo() %>} , function(response){
 								$('#corpo').html(response);
-							});
-						}); 
-						$("#cancelarInscricao<%=atividade.getCodigo() %>").on('click', function(){							
-							$.post("/controle-de-evento/CancelaInscricaoAtividade", {cod:<%=ParticipanteBD.consultarInscricaoAtividade(inscricao_evento, atividade.getCodigo())%>}, function(response){
-								$('#corpo').html(response); //tem que reavaliar o back
 							});
 						}); 
 					</script>

@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@page import="pojo.Atividade"%>
-<%@page import="pojo.Palestrante"%>
-<%@page import="dao.PalestranteBD"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Iterator" %>
+<%@page import="pojo.Evento"%>
+<%@page import="pojo.Participante"%>
+<%@page import="dao.ParticipanteBD"%>
+<%@page import="pojo.Palestrante"%>
+<%@page import="dao.PalestranteBD"%>
+<%@page import="java.sql.SQLException" %>
 	<link rel="stylesheet" href="lib/css/activity.css">
 	<script type="text/javascript">
 		stLight.options({
@@ -15,29 +19,41 @@
 		});
 	</script>
 		<div class="row">
+		<%
+				Evento e =(Evento) session.getAttribute("evento");
+				 
+				Participante part = (Participante) session.getAttribute("usuarioInfo");
+				Integer inscricao_evento = null;
+				try{
+					inscricao_evento = ParticipanteBD.consultarInscricaoEvento(part.getCodigo(),e.getCodigo());
+				}catch (SQLException ex){
+					//
+				}catch (NullPointerException ex){
+					//
+				}
+			%>
     		<%
-    			Atividade atividade = (Atividade)session.getAttribute("atividade");
+    			Atividade atividade = (Atividade)session.getAttribute("Atividade");
     			ArrayList<Palestrante> palestrante = PalestranteBD.consultarPorAtividade(atividade.getCodigo());
     			Iterator<Palestrante> iterator = palestrante.iterator();
     		%>
 			<div class="atividade-tittle destacado col-md-12 left-15"><%=atividade.getNome()%></div>
             <div class="col-md-8">
                 <div class="atividade-destaque col-md-4 left-15">
-                    <p>Palestrante(s): 
+                    
 						<%if (iterator.hasNext()){ %>
 							<%=iterator.next().getDadosPalestrante().getNome() %>
 						<% while (iterator.hasNext()){ %>
-							,<%=iterator.next().getDadosPalestrante().getNome() %>
+							<p>Palestrante(s): <%=iterator.next().getDadosPalestrante().getNome() %></p>
 						<% } %>
 						<% } else { %>
-							Sem Palestrante(s)
+							<p>Palestrante(s): Sem Palestrante(s) </p>
 						<% } %> 
-					</p>
                     <p>Data: <%=atividade.getData() %></p>
                     <p>Horário: <%=atividade.getHora() %> horas</p>
                     <p>Duração: <%=atividade.getDuracao() %></p>
                     <p>Local(Sala): <%=atividade.getLocal() %></p>
-                    <p>Tipo: <%=atividade.getTipo().getDescricao() %> preciso do nome!!</p> <!-- preciso do nome... -->
+                    <p>Tipo: <%=atividade.getTipo().getDescricao() %></p>
                     
                     </div>
             
@@ -57,7 +73,15 @@
 				<div class="atividade-buttons text-center">
                     <center><div style="width: 350px; height: 200px; background-color: transparent; border: 1px solid; border-color: #E6E9ED; margin-bottom: 10px;">
                        <span style="font-size: 25px; font-weight: bold; color: #73879C;"><br><br>Imagem</span></div></center>
-				<p><button type="button" class="btn btn-default">Inscreva-se</button></p>
+				<p>
+					<% if (part != null && ParticipanteBD.consultarInscricaoAtividade(inscricao_evento, atividade.getCodigo()) == null){%>
+							<button class="btn btn-default bottom-button" role="button" id="inscrever<%=atividade.getCodigo() %>">Inscreva-se</button>		
+					<% }else if (inscricao_evento!=null){%>
+					 	<button  class="btn btn-default bottom-button" role="button" id="cancelarInscricao<%=atividade.getCodigo() %>">Cancelar Inscrição</button>
+					 <% }else{%>
+					 	<button  class="btn btn-default bottom-button disabled" role="button" >Faça login para inscrever-se</button>
+					 <% }%>
+				</p>
 				<p><button type="button" class="btn btn-default">Material</button></p>
 				<span class='st_facebook_large share' displayText='Facebook'></span>
 				<span class='st_twitter_large share' displayText='Tweet'></span>
@@ -65,3 +89,15 @@
 			</div>
 		</div>     
 	</div>
+	<script>
+		$("#inscrever<%=atividade.getCodigo() %>").on('click', function(){
+			$.post("/controle-de-evento/InscreverAtividade", {codigo_evento: <%=e.getCodigo() %>, codigo_atividade: <%=atividade.getCodigo() %>} , function(response){
+				$('#corpo').html(response);
+			});
+		}); 
+		$("#cancelarInscricao<%=atividade.getCodigo() %>").on('click', function(){							
+			$.post("/controle-de-evento/CancelaInscricaoAtividade", {cod:<%=ParticipanteBD.consultarInscricaoAtividade(inscricao_evento, atividade.getCodigo())%>}, function(response){
+				$('#corpo').html(response);
+			});
+		}); 
+	</script>
