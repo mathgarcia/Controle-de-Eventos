@@ -146,7 +146,7 @@
 							});
 						}); 
 						$("#cancelarInscricao<%=atividade.getCodigo() %>").on('click', function(){							
-							$.post("/controle-de-evento/CancelaInscricaoAtividade", {cod:<%=ParticipanteBD.consultarInscricaoAtividade(part.getCodigo(), atividade.getCodigo())%>}, function(response){
+							$.post("/controle-de-evento/CancelaInscricaoAtividade", {cod:<%=ParticipanteBD.consultarInscricaoAtividade(inscricao_evento, atividade.getCodigo())%>}, function(response){
 								$('#corpo').html(response); //tem que reavaliar o back
 							});
 						}); 

@@ -52,8 +52,7 @@ public class CancelarInscricaoAtividade extends HttpServlet{//cancelar incrição 
 				
 		//Atividade a1 = new Atividade ( cod, nom,  loc, res, dat,  hor, dur, cancelado, cod_evento, tipo);
 		
-		int codi=Integer.parseInt("cod");
-		ParticipanteBD pbd= new ParticipanteBD();
+		Integer codi=Integer.parseInt(cod);
 		try {
 			ParticipanteBD.cancelarInscricaoAtividade(codi);
 		} catch (SQLException e) {
